@@ -8,9 +8,9 @@ const TableNameFbGameList = "fb_game_lists"
 
 // FbGameList 游戏列表
 type FbGameList struct {
-	ID           int64   `gorm:"column:id;primaryKey" json:"id"`
-	PlatformID   int64   `gorm:"column:platform_id;not null;comment:场馆ID" json:"platform_id"`                                     // 场馆ID
-	VenueID      int64   `gorm:"column:venue_id;not null;comment:平台id(PP/EVO等)" json:"venue_id"`                                  // 平台id(PP/EVO等)
+	ID           uint64  `gorm:"column:id;primaryKey" json:"id"`
+	PlatformID   uint64  `gorm:"column:platform_id;not null;comment:场馆ID" json:"platform_id"`                                     // 场馆ID
+	VenueID      uint64  `gorm:"column:venue_id;not null;comment:平台id(PP/EVO等)" json:"venue_id"`                                  // 平台id(PP/EVO等)
 	PlatformName string  `gorm:"column:platform_name;comment:场馆名" json:"platform_name"`                                           // 场馆名
 	TwName       string  `gorm:"column:tw_name;comment:繁体中文名" json:"tw_name"`                                                     // 繁体中文名
 	ZhName       string  `gorm:"column:zh_name;not null;comment:中文名称" json:"zh_name"`                                             // 中文名称
@@ -26,8 +26,8 @@ type FbGameList struct {
 	Rtp          float64 `gorm:"column:rtp;not null;default:0.00" json:"rtp"`
 	ReleasedAt   int32   `gorm:"column:released_at;not null;comment:游戏发布时间" json:"released_at"` // 游戏发布时间
 	CreatedAt    int32   `gorm:"column:created_at;not null;comment:添加时间" json:"created_at"`     // 添加时间
-	UpdatedAt    int64   `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`     // 更新时间
-	UpdatedUID   int64   `gorm:"column:updated_uid;not null;comment:更新人uid" json:"updated_uid"` // 更新人uid
+	UpdatedAt    uint64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`     // 更新时间
+	UpdatedUID   uint64  `gorm:"column:updated_uid;not null;comment:更新人uid" json:"updated_uid"` // 更新人uid
 	UpdatedName  string  `gorm:"column:updated_name;not null;comment:更新人名" json:"updated_name"` // 更新人名
 	Code         string  `gorm:"column:code;not null" json:"code"`
 	Category     string  `gorm:"column:category;not null" json:"category"`

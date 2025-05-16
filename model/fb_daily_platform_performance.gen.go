@@ -8,7 +8,7 @@ const TableNameFbDailyPlatformPerformance = "fb_daily_platform_performance"
 
 // FbDailyPlatformPerformance 平台业绩日报表
 type FbDailyPlatformPerformance struct {
-	ID                        int64  `gorm:"column:id;primaryKey;autoIncrement:true;comment:ID" json:"id"`                                        // ID
+	ID                        uint64 `gorm:"column:id;primaryKey;autoIncrement:true;comment:ID" json:"id"`                                        // ID
 	Day                       int32  `gorm:"column:day;not null;comment:年月日" json:"day"`                                                          // 年月日
 	LoginCount                int64  `gorm:"column:login_count;not null;comment:登陆统计" json:"login_count"`                                         // 登陆统计
 	KycCount                  int64  `gorm:"column:kyc_count;not null;comment:kyc统计" json:"kyc_count"`                                            // kyc统计
@@ -34,7 +34,7 @@ type FbDailyPlatformPerformance struct {
 	GiftsPayable              string `gorm:"column:gifts_payable;not null;default:0;comment:应发礼金" json:"gifts_payable"`                           // 应发礼金
 	GiftsActuallyPaid         string `gorm:"column:gifts_actually_paid;not null;default:0;comment:实发礼金" json:"gifts_actually_paid"`               // 实发礼金
 	CommissionPayable         string `gorm:"column:commission_payable;not null;default:0;comment:应付佣金" json:"commission_payable"`                 // 应付佣金
-	CreatedAt                 int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                           // 创建时间
+	CreatedAt                 uint64 `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                           // 创建时间
 }
 
 // TableName FbDailyPlatformPerformance's table name

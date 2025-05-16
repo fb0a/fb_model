@@ -28,7 +28,7 @@ func newFbBanner(db *gorm.DB, opts ...gen.DOOption) fbBanner {
 
 	tableName := _fbBanner.fbBannerDo.TableName()
 	_fbBanner.ALL = field.NewAsterisk(tableName)
-	_fbBanner.ID = field.NewInt64(tableName, "id")
+	_fbBanner.ID = field.NewUint64(tableName, "id")
 	_fbBanner.Type = field.NewInt32(tableName, "type")
 	_fbBanner.Tags = field.NewString(tableName, "tags")
 	_fbBanner.URL = field.NewString(tableName, "url")
@@ -40,8 +40,8 @@ func newFbBanner(db *gorm.DB, opts ...gen.DOOption) fbBanner {
 	_fbBanner.Seq = field.NewInt32(tableName, "seq")
 	_fbBanner.IsDelete = field.NewInt32(tableName, "is_delete")
 	_fbBanner.CreatedAt = field.NewInt32(tableName, "created_at")
-	_fbBanner.UpdatedAt = field.NewInt64(tableName, "updated_at")
-	_fbBanner.UpdatedUID = field.NewInt64(tableName, "updated_uid")
+	_fbBanner.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_fbBanner.UpdatedUID = field.NewUint64(tableName, "updated_uid")
 	_fbBanner.UpdatedName = field.NewString(tableName, "updated_name")
 
 	_fbBanner.fillFieldMap()
@@ -54,7 +54,7 @@ type fbBanner struct {
 	fbBannerDo
 
 	ALL         field.Asterisk
-	ID          field.Int64
+	ID          field.Uint64
 	Type        field.Int32  // 轮播图类型
 	Tags        field.String // 轮播图标签
 	URL         field.String // 轮播图图片路径
@@ -66,8 +66,8 @@ type fbBanner struct {
 	Seq         field.Int32  // 排序
 	IsDelete    field.Int32  // 删除状态 1已删除 2正常
 	CreatedAt   field.Int32  // 添加时间
-	UpdatedAt   field.Int64  // 更新时间
-	UpdatedUID  field.Int64  // 更新人uid
+	UpdatedAt   field.Uint64 // 更新时间
+	UpdatedUID  field.Uint64 // 更新人uid
 	UpdatedName field.String // 更新人名
 
 	fieldMap map[string]field.Expr
@@ -85,7 +85,7 @@ func (f fbBanner) As(alias string) *fbBanner {
 
 func (f *fbBanner) updateTableName(table string) *fbBanner {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Type = field.NewInt32(table, "type")
 	f.Tags = field.NewString(table, "tags")
 	f.URL = field.NewString(table, "url")
@@ -97,8 +97,8 @@ func (f *fbBanner) updateTableName(table string) *fbBanner {
 	f.Seq = field.NewInt32(table, "seq")
 	f.IsDelete = field.NewInt32(table, "is_delete")
 	f.CreatedAt = field.NewInt32(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
-	f.UpdatedUID = field.NewInt64(table, "updated_uid")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
+	f.UpdatedUID = field.NewUint64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
 
 	f.fillFieldMap()

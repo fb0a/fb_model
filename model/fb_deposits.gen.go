@@ -8,8 +8,8 @@ const TableNameFbDeposit = "fb_deposits"
 
 // FbDeposit 存款表
 type FbDeposit struct {
-	ID                 int64   `gorm:"column:id;primaryKey" json:"id"`
-	UID                int64   `gorm:"column:uid;not null" json:"uid"`
+	ID                 uint64  `gorm:"column:id;primaryKey" json:"id"`
+	UID                uint64  `gorm:"column:uid;not null" json:"uid"`
 	Username           string  `gorm:"column:username;not null;comment:用户名" json:"username"`                                  // 用户名
 	Amount             float64 `gorm:"column:amount;not null;comment:金额" json:"amount"`                                       // 金额
 	ChannelCategory    string  `gorm:"column:channel_category;not null;comment:通道分类" json:"channel_category"`                 // 通道分类
@@ -19,13 +19,13 @@ type FbDeposit struct {
 	PaymentMethod      string  `gorm:"column:payment_method;not null;comment:支付方式" json:"payment_method"`                     // 支付方式
 	RolloverMultiplier float64 `gorm:"column:rollover_multiplier;not null;default:0;comment:打码倍数" json:"rollover_multiplier"` // 打码倍数
 	Status             string  `gorm:"column:status;not null;comment:状态" json:"status"`                                       // 状态
-	PaidAt             int64   `gorm:"column:paid_at;not null;comment:支付时间" json:"paid_at"`                                   // 支付时间
-	CreatedAt          int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                             // 创建时间
-	UpdatedAt          int64   `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                             // 创建时间
+	PaidAt             uint64  `gorm:"column:paid_at;not null;comment:支付时间" json:"paid_at"`                                   // 支付时间
+	CreatedAt          uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                             // 创建时间
+	UpdatedAt          uint64  `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                             // 创建时间
 	CancelReason       string  `gorm:"column:cancel_reason;not null;comment:取消原因" json:"cancel_reason"`                       // 取消原因
 	Gt                 int32   `gorm:"column:gt;not null;comment:充值次数类型 0 其他 1 首冲 2 二充 3 三充" json:"gt"`                       // 充值次数类型 0 其他 1 首冲 2 二充 3 三充
 	Remark             string  `gorm:"column:remark;not null" json:"remark"`
-	PaymentChannelID   int64   `gorm:"column:payment_channel_id;not null;comment:支付通道id" json:"payment_channel_id"` // 支付通道id
+	PaymentChannelID   uint64  `gorm:"column:payment_channel_id;not null;comment:支付通道id" json:"payment_channel_id"` // 支付通道id
 }
 
 // TableName FbDeposit's table name

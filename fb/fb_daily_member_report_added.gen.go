@@ -28,7 +28,7 @@ func newFbDailyMemberReportAdded(db *gorm.DB, opts ...gen.DOOption) fbDailyMembe
 
 	tableName := _fbDailyMemberReportAdded.fbDailyMemberReportAddedDo.TableName()
 	_fbDailyMemberReportAdded.ALL = field.NewAsterisk(tableName)
-	_fbDailyMemberReportAdded.ID = field.NewInt64(tableName, "id")
+	_fbDailyMemberReportAdded.ID = field.NewUint64(tableName, "id")
 	_fbDailyMemberReportAdded.Day = field.NewInt32(tableName, "day")
 	_fbDailyMemberReportAdded.RegCount = field.NewInt64(tableName, "reg_count")
 	_fbDailyMemberReportAdded.RegSourceChannel = field.NewString(tableName, "reg_source_channel")
@@ -43,7 +43,7 @@ func newFbDailyMemberReportAdded(db *gorm.DB, opts ...gen.DOOption) fbDailyMembe
 	_fbDailyMemberReportAdded.AmountOfThirdDeposit = field.NewString(tableName, "amount_of_third_deposit")
 	_fbDailyMemberReportAdded.GiftMoneyDay = field.NewString(tableName, "gift_money_day")
 	_fbDailyMemberReportAdded.GiftMoneyChannelRatio = field.NewString(tableName, "gift_money_channel_ratio")
-	_fbDailyMemberReportAdded.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbDailyMemberReportAdded.CreatedAt = field.NewUint64(tableName, "created_at")
 
 	_fbDailyMemberReportAdded.fillFieldMap()
 
@@ -55,7 +55,7 @@ type fbDailyMemberReportAdded struct {
 	fbDailyMemberReportAddedDo
 
 	ALL                         field.Asterisk
-	ID                          field.Int64   // ID
+	ID                          field.Uint64  // ID
 	Day                         field.Int32   // 年月日
 	RegCount                    field.Int64   // 新增注册数
 	RegSourceChannel            field.String  // 注册来源渠道统计
@@ -70,7 +70,7 @@ type fbDailyMemberReportAdded struct {
 	AmountOfThirdDeposit        field.String  // 三存金额
 	GiftMoneyDay                field.String  // 当日礼金
 	GiftMoneyChannelRatio       field.String  // 渠道礼金占比
-	CreatedAt                   field.Int64   // 创建时间
+	CreatedAt                   field.Uint64  // 创建时间
 
 	fieldMap map[string]field.Expr
 }
@@ -87,7 +87,7 @@ func (f fbDailyMemberReportAdded) As(alias string) *fbDailyMemberReportAdded {
 
 func (f *fbDailyMemberReportAdded) updateTableName(table string) *fbDailyMemberReportAdded {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.RegCount = field.NewInt64(table, "reg_count")
 	f.RegSourceChannel = field.NewString(table, "reg_source_channel")
@@ -102,7 +102,7 @@ func (f *fbDailyMemberReportAdded) updateTableName(table string) *fbDailyMemberR
 	f.AmountOfThirdDeposit = field.NewString(table, "amount_of_third_deposit")
 	f.GiftMoneyDay = field.NewString(table, "gift_money_day")
 	f.GiftMoneyChannelRatio = field.NewString(table, "gift_money_channel_ratio")
-	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
 
 	f.fillFieldMap()
 

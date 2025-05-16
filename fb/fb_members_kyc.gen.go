@@ -28,7 +28,7 @@ func newFbMembersKyc(db *gorm.DB, opts ...gen.DOOption) fbMembersKyc {
 
 	tableName := _fbMembersKyc.fbMembersKycDo.TableName()
 	_fbMembersKyc.ALL = field.NewAsterisk(tableName)
-	_fbMembersKyc.UID = field.NewInt64(tableName, "uid")
+	_fbMembersKyc.UID = field.NewUint64(tableName, "uid")
 	_fbMembersKyc.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbMembersKyc.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_fbMembersKyc.Phone = field.NewString(tableName, "phone")
@@ -74,7 +74,7 @@ type fbMembersKyc struct {
 	fbMembersKycDo
 
 	ALL                 field.Asterisk
-	UID                 field.Int64
+	UID                 field.Uint64
 	CreatedAt           field.Int64  // 创建时间
 	UpdatedAt           field.Int64  // 创建时间
 	Phone               field.String // 手机号
@@ -125,7 +125,7 @@ func (f fbMembersKyc) As(alias string) *fbMembersKyc {
 
 func (f *fbMembersKyc) updateTableName(table string) *fbMembersKyc {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewInt64(table, "uid")
+	f.UID = field.NewUint64(table, "uid")
 	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
 	f.Phone = field.NewString(table, "phone")

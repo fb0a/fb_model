@@ -28,13 +28,13 @@ func newFbMembersVip(db *gorm.DB, opts ...gen.DOOption) fbMembersVip {
 
 	tableName := _fbMembersVip.fbMembersVipDo.TableName()
 	_fbMembersVip.ALL = field.NewAsterisk(tableName)
-	_fbMembersVip.UID = field.NewInt64(tableName, "uid")
+	_fbMembersVip.UID = field.NewUint64(tableName, "uid")
 	_fbMembersVip.ManualLevel = field.NewInt32(tableName, "manual_level")
 	_fbMembersVip.Score = field.NewFloat64(tableName, "score")
 	_fbMembersVip.Level = field.NewInt32(tableName, "level")
 	_fbMembersVip.Category = field.NewInt32(tableName, "category")
-	_fbMembersVip.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbMembersVip.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbMembersVip.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbMembersVip.UpdatedAt = field.NewUint64(tableName, "updated_at")
 
 	_fbMembersVip.fillFieldMap()
 
@@ -46,13 +46,13 @@ type fbMembersVip struct {
 	fbMembersVipDo
 
 	ALL         field.Asterisk
-	UID         field.Int64
+	UID         field.Uint64
 	ManualLevel field.Int32   // manual_level
 	Score       field.Float64 // 评分
 	Level       field.Int32   // 等级
 	Category    field.Int32   // 等级
-	CreatedAt   field.Int64   // 创建时间
-	UpdatedAt   field.Int64   // 更新时间
+	CreatedAt   field.Uint64  // 创建时间
+	UpdatedAt   field.Uint64  // 更新时间
 
 	fieldMap map[string]field.Expr
 }
@@ -69,13 +69,13 @@ func (f fbMembersVip) As(alias string) *fbMembersVip {
 
 func (f *fbMembersVip) updateTableName(table string) *fbMembersVip {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewInt64(table, "uid")
+	f.UID = field.NewUint64(table, "uid")
 	f.ManualLevel = field.NewInt32(table, "manual_level")
 	f.Score = field.NewFloat64(table, "score")
 	f.Level = field.NewInt32(table, "level")
 	f.Category = field.NewInt32(table, "category")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 
 	f.fillFieldMap()
 

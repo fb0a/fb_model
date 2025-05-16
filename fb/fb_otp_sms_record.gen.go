@@ -28,13 +28,13 @@ func newFbOtpSmsRecord(db *gorm.DB, opts ...gen.DOOption) fbOtpSmsRecord {
 
 	tableName := _fbOtpSmsRecord.fbOtpSmsRecordDo.TableName()
 	_fbOtpSmsRecord.ALL = field.NewAsterisk(tableName)
-	_fbOtpSmsRecord.ID = field.NewInt64(tableName, "id")
+	_fbOtpSmsRecord.ID = field.NewUint64(tableName, "id")
 	_fbOtpSmsRecord.CountryCode = field.NewString(tableName, "country_code")
 	_fbOtpSmsRecord.Phone = field.NewString(tableName, "phone")
 	_fbOtpSmsRecord.Code = field.NewString(tableName, "code")
 	_fbOtpSmsRecord.Reason = field.NewString(tableName, "reason")
 	_fbOtpSmsRecord.State = field.NewInt32(tableName, "state")
-	_fbOtpSmsRecord.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbOtpSmsRecord.CreatedAt = field.NewUint64(tableName, "created_at")
 	_fbOtpSmsRecord.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_fbOtpSmsRecord.ExpireAt = field.NewInt64(tableName, "expire_at")
 	_fbOtpSmsRecord.ChannelName = field.NewString(tableName, "channel_name")
@@ -50,13 +50,13 @@ type fbOtpSmsRecord struct {
 	fbOtpSmsRecordDo
 
 	ALL         field.Asterisk
-	ID          field.Int64
+	ID          field.Uint64
 	CountryCode field.String // 国家区号
 	Phone       field.String // 手机号
 	Code        field.String // code
 	Reason      field.String // reason
 	State       field.Int32  // 0=正常
-	CreatedAt   field.Int64  // 创建时间
+	CreatedAt   field.Uint64 // 创建时间
 	UpdatedAt   field.Int64
 	ExpireAt    field.Int64
 	ChannelName field.String
@@ -77,13 +77,13 @@ func (f fbOtpSmsRecord) As(alias string) *fbOtpSmsRecord {
 
 func (f *fbOtpSmsRecord) updateTableName(table string) *fbOtpSmsRecord {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.CountryCode = field.NewString(table, "country_code")
 	f.Phone = field.NewString(table, "phone")
 	f.Code = field.NewString(table, "code")
 	f.Reason = field.NewString(table, "reason")
 	f.State = field.NewInt32(table, "state")
-	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
 	f.ExpireAt = field.NewInt64(table, "expire_at")
 	f.ChannelName = field.NewString(table, "channel_name")

@@ -28,8 +28,8 @@ func newFbWithdraw(db *gorm.DB, opts ...gen.DOOption) fbWithdraw {
 
 	tableName := _fbWithdraw.fbWithdrawDo.TableName()
 	_fbWithdraw.ALL = field.NewAsterisk(tableName)
-	_fbWithdraw.ID = field.NewInt64(tableName, "id")
-	_fbWithdraw.UID = field.NewInt64(tableName, "uid")
+	_fbWithdraw.ID = field.NewUint64(tableName, "id")
+	_fbWithdraw.UID = field.NewUint64(tableName, "uid")
 	_fbWithdraw.Username = field.NewString(tableName, "username")
 	_fbWithdraw.Amount = field.NewFloat64(tableName, "amount")
 	_fbWithdraw.Account = field.NewString(tableName, "account")
@@ -42,13 +42,13 @@ func newFbWithdraw(db *gorm.DB, opts ...gen.DOOption) fbWithdraw {
 	_fbWithdraw.MiddleName = field.NewString(tableName, "middle_name")
 	_fbWithdraw.LastName = field.NewString(tableName, "last_name")
 	_fbWithdraw.Status = field.NewString(tableName, "status")
-	_fbWithdraw.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbWithdraw.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbWithdraw.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbWithdraw.UpdatedAt = field.NewUint64(tableName, "updated_at")
 	_fbWithdraw.Reviewer = field.NewString(tableName, "reviewer")
 	_fbWithdraw.ReviewedAt = field.NewInt64(tableName, "reviewed_at")
 	_fbWithdraw.Comment = field.NewString(tableName, "comment")
 	_fbWithdraw.CancelReason = field.NewString(tableName, "cancel_reason")
-	_fbWithdraw.PaymentChannelID = field.NewInt64(tableName, "payment_channel_id")
+	_fbWithdraw.PaymentChannelID = field.NewUint64(tableName, "payment_channel_id")
 	_fbWithdraw.Approval = field.NewInt32(tableName, "approval")
 	_fbWithdraw.Payout = field.NewInt32(tableName, "payout")
 
@@ -62,8 +62,8 @@ type fbWithdraw struct {
 	fbWithdrawDo
 
 	ALL              field.Asterisk
-	ID               field.Int64
-	UID              field.Int64
+	ID               field.Uint64
+	UID              field.Uint64
 	Username         field.String  // 用户名
 	Amount           field.Float64 // 金额
 	Account          field.String  // 帐号
@@ -76,15 +76,15 @@ type fbWithdraw struct {
 	MiddleName       field.String  // middle_name
 	LastName         field.String  // last_name
 	Status           field.String  // 状态
-	CreatedAt        field.Int64   // 创建时间
-	UpdatedAt        field.Int64   // 创建时间
+	CreatedAt        field.Uint64  // 创建时间
+	UpdatedAt        field.Uint64  // 创建时间
 	Reviewer         field.String
 	ReviewedAt       field.Int64
 	Comment          field.String
 	CancelReason     field.String
-	PaymentChannelID field.Int64 // 支付通道id
-	Approval         field.Int32 // 0 待审核 1审核失败 2审核成功 3 自动审核
-	Payout           field.Int32 // 0 待出款 1出款中 2出款成功 3 出款失败
+	PaymentChannelID field.Uint64 // 支付通道id
+	Approval         field.Int32  // 0 待审核 1审核失败 2审核成功 3 自动审核
+	Payout           field.Int32  // 0 待出款 1出款中 2出款成功 3 出款失败
 
 	fieldMap map[string]field.Expr
 }
@@ -101,8 +101,8 @@ func (f fbWithdraw) As(alias string) *fbWithdraw {
 
 func (f *fbWithdraw) updateTableName(table string) *fbWithdraw {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
-	f.UID = field.NewInt64(table, "uid")
+	f.ID = field.NewUint64(table, "id")
+	f.UID = field.NewUint64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.Amount = field.NewFloat64(table, "amount")
 	f.Account = field.NewString(table, "account")
@@ -115,13 +115,13 @@ func (f *fbWithdraw) updateTableName(table string) *fbWithdraw {
 	f.MiddleName = field.NewString(table, "middle_name")
 	f.LastName = field.NewString(table, "last_name")
 	f.Status = field.NewString(table, "status")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 	f.Reviewer = field.NewString(table, "reviewer")
 	f.ReviewedAt = field.NewInt64(table, "reviewed_at")
 	f.Comment = field.NewString(table, "comment")
 	f.CancelReason = field.NewString(table, "cancel_reason")
-	f.PaymentChannelID = field.NewInt64(table, "payment_channel_id")
+	f.PaymentChannelID = field.NewUint64(table, "payment_channel_id")
 	f.Approval = field.NewInt32(table, "approval")
 	f.Payout = field.NewInt32(table, "payout")
 

@@ -8,7 +8,7 @@ const TableNameFbMember = "fb_members"
 
 // FbMember 会员表
 type FbMember struct {
-	UID             int64   `gorm:"column:uid;primaryKey" json:"uid"`
+	UID             uint64  `gorm:"column:uid;primaryKey" json:"uid"`
 	Username        string  `gorm:"column:username;not null;comment:用户名" json:"username"`                        // 用户名
 	WithdrawTotal   float64 `gorm:"column:withdraw_total;not null;default:0;comment:提现总数" json:"withdraw_total"` // 提现总数
 	WithdrawCount   int32   `gorm:"column:withdraw_count;not null;comment:提现次数" json:"withdraw_count"`           // 提现次数
@@ -32,13 +32,13 @@ type FbMember struct {
 	DeviceNumber    string  `gorm:"column:device_number;not null;comment:登录设备号" json:"device_number"`                                // 登录设备号
 	State           int32   `gorm:"column:state;not null;comment:会员状态，0=正常 1=停用" json:"state"`                                       // 会员状态，0=正常 1=停用
 	Note            string  `gorm:"column:note;not null;comment:账号备注" json:"note"`                                                   // 账号备注
-	CreatedAt       int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                       // 创建时间
+	CreatedAt       uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                       // 创建时间
 	CreatedIP       string  `gorm:"column:created_ip;not null;comment:创建ip" json:"created_ip"`                                       // 创建ip
 	RegIP           string  `gorm:"column:reg_ip;not null;comment:注册IP" json:"reg_ip"`                                               // 注册IP
 	RegDevice       int32   `gorm:"column:reg_device;not null;comment:注册设备" json:"reg_device"`                                       // 注册设备
 	RegDeviceNo     string  `gorm:"column:reg_device_no;not null;comment:注册设备号" json:"reg_device_no"`                                // 注册设备号
 	LastLoginIP     string  `gorm:"column:last_login_ip;not null;comment:登陆IP" json:"last_login_ip"`                                 // 登陆IP
-	LastLoginAt     int64   `gorm:"column:last_login_at;not null;comment:登陆时间" json:"last_login_at"`                                 // 登陆时间
+	LastLoginAt     uint64  `gorm:"column:last_login_at;not null;comment:登陆时间" json:"last_login_at"`                                 // 登陆时间
 	LastLoginDevice int32   `gorm:"column:last_login_device;not null;default:24;comment:登陆设备" json:"last_login_device"`              // 登陆设备
 	NickName        string  `gorm:"column:nick_name;not null" json:"nick_name"`
 	UpdatedAt       int64   `gorm:"column:updated_at;not null" json:"updated_at"`

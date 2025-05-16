@@ -28,7 +28,7 @@ func newFbDailyPlatformBalanceReport(db *gorm.DB, opts ...gen.DOOption) fbDailyP
 
 	tableName := _fbDailyPlatformBalanceReport.fbDailyPlatformBalanceReportDo.TableName()
 	_fbDailyPlatformBalanceReport.ALL = field.NewAsterisk(tableName)
-	_fbDailyPlatformBalanceReport.ID = field.NewInt64(tableName, "id")
+	_fbDailyPlatformBalanceReport.ID = field.NewUint64(tableName, "id")
 	_fbDailyPlatformBalanceReport.Day = field.NewInt32(tableName, "day")
 	_fbDailyPlatformBalanceReport.Balance = field.NewString(tableName, "balance")
 	_fbDailyPlatformBalanceReport.BalanceChange = field.NewString(tableName, "balance_change")
@@ -49,7 +49,7 @@ type fbDailyPlatformBalanceReport struct {
 	fbDailyPlatformBalanceReportDo
 
 	ALL           field.Asterisk
-	ID            field.Int64
+	ID            field.Uint64
 	Day           field.Int32  // 年月日
 	Balance       field.String // 会员总余额
 	BalanceChange field.String // 较前日变动
@@ -75,7 +75,7 @@ func (f fbDailyPlatformBalanceReport) As(alias string) *fbDailyPlatformBalanceRe
 
 func (f *fbDailyPlatformBalanceReport) updateTableName(table string) *fbDailyPlatformBalanceReport {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.Balance = field.NewString(table, "balance")
 	f.BalanceChange = field.NewString(table, "balance_change")

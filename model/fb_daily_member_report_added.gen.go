@@ -8,7 +8,7 @@ const TableNameFbDailyMemberReportAdded = "fb_daily_member_report_added"
 
 // FbDailyMemberReportAdded 新增会员日报表
 type FbDailyMemberReportAdded struct {
-	ID                          int64   `gorm:"column:id;primaryKey;autoIncrement:true;comment:ID" json:"id"`                                                      // ID
+	ID                          uint64  `gorm:"column:id;primaryKey;autoIncrement:true;comment:ID" json:"id"`                                                      // ID
 	Day                         int32   `gorm:"column:day;not null;comment:年月日" json:"day"`                                                                        // 年月日
 	RegCount                    int64   `gorm:"column:reg_count;not null;comment:新增注册数" json:"reg_count"`                                                          // 新增注册数
 	RegSourceChannel            string  `gorm:"column:reg_source_channel;not null;comment:注册来源渠道统计" json:"reg_source_channel"`                                     // 注册来源渠道统计
@@ -23,7 +23,7 @@ type FbDailyMemberReportAdded struct {
 	AmountOfThirdDeposit        string  `gorm:"column:amount_of_third_deposit;not null;comment:三存金额" json:"amount_of_third_deposit"`                               // 三存金额
 	GiftMoneyDay                string  `gorm:"column:gift_money_day;not null;comment:当日礼金" json:"gift_money_day"`                                                 // 当日礼金
 	GiftMoneyChannelRatio       string  `gorm:"column:gift_money_channel_ratio;not null;comment:渠道礼金占比" json:"gift_money_channel_ratio"`                           // 渠道礼金占比
-	CreatedAt                   int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                                         // 创建时间
+	CreatedAt                   uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                                         // 创建时间
 }
 
 // TableName FbDailyMemberReportAdded's table name

@@ -28,13 +28,13 @@ func newFbPayment(db *gorm.DB, opts ...gen.DOOption) fbPayment {
 
 	tableName := _fbPayment.fbPaymentDo.TableName()
 	_fbPayment.ALL = field.NewAsterisk(tableName)
-	_fbPayment.ID = field.NewInt64(tableName, "id")
+	_fbPayment.ID = field.NewUint64(tableName, "id")
 	_fbPayment.Name = field.NewString(tableName, "name")
 	_fbPayment.State = field.NewInt32(tableName, "state")
 	_fbPayment.Remark = field.NewString(tableName, "remark")
-	_fbPayment.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbPayment.UpdatedAt = field.NewInt64(tableName, "updated_at")
-	_fbPayment.UpdatedUID = field.NewInt64(tableName, "updated_uid")
+	_fbPayment.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbPayment.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_fbPayment.UpdatedUID = field.NewUint64(tableName, "updated_uid")
 	_fbPayment.UpdatedName = field.NewString(tableName, "updated_name")
 
 	_fbPayment.fillFieldMap()
@@ -47,13 +47,13 @@ type fbPayment struct {
 	fbPaymentDo
 
 	ALL         field.Asterisk
-	ID          field.Int64
+	ID          field.Uint64
 	Name        field.String // 渠道名
 	State       field.Int32  // 会员状态，1=正常 2=停用
 	Remark      field.String // 渠道备注
-	CreatedAt   field.Int64  // 创建时间
-	UpdatedAt   field.Int64  // 更新时间
-	UpdatedUID  field.Int64  // 更新管理员id
+	CreatedAt   field.Uint64 // 创建时间
+	UpdatedAt   field.Uint64 // 更新时间
+	UpdatedUID  field.Uint64 // 更新管理员id
 	UpdatedName field.String // 更新管理员帐号
 
 	fieldMap map[string]field.Expr
@@ -71,13 +71,13 @@ func (f fbPayment) As(alias string) *fbPayment {
 
 func (f *fbPayment) updateTableName(table string) *fbPayment {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Name = field.NewString(table, "name")
 	f.State = field.NewInt32(table, "state")
 	f.Remark = field.NewString(table, "remark")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
-	f.UpdatedUID = field.NewInt64(table, "updated_uid")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
+	f.UpdatedUID = field.NewUint64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
 
 	f.fillFieldMap()

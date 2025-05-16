@@ -28,7 +28,7 @@ func newFbDailyVenueReport(db *gorm.DB, opts ...gen.DOOption) fbDailyVenueReport
 
 	tableName := _fbDailyVenueReport.fbDailyVenueReportDo.TableName()
 	_fbDailyVenueReport.ALL = field.NewAsterisk(tableName)
-	_fbDailyVenueReport.ID = field.NewInt64(tableName, "id")
+	_fbDailyVenueReport.ID = field.NewUint64(tableName, "id")
 	_fbDailyVenueReport.Day = field.NewInt32(tableName, "day")
 	_fbDailyVenueReport.GameName = field.NewString(tableName, "game_name")
 	_fbDailyVenueReport.GameCode = field.NewString(tableName, "game_code")
@@ -56,7 +56,7 @@ type fbDailyVenueReport struct {
 	fbDailyVenueReportDo
 
 	ALL               field.Asterisk
-	ID                field.Int64
+	ID                field.Uint64
 	Day               field.Int32  // 数据日期
 	GameName          field.String // 第三方游戏名称
 	GameCode          field.String // 第三方游戏名称编码
@@ -89,7 +89,7 @@ func (f fbDailyVenueReport) As(alias string) *fbDailyVenueReport {
 
 func (f *fbDailyVenueReport) updateTableName(table string) *fbDailyVenueReport {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.GameName = field.NewString(table, "game_name")
 	f.GameCode = field.NewString(table, "game_code")

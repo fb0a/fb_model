@@ -28,8 +28,8 @@ func newFbDeposit(db *gorm.DB, opts ...gen.DOOption) fbDeposit {
 
 	tableName := _fbDeposit.fbDepositDo.TableName()
 	_fbDeposit.ALL = field.NewAsterisk(tableName)
-	_fbDeposit.ID = field.NewInt64(tableName, "id")
-	_fbDeposit.UID = field.NewInt64(tableName, "uid")
+	_fbDeposit.ID = field.NewUint64(tableName, "id")
+	_fbDeposit.UID = field.NewUint64(tableName, "uid")
 	_fbDeposit.Username = field.NewString(tableName, "username")
 	_fbDeposit.Amount = field.NewFloat64(tableName, "amount")
 	_fbDeposit.ChannelCategory = field.NewString(tableName, "channel_category")
@@ -39,13 +39,13 @@ func newFbDeposit(db *gorm.DB, opts ...gen.DOOption) fbDeposit {
 	_fbDeposit.PaymentMethod = field.NewString(tableName, "payment_method")
 	_fbDeposit.RolloverMultiplier = field.NewFloat64(tableName, "rollover_multiplier")
 	_fbDeposit.Status = field.NewString(tableName, "status")
-	_fbDeposit.PaidAt = field.NewInt64(tableName, "paid_at")
-	_fbDeposit.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbDeposit.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbDeposit.PaidAt = field.NewUint64(tableName, "paid_at")
+	_fbDeposit.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbDeposit.UpdatedAt = field.NewUint64(tableName, "updated_at")
 	_fbDeposit.CancelReason = field.NewString(tableName, "cancel_reason")
 	_fbDeposit.Gt = field.NewInt32(tableName, "gt")
 	_fbDeposit.Remark = field.NewString(tableName, "remark")
-	_fbDeposit.PaymentChannelID = field.NewInt64(tableName, "payment_channel_id")
+	_fbDeposit.PaymentChannelID = field.NewUint64(tableName, "payment_channel_id")
 
 	_fbDeposit.fillFieldMap()
 
@@ -57,8 +57,8 @@ type fbDeposit struct {
 	fbDepositDo
 
 	ALL                field.Asterisk
-	ID                 field.Int64
-	UID                field.Int64
+	ID                 field.Uint64
+	UID                field.Uint64
 	Username           field.String  // 用户名
 	Amount             field.Float64 // 金额
 	ChannelCategory    field.String  // 通道分类
@@ -68,13 +68,13 @@ type fbDeposit struct {
 	PaymentMethod      field.String  // 支付方式
 	RolloverMultiplier field.Float64 // 打码倍数
 	Status             field.String  // 状态
-	PaidAt             field.Int64   // 支付时间
-	CreatedAt          field.Int64   // 创建时间
-	UpdatedAt          field.Int64   // 创建时间
+	PaidAt             field.Uint64  // 支付时间
+	CreatedAt          field.Uint64  // 创建时间
+	UpdatedAt          field.Uint64  // 创建时间
 	CancelReason       field.String  // 取消原因
 	Gt                 field.Int32   // 充值次数类型 0 其他 1 首冲 2 二充 3 三充
 	Remark             field.String
-	PaymentChannelID   field.Int64 // 支付通道id
+	PaymentChannelID   field.Uint64 // 支付通道id
 
 	fieldMap map[string]field.Expr
 }
@@ -91,8 +91,8 @@ func (f fbDeposit) As(alias string) *fbDeposit {
 
 func (f *fbDeposit) updateTableName(table string) *fbDeposit {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
-	f.UID = field.NewInt64(table, "uid")
+	f.ID = field.NewUint64(table, "id")
+	f.UID = field.NewUint64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.Amount = field.NewFloat64(table, "amount")
 	f.ChannelCategory = field.NewString(table, "channel_category")
@@ -102,13 +102,13 @@ func (f *fbDeposit) updateTableName(table string) *fbDeposit {
 	f.PaymentMethod = field.NewString(table, "payment_method")
 	f.RolloverMultiplier = field.NewFloat64(table, "rollover_multiplier")
 	f.Status = field.NewString(table, "status")
-	f.PaidAt = field.NewInt64(table, "paid_at")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.PaidAt = field.NewUint64(table, "paid_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 	f.CancelReason = field.NewString(table, "cancel_reason")
 	f.Gt = field.NewInt32(table, "gt")
 	f.Remark = field.NewString(table, "remark")
-	f.PaymentChannelID = field.NewInt64(table, "payment_channel_id")
+	f.PaymentChannelID = field.NewUint64(table, "payment_channel_id")
 
 	f.fillFieldMap()
 

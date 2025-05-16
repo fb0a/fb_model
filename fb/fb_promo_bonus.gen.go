@@ -28,12 +28,12 @@ func newFbPromoBonu(db *gorm.DB, opts ...gen.DOOption) fbPromoBonu {
 
 	tableName := _fbPromoBonu.fbPromoBonuDo.TableName()
 	_fbPromoBonu.ALL = field.NewAsterisk(tableName)
-	_fbPromoBonu.ID = field.NewInt64(tableName, "id")
-	_fbPromoBonu.UID = field.NewInt64(tableName, "uid")
+	_fbPromoBonu.ID = field.NewUint64(tableName, "id")
+	_fbPromoBonu.UID = field.NewUint64(tableName, "uid")
 	_fbPromoBonu.Username = field.NewString(tableName, "username")
-	_fbPromoBonu.ParentUID = field.NewInt64(tableName, "parent_uid")
+	_fbPromoBonu.ParentUID = field.NewUint64(tableName, "parent_uid")
 	_fbPromoBonu.ParentName = field.NewString(tableName, "parent_name")
-	_fbPromoBonu.ActivityID = field.NewInt64(tableName, "activity_id")
+	_fbPromoBonu.ActivityID = field.NewUint64(tableName, "activity_id")
 	_fbPromoBonu.CashType = field.NewInt32(tableName, "cash_type")
 	_fbPromoBonu.CurrencyID = field.NewInt32(tableName, "currency_id")
 	_fbPromoBonu.Bonus = field.NewFloat64(tableName, "bonus")
@@ -41,8 +41,8 @@ func newFbPromoBonu(db *gorm.DB, opts ...gen.DOOption) fbPromoBonu {
 	_fbPromoBonu.Multiple = field.NewFloat64(tableName, "multiple")
 	_fbPromoBonu.TurnoverAmount = field.NewFloat64(tableName, "turnover_amount")
 	_fbPromoBonu.State = field.NewInt32(tableName, "state")
-	_fbPromoBonu.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbPromoBonu.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbPromoBonu.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbPromoBonu.UpdatedAt = field.NewUint64(tableName, "updated_at")
 	_fbPromoBonu.BetBillNo = field.NewString(tableName, "bet_bill_no")
 
 	_fbPromoBonu.fillFieldMap()
@@ -55,12 +55,12 @@ type fbPromoBonu struct {
 	fbPromoBonuDo
 
 	ALL            field.Asterisk
-	ID             field.Int64
-	UID            field.Int64   // 用户ID
+	ID             field.Uint64
+	UID            field.Uint64  // 用户ID
 	Username       field.String  // 用户名
-	ParentUID      field.Int64   // 上级UID
+	ParentUID      field.Uint64  // 上级UID
 	ParentName     field.String  // 上级用户名
-	ActivityID     field.Int64   // 活动ID
+	ActivityID     field.Uint64  // 活动ID
 	CashType       field.Int32   // 活动类型
 	CurrencyID     field.Int32   // 币种id
 	Bonus          field.Float64 // 活动奖金金额
@@ -68,8 +68,8 @@ type fbPromoBonu struct {
 	Multiple       field.Float64 // 打码倍数
 	TurnoverAmount field.Float64 // 流水金额
 	State          field.Int32   // 状态 1:未完成 2:可提现
-	CreatedAt      field.Int64   // 创建时间
-	UpdatedAt      field.Int64   // 更新时间
+	CreatedAt      field.Uint64  // 创建时间
+	UpdatedAt      field.Uint64  // 更新时间
 	BetBillNo      field.String
 
 	fieldMap map[string]field.Expr
@@ -87,12 +87,12 @@ func (f fbPromoBonu) As(alias string) *fbPromoBonu {
 
 func (f *fbPromoBonu) updateTableName(table string) *fbPromoBonu {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
-	f.UID = field.NewInt64(table, "uid")
+	f.ID = field.NewUint64(table, "id")
+	f.UID = field.NewUint64(table, "uid")
 	f.Username = field.NewString(table, "username")
-	f.ParentUID = field.NewInt64(table, "parent_uid")
+	f.ParentUID = field.NewUint64(table, "parent_uid")
 	f.ParentName = field.NewString(table, "parent_name")
-	f.ActivityID = field.NewInt64(table, "activity_id")
+	f.ActivityID = field.NewUint64(table, "activity_id")
 	f.CashType = field.NewInt32(table, "cash_type")
 	f.CurrencyID = field.NewInt32(table, "currency_id")
 	f.Bonus = field.NewFloat64(table, "bonus")
@@ -100,8 +100,8 @@ func (f *fbPromoBonu) updateTableName(table string) *fbPromoBonu {
 	f.Multiple = field.NewFloat64(table, "multiple")
 	f.TurnoverAmount = field.NewFloat64(table, "turnover_amount")
 	f.State = field.NewInt32(table, "state")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 	f.BetBillNo = field.NewString(table, "bet_bill_no")
 
 	f.fillFieldMap()

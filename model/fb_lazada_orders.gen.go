@@ -8,7 +8,7 @@ const TableNameFbLazadaOrder = "fb_lazada_orders"
 
 // FbLazadaOrder mapped from table <fb_lazada_orders>
 type FbLazadaOrder struct {
-	OrderID              int64   `gorm:"column:order_id;primaryKey" json:"order_id"`
+	OrderID              uint64  `gorm:"column:order_id;primaryKey" json:"order_id"`
 	OrderStatus          string  `gorm:"column:order_status" json:"order_status"`
 	ExchangeStatus       string  `gorm:"column:exchange_status" json:"exchange_status"`
 	SmsStatus            string  `gorm:"column:sms_status" json:"sms_status"`
@@ -21,8 +21,8 @@ type FbLazadaOrder struct {
 	ExchangerPhoneNumber string  `gorm:"column:exchanger_phone_number" json:"exchanger_phone_number"`
 	ExchangedAt          int64   `gorm:"column:exchanged_at" json:"exchanged_at"`
 	Product              string  `gorm:"column:product" json:"product"`
-	CreatedAt            int64   `gorm:"column:created_at;not null" json:"created_at"`
-	UpdatedAt            int64   `gorm:"column:updated_at;not null" json:"updated_at"`
+	CreatedAt            uint64  `gorm:"column:created_at;not null" json:"created_at"`
+	UpdatedAt            uint64  `gorm:"column:updated_at;not null" json:"updated_at"`
 }
 
 // TableName FbLazadaOrder's table name

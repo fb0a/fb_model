@@ -8,12 +8,12 @@ const TableNameFbMemberPlatform = "fb_member_platform"
 
 // FbMemberPlatform 会员场馆表
 type FbMemberPlatform struct {
-	ID        int64  `gorm:"column:id;primaryKey" json:"id"`
+	ID        uint64 `gorm:"column:id;primaryKey" json:"id"`
 	Phone     string `gorm:"column:phone;not null;comment:用户名" json:"phone"`                    // 用户名
-	Pid       int64  `gorm:"column:pid;not null;comment:场馆ID" json:"pid"`                       // 场馆ID
+	Pid       uint64 `gorm:"column:pid;not null;comment:场馆ID" json:"pid"`                       // 场馆ID
 	Password  string `gorm:"column:password;not null;comment:平台密码" json:"password"`             // 平台密码
 	State     int32  `gorm:"column:state;not null;default:1;comment:状态:1=正常,2=锁定" json:"state"` // 状态:1=正常,2=锁定
-	CreatedAt int64  `gorm:"column:created_at;not null" json:"created_at"`
+	CreatedAt uint64 `gorm:"column:created_at;not null" json:"created_at"`
 }
 
 // TableName FbMemberPlatform's table name

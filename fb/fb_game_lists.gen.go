@@ -28,9 +28,9 @@ func newFbGameList(db *gorm.DB, opts ...gen.DOOption) fbGameList {
 
 	tableName := _fbGameList.fbGameListDo.TableName()
 	_fbGameList.ALL = field.NewAsterisk(tableName)
-	_fbGameList.ID = field.NewInt64(tableName, "id")
-	_fbGameList.PlatformID = field.NewInt64(tableName, "platform_id")
-	_fbGameList.VenueID = field.NewInt64(tableName, "venue_id")
+	_fbGameList.ID = field.NewUint64(tableName, "id")
+	_fbGameList.PlatformID = field.NewUint64(tableName, "platform_id")
+	_fbGameList.VenueID = field.NewUint64(tableName, "venue_id")
 	_fbGameList.PlatformName = field.NewString(tableName, "platform_name")
 	_fbGameList.TwName = field.NewString(tableName, "tw_name")
 	_fbGameList.ZhName = field.NewString(tableName, "zh_name")
@@ -46,8 +46,8 @@ func newFbGameList(db *gorm.DB, opts ...gen.DOOption) fbGameList {
 	_fbGameList.Rtp = field.NewFloat64(tableName, "rtp")
 	_fbGameList.ReleasedAt = field.NewInt32(tableName, "released_at")
 	_fbGameList.CreatedAt = field.NewInt32(tableName, "created_at")
-	_fbGameList.UpdatedAt = field.NewInt64(tableName, "updated_at")
-	_fbGameList.UpdatedUID = field.NewInt64(tableName, "updated_uid")
+	_fbGameList.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_fbGameList.UpdatedUID = field.NewUint64(tableName, "updated_uid")
 	_fbGameList.UpdatedName = field.NewString(tableName, "updated_name")
 	_fbGameList.Code = field.NewString(tableName, "code")
 	_fbGameList.Category = field.NewString(tableName, "category")
@@ -63,9 +63,9 @@ type fbGameList struct {
 	fbGameListDo
 
 	ALL          field.Asterisk
-	ID           field.Int64
-	PlatformID   field.Int64  // 场馆ID
-	VenueID      field.Int64  // 平台id(PP/EVO等)
+	ID           field.Uint64
+	PlatformID   field.Uint64 // 场馆ID
+	VenueID      field.Uint64 // 平台id(PP/EVO等)
 	PlatformName field.String // 场馆名
 	TwName       field.String // 繁体中文名
 	ZhName       field.String // 中文名称
@@ -81,8 +81,8 @@ type fbGameList struct {
 	Rtp          field.Float64
 	ReleasedAt   field.Int32  // 游戏发布时间
 	CreatedAt    field.Int32  // 添加时间
-	UpdatedAt    field.Int64  // 更新时间
-	UpdatedUID   field.Int64  // 更新人uid
+	UpdatedAt    field.Uint64 // 更新时间
+	UpdatedUID   field.Uint64 // 更新人uid
 	UpdatedName  field.String // 更新人名
 	Code         field.String
 	Category     field.String
@@ -103,9 +103,9 @@ func (f fbGameList) As(alias string) *fbGameList {
 
 func (f *fbGameList) updateTableName(table string) *fbGameList {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
-	f.PlatformID = field.NewInt64(table, "platform_id")
-	f.VenueID = field.NewInt64(table, "venue_id")
+	f.ID = field.NewUint64(table, "id")
+	f.PlatformID = field.NewUint64(table, "platform_id")
+	f.VenueID = field.NewUint64(table, "venue_id")
 	f.PlatformName = field.NewString(table, "platform_name")
 	f.TwName = field.NewString(table, "tw_name")
 	f.ZhName = field.NewString(table, "zh_name")
@@ -121,8 +121,8 @@ func (f *fbGameList) updateTableName(table string) *fbGameList {
 	f.Rtp = field.NewFloat64(table, "rtp")
 	f.ReleasedAt = field.NewInt32(table, "released_at")
 	f.CreatedAt = field.NewInt32(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
-	f.UpdatedUID = field.NewInt64(table, "updated_uid")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
+	f.UpdatedUID = field.NewUint64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
 	f.Code = field.NewString(table, "code")
 	f.Category = field.NewString(table, "category")

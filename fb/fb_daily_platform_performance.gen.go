@@ -28,7 +28,7 @@ func newFbDailyPlatformPerformance(db *gorm.DB, opts ...gen.DOOption) fbDailyPla
 
 	tableName := _fbDailyPlatformPerformance.fbDailyPlatformPerformanceDo.TableName()
 	_fbDailyPlatformPerformance.ALL = field.NewAsterisk(tableName)
-	_fbDailyPlatformPerformance.ID = field.NewInt64(tableName, "id")
+	_fbDailyPlatformPerformance.ID = field.NewUint64(tableName, "id")
 	_fbDailyPlatformPerformance.Day = field.NewInt32(tableName, "day")
 	_fbDailyPlatformPerformance.LoginCount = field.NewInt64(tableName, "login_count")
 	_fbDailyPlatformPerformance.KycCount = field.NewInt64(tableName, "kyc_count")
@@ -54,7 +54,7 @@ func newFbDailyPlatformPerformance(db *gorm.DB, opts ...gen.DOOption) fbDailyPla
 	_fbDailyPlatformPerformance.GiftsPayable = field.NewString(tableName, "gifts_payable")
 	_fbDailyPlatformPerformance.GiftsActuallyPaid = field.NewString(tableName, "gifts_actually_paid")
 	_fbDailyPlatformPerformance.CommissionPayable = field.NewString(tableName, "commission_payable")
-	_fbDailyPlatformPerformance.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbDailyPlatformPerformance.CreatedAt = field.NewUint64(tableName, "created_at")
 
 	_fbDailyPlatformPerformance.fillFieldMap()
 
@@ -66,7 +66,7 @@ type fbDailyPlatformPerformance struct {
 	fbDailyPlatformPerformanceDo
 
 	ALL                       field.Asterisk
-	ID                        field.Int64  // ID
+	ID                        field.Uint64 // ID
 	Day                       field.Int32  // 年月日
 	LoginCount                field.Int64  // 登陆统计
 	KycCount                  field.Int64  // kyc统计
@@ -92,7 +92,7 @@ type fbDailyPlatformPerformance struct {
 	GiftsPayable              field.String // 应发礼金
 	GiftsActuallyPaid         field.String // 实发礼金
 	CommissionPayable         field.String // 应付佣金
-	CreatedAt                 field.Int64  // 创建时间
+	CreatedAt                 field.Uint64 // 创建时间
 
 	fieldMap map[string]field.Expr
 }
@@ -109,7 +109,7 @@ func (f fbDailyPlatformPerformance) As(alias string) *fbDailyPlatformPerformance
 
 func (f *fbDailyPlatformPerformance) updateTableName(table string) *fbDailyPlatformPerformance {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.LoginCount = field.NewInt64(table, "login_count")
 	f.KycCount = field.NewInt64(table, "kyc_count")
@@ -135,7 +135,7 @@ func (f *fbDailyPlatformPerformance) updateTableName(table string) *fbDailyPlatf
 	f.GiftsPayable = field.NewString(table, "gifts_payable")
 	f.GiftsActuallyPaid = field.NewString(table, "gifts_actually_paid")
 	f.CommissionPayable = field.NewString(table, "commission_payable")
-	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
 
 	f.fillFieldMap()
 

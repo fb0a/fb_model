@@ -28,8 +28,8 @@ func newFbAdmin(db *gorm.DB, opts ...gen.DOOption) fbAdmin {
 
 	tableName := _fbAdmin.fbAdminDo.TableName()
 	_fbAdmin.ALL = field.NewAsterisk(tableName)
-	_fbAdmin.ID = field.NewInt64(tableName, "id")
-	_fbAdmin.GroupID = field.NewInt64(tableName, "group_id")
+	_fbAdmin.ID = field.NewUint64(tableName, "id")
+	_fbAdmin.GroupID = field.NewUint64(tableName, "group_id")
 	_fbAdmin.Nickname = field.NewString(tableName, "nickname")
 	_fbAdmin.Avatar = field.NewString(tableName, "avatar")
 	_fbAdmin.Email = field.NewString(tableName, "email")
@@ -57,8 +57,8 @@ type fbAdmin struct {
 	fbAdminDo
 
 	ALL           field.Asterisk
-	ID            field.Int64
-	GroupID       field.Int64  // 用户组id
+	ID            field.Uint64
+	GroupID       field.Uint64 // 用户组id
 	Nickname      field.String // nickname
 	Avatar        field.String // 头像
 	Email         field.String // 邮箱
@@ -91,8 +91,8 @@ func (f fbAdmin) As(alias string) *fbAdmin {
 
 func (f *fbAdmin) updateTableName(table string) *fbAdmin {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
-	f.GroupID = field.NewInt64(table, "group_id")
+	f.ID = field.NewUint64(table, "id")
+	f.GroupID = field.NewUint64(table, "group_id")
 	f.Nickname = field.NewString(table, "nickname")
 	f.Avatar = field.NewString(table, "avatar")
 	f.Email = field.NewString(table, "email")

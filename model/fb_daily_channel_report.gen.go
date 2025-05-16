@@ -8,7 +8,7 @@ const TableNameFbDailyChannelReport = "fb_daily_channel_report"
 
 // FbDailyChannelReport 渠道业绩日报表
 type FbDailyChannelReport struct {
-	ID             int64  `gorm:"column:id;primaryKey" json:"id"`
+	ID             uint64 `gorm:"column:id;primaryKey" json:"id"`
 	Channel        string `gorm:"column:channel;comment:渠道名称" json:"channel"`                                        // 渠道名称
 	Day            int32  `gorm:"column:day;not null;comment:年月日" json:"day"`                                        // 年月日
 	Regs           int32  `gorm:"column:regs;not null;comment:新增注册" json:"regs"`                                     // 新增注册

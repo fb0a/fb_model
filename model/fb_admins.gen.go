@@ -8,8 +8,8 @@ const TableNameFbAdmin = "fb_admins"
 
 // FbAdmin 后台账户表
 type FbAdmin struct {
-	ID            int64  `gorm:"column:id;primaryKey" json:"id"`
-	GroupID       int64  `gorm:"column:group_id;not null;comment:用户组id" json:"group_id"`          // 用户组id
+	ID            uint64 `gorm:"column:id;primaryKey" json:"id"`
+	GroupID       uint64 `gorm:"column:group_id;not null;comment:用户组id" json:"group_id"`          // 用户组id
 	Nickname      string `gorm:"column:nickname;not null;comment:nickname" json:"nickname"`       // nickname
 	Avatar        string `gorm:"column:avatar;not null;comment:头像" json:"avatar"`                 // 头像
 	Email         string `gorm:"column:email;not null;comment:邮箱" json:"email"`                   // 邮箱

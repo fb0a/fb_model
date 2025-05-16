@@ -8,8 +8,8 @@ const TableNameFbPlatform = "fb_platforms"
 
 // FbPlatform 游戏场馆表
 type FbPlatform struct {
-	ID           int64  `gorm:"column:id;primaryKey;comment:id" json:"id"`                          // id
-	VenueID      int64  `gorm:"column:venue_id;not null;comment:平台id(PP/EVO等)" json:"venue_id"`     // 平台id(PP/EVO等)
+	ID           uint64 `gorm:"column:id;primaryKey;comment:id" json:"id"`                          // id
+	VenueID      uint64 `gorm:"column:venue_id;not null;comment:平台id(PP/EVO等)" json:"venue_id"`     // 平台id(PP/EVO等)
 	Name         string `gorm:"column:name;comment:厂商名" json:"name"`                                // 厂商名
 	EnName       string `gorm:"column:en_name;not null;comment:场馆名称" json:"en_name"`                // 场馆名称
 	ZhName       string `gorm:"column:zh_name;not null;comment:中文名" json:"zh_name"`                 // 中文名
@@ -21,7 +21,7 @@ type FbPlatform struct {
 	Logo         string `gorm:"column:logo;not null;comment:场馆logo" json:"logo"`                    // 场馆logo
 	CreatedAt    int32  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`          // 创建时间
 	UpdatedAt    int32  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`          // 更新时间
-	UpdatedUID   int64  `gorm:"column:updated_uid;not null;comment:更新人uid" json:"updated_uid"`      // 更新人uid
+	UpdatedUID   uint64 `gorm:"column:updated_uid;not null;comment:更新人uid" json:"updated_uid"`      // 更新人uid
 	UpdatedName  string `gorm:"column:updated_name;not null" json:"updated_name"`
 	MaintainedSt int64  `gorm:"column:maintained_st;not null;comment:维护开始时间" json:"maintained_st"` // 维护开始时间
 	MaintainedEt int64  `gorm:"column:maintained_et;not null;comment:维护结束时间" json:"maintained_et"` // 维护结束时间

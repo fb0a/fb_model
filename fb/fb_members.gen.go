@@ -28,7 +28,7 @@ func newFbMember(db *gorm.DB, opts ...gen.DOOption) fbMember {
 
 	tableName := _fbMember.fbMemberDo.TableName()
 	_fbMember.ALL = field.NewAsterisk(tableName)
-	_fbMember.UID = field.NewInt64(tableName, "uid")
+	_fbMember.UID = field.NewUint64(tableName, "uid")
 	_fbMember.Username = field.NewString(tableName, "username")
 	_fbMember.WithdrawTotal = field.NewFloat64(tableName, "withdraw_total")
 	_fbMember.WithdrawCount = field.NewInt32(tableName, "withdraw_count")
@@ -52,13 +52,13 @@ func newFbMember(db *gorm.DB, opts ...gen.DOOption) fbMember {
 	_fbMember.DeviceNumber = field.NewString(tableName, "device_number")
 	_fbMember.State = field.NewInt32(tableName, "state")
 	_fbMember.Note = field.NewString(tableName, "note")
-	_fbMember.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbMember.CreatedAt = field.NewUint64(tableName, "created_at")
 	_fbMember.CreatedIP = field.NewString(tableName, "created_ip")
 	_fbMember.RegIP = field.NewString(tableName, "reg_ip")
 	_fbMember.RegDevice = field.NewInt32(tableName, "reg_device")
 	_fbMember.RegDeviceNo = field.NewString(tableName, "reg_device_no")
 	_fbMember.LastLoginIP = field.NewString(tableName, "last_login_ip")
-	_fbMember.LastLoginAt = field.NewInt64(tableName, "last_login_at")
+	_fbMember.LastLoginAt = field.NewUint64(tableName, "last_login_at")
 	_fbMember.LastLoginDevice = field.NewInt32(tableName, "last_login_device")
 	_fbMember.NickName = field.NewString(tableName, "nick_name")
 	_fbMember.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -80,7 +80,7 @@ type fbMember struct {
 	fbMemberDo
 
 	ALL             field.Asterisk
-	UID             field.Int64
+	UID             field.Uint64
 	Username        field.String  // 用户名
 	WithdrawTotal   field.Float64 // 提现总数
 	WithdrawCount   field.Int32   // 提现次数
@@ -104,13 +104,13 @@ type fbMember struct {
 	DeviceNumber    field.String // 登录设备号
 	State           field.Int32  // 会员状态，0=正常 1=停用
 	Note            field.String // 账号备注
-	CreatedAt       field.Int64  // 创建时间
+	CreatedAt       field.Uint64 // 创建时间
 	CreatedIP       field.String // 创建ip
 	RegIP           field.String // 注册IP
 	RegDevice       field.Int32  // 注册设备
 	RegDeviceNo     field.String // 注册设备号
 	LastLoginIP     field.String // 登陆IP
-	LastLoginAt     field.Int64  // 登陆时间
+	LastLoginAt     field.Uint64 // 登陆时间
 	LastLoginDevice field.Int32  // 登陆设备
 	NickName        field.String
 	UpdatedAt       field.Int64
@@ -137,7 +137,7 @@ func (f fbMember) As(alias string) *fbMember {
 
 func (f *fbMember) updateTableName(table string) *fbMember {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewInt64(table, "uid")
+	f.UID = field.NewUint64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.WithdrawTotal = field.NewFloat64(table, "withdraw_total")
 	f.WithdrawCount = field.NewInt32(table, "withdraw_count")
@@ -161,13 +161,13 @@ func (f *fbMember) updateTableName(table string) *fbMember {
 	f.DeviceNumber = field.NewString(table, "device_number")
 	f.State = field.NewInt32(table, "state")
 	f.Note = field.NewString(table, "note")
-	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
 	f.CreatedIP = field.NewString(table, "created_ip")
 	f.RegIP = field.NewString(table, "reg_ip")
 	f.RegDevice = field.NewInt32(table, "reg_device")
 	f.RegDeviceNo = field.NewString(table, "reg_device_no")
 	f.LastLoginIP = field.NewString(table, "last_login_ip")
-	f.LastLoginAt = field.NewInt64(table, "last_login_at")
+	f.LastLoginAt = field.NewUint64(table, "last_login_at")
 	f.LastLoginDevice = field.NewInt32(table, "last_login_device")
 	f.NickName = field.NewString(table, "nick_name")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")

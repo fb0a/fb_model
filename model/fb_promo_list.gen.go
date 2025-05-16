@@ -8,18 +8,18 @@ const TableNameFbPromoList = "fb_promo_list"
 
 // FbPromoList 活动表
 type FbPromoList struct {
-	ID             int64  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	ID             uint64 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Name           string `gorm:"column:name;not null;comment:活动英文名称" json:"name"`                                            // 活动英文名称
 	Ty             int32  `gorm:"column:ty;not null;default:6;comment:活动类型 1轮盘 2推广 3抢红包 4负盈利返现 5自定义 8充值" json:"ty"`           // 活动类型 1轮盘 2推广 3抢红包 4负盈利返现 5自定义 8充值
 	Display        int32  `gorm:"column:display;not null;default:2;comment:展示状态 1展示 2不展示 3未开始" json:"display"`                // 展示状态 1展示 2不展示 3未开始
-	DisplayStartAt int64  `gorm:"column:display_start_at;not null;comment:展示时间开始" json:"display_start_at"`                    // 展示时间开始
-	DisplayEndAt   int64  `gorm:"column:display_end_at;not null;comment:展示时间结束" json:"display_end_at"`                        // 展示时间结束
+	DisplayStartAt uint64 `gorm:"column:display_start_at;not null;comment:展示时间开始" json:"display_start_at"`                    // 展示时间开始
+	DisplayEndAt   uint64 `gorm:"column:display_end_at;not null;comment:展示时间结束" json:"display_end_at"`                        // 展示时间结束
 	State          int32  `gorm:"column:state;not null;default:1;comment:状态 1开启 2关闭 3未开启" json:"state"`                       // 状态 1开启 2关闭 3未开启
 	ClientType     string `gorm:"column:client_type;not null;comment:领取入口 24web 25，26，27h5(多选json切片)" json:"client_type"`     // 领取入口 24web 25，26，27h5(多选json切片)
 	Config         string `gorm:"column:config;not null;comment:活动配置" json:"config"`                                          // 活动配置
 	IsDelete       int32  `gorm:"column:is_delete;not null;default:2;comment:删除 1是2否" json:"is_delete"`                       // 删除 1是2否
-	StartAt        int64  `gorm:"column:start_at;not null;comment:开始时间" json:"start_at"`                                      // 开始时间
-	EndAt          int64  `gorm:"column:end_at;not null;comment:结束时间" json:"end_at"`                                          // 结束时间
+	StartAt        uint64 `gorm:"column:start_at;not null;comment:开始时间" json:"start_at"`                                      // 开始时间
+	EndAt          uint64 `gorm:"column:end_at;not null;comment:结束时间" json:"end_at"`                                          // 结束时间
 	Multiple       string `gorm:"column:multiple;not null;default:1.00;comment:流水倍数" json:"multiple"`                         // 流水倍数
 	Recommend      int32  `gorm:"column:recommend;not null;default:2;comment:推荐状态 1推荐 2不推荐" json:"recommend"`                 // 推荐状态 1推荐 2不推荐
 	Automatic      int32  `gorm:"column:automatic;not null;default:2;comment:领取方式 1自动 2手动领取" json:"automatic"`                // 领取方式 1自动 2手动领取
@@ -28,11 +28,11 @@ type FbPromoList struct {
 	Summary        string `gorm:"column:summary;not null;comment:简介" json:"summary"`                                          // 简介
 	DetailImage    int32  `gorm:"column:detail_image;not null;comment:详情显示图片1:显示2:不显示" json:"detail_image"`                   // 详情显示图片1:显示2:不显示
 	DisplayType    int32  `gorm:"column:display_type;not null;default:1;comment:// 展示方式 1:内置页面 2:跳转外部链接" json:"display_type"` // // 展示方式 1:内置页面 2:跳转外部链接
-	CreatedAt      int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                  // 创建时间
-	CreatedUID     int64  `gorm:"column:created_uid;not null;comment:创建人uid" json:"created_uid"`                              // 创建人uid
+	CreatedAt      uint64 `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                  // 创建时间
+	CreatedUID     uint64 `gorm:"column:created_uid;not null;comment:创建人uid" json:"created_uid"`                              // 创建人uid
 	CreatedName    string `gorm:"column:created_name;not null;comment:创建人名" json:"created_name"`                              // 创建人名
-	UpdatedAt      int64  `gorm:"column:updated_at;not null;comment:修改时间" json:"updated_at"`                                  // 修改时间
-	UpdatedUID     int64  `gorm:"column:updated_uid;not null;comment:修改人uid" json:"updated_uid"`                              // 修改人uid
+	UpdatedAt      uint64 `gorm:"column:updated_at;not null;comment:修改时间" json:"updated_at"`                                  // 修改时间
+	UpdatedUID     uint64 `gorm:"column:updated_uid;not null;comment:修改人uid" json:"updated_uid"`                              // 修改人uid
 	UpdatedName    string `gorm:"column:updated_name;not null;comment:修改人名" json:"updated_name"`                              // 修改人名
 }
 

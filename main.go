@@ -1,12 +1,14 @@
 package main
 
 import (
+	"fmt"
 	"gorm.io/driver/mysql"
 	"gorm.io/gen"
 	"gorm.io/gorm"
 	logger2 "gorm.io/gorm/logger"
 	"log"
 	"os"
+	"strings"
 	"time"
 )
 
@@ -29,7 +31,14 @@ func order() {
 	}
 
 	cfg.WithDataTypeMap(map[string]func(columnType gorm.ColumnType) (dataType string){
-		//"id": func(columnType gorm.ColumnType) string { return "int64" },
+		"bigint": func(columnType gorm.ColumnType) string {
+			fmt.Println(columnType.ColumnType())
+			val, _ := columnType.ColumnType()
+			if strings.Contains(val, "bigint unsigned") {
+				return "uint64"
+			}
+			return "int64"
+		},
 	})
 	g := gen.NewGenerator(cfg)
 
@@ -69,7 +78,14 @@ func fb() {
 	}
 
 	cfg.WithDataTypeMap(map[string]func(columnType gorm.ColumnType) (dataType string){
-		//"id": func(columnType gorm.ColumnType) string { return "int64" },
+		"bigint": func(columnType gorm.ColumnType) string {
+			fmt.Println(columnType.ColumnType())
+			val, _ := columnType.ColumnType()
+			if strings.Contains(val, "bigint unsigned") {
+				return "uint64"
+			}
+			return "int64"
+		},
 	})
 	g := gen.NewGenerator(cfg)
 

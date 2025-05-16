@@ -8,7 +8,7 @@ const TableNameFbDailyPlatformReport = "fb_daily_platform_report"
 
 // FbDailyPlatformReport 厂商业绩表
 type FbDailyPlatformReport struct {
-	ID             int64  `gorm:"column:id;primaryKey" json:"id"`
+	ID             uint64 `gorm:"column:id;primaryKey" json:"id"`
 	Day            int32  `gorm:"column:day;not null;comment:数据日期" json:"day"`                                           // 数据日期
 	ActvNum        int32  `gorm:"column:actv_num;not null;comment:活跃人数(有效)" json:"actv_num"`                             // 活跃人数(有效)
 	TotalBillNum   int32  `gorm:"column:total_bill_num;not null;comment:总注单数" json:"total_bill_num"`                     // 总注单数

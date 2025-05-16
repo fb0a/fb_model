@@ -28,12 +28,12 @@ func newFbAdminGroup(db *gorm.DB, opts ...gen.DOOption) fbAdminGroup {
 
 	tableName := _fbAdminGroup.fbAdminGroupDo.TableName()
 	_fbAdminGroup.ALL = field.NewAsterisk(tableName)
-	_fbAdminGroup.Gid = field.NewInt64(tableName, "gid")
+	_fbAdminGroup.Gid = field.NewUint64(tableName, "gid")
 	_fbAdminGroup.Name = field.NewString(tableName, "name")
 	_fbAdminGroup.Permission = field.NewString(tableName, "permission")
 	_fbAdminGroup.Noted = field.NewString(tableName, "noted")
 	_fbAdminGroup.CreateAt = field.NewInt32(tableName, "create_at")
-	_fbAdminGroup.Pid = field.NewInt64(tableName, "pid")
+	_fbAdminGroup.Pid = field.NewUint64(tableName, "pid")
 	_fbAdminGroup.Pname = field.NewString(tableName, "pname")
 	_fbAdminGroup.State = field.NewInt32(tableName, "state")
 	_fbAdminGroup.Sortlevel = field.NewString(tableName, "sortlevel")
@@ -51,12 +51,12 @@ type fbAdminGroup struct {
 	fbAdminGroupDo
 
 	ALL        field.Asterisk
-	Gid        field.Int64
+	Gid        field.Uint64
 	Name       field.String // 组名
 	Permission field.String // 权限模块ID
 	Noted      field.String // 备注信息
 	CreateAt   field.Int32  // 创建时间
-	Pid        field.Int64  // 父节点
+	Pid        field.Uint64 // 父节点
 	Pname      field.String // 上级分组名
 	State      field.Int32  // 1:开启2:关闭3:删除
 	Sortlevel  field.String
@@ -79,12 +79,12 @@ func (f fbAdminGroup) As(alias string) *fbAdminGroup {
 
 func (f *fbAdminGroup) updateTableName(table string) *fbAdminGroup {
 	f.ALL = field.NewAsterisk(table)
-	f.Gid = field.NewInt64(table, "gid")
+	f.Gid = field.NewUint64(table, "gid")
 	f.Name = field.NewString(table, "name")
 	f.Permission = field.NewString(table, "permission")
 	f.Noted = field.NewString(table, "noted")
 	f.CreateAt = field.NewInt32(table, "create_at")
-	f.Pid = field.NewInt64(table, "pid")
+	f.Pid = field.NewUint64(table, "pid")
 	f.Pname = field.NewString(table, "pname")
 	f.State = field.NewInt32(table, "state")
 	f.Sortlevel = field.NewString(table, "sortlevel")

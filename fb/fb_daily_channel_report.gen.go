@@ -28,7 +28,7 @@ func newFbDailyChannelReport(db *gorm.DB, opts ...gen.DOOption) fbDailyChannelRe
 
 	tableName := _fbDailyChannelReport.fbDailyChannelReportDo.TableName()
 	_fbDailyChannelReport.ALL = field.NewAsterisk(tableName)
-	_fbDailyChannelReport.ID = field.NewInt64(tableName, "id")
+	_fbDailyChannelReport.ID = field.NewUint64(tableName, "id")
 	_fbDailyChannelReport.Channel = field.NewString(tableName, "channel")
 	_fbDailyChannelReport.Day = field.NewInt32(tableName, "day")
 	_fbDailyChannelReport.Regs = field.NewInt32(tableName, "regs")
@@ -51,7 +51,7 @@ type fbDailyChannelReport struct {
 	fbDailyChannelReportDo
 
 	ALL            field.Asterisk
-	ID             field.Int64
+	ID             field.Uint64
 	Channel        field.String // 渠道名称
 	Day            field.Int32  // 年月日
 	Regs           field.Int32  // 新增注册
@@ -79,7 +79,7 @@ func (f fbDailyChannelReport) As(alias string) *fbDailyChannelReport {
 
 func (f *fbDailyChannelReport) updateTableName(table string) *fbDailyChannelReport {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Channel = field.NewString(table, "channel")
 	f.Day = field.NewInt32(table, "day")
 	f.Regs = field.NewInt32(table, "regs")

@@ -12,7 +12,7 @@ const TableNameFbPagcorGameSummary = "fb_pagcor_game_summary"
 
 // FbPagcorGameSummary pagcor游戏报表
 type FbPagcorGameSummary struct {
-	ID                    int64     `gorm:"column:id;primaryKey" json:"id"`
+	ID                    uint64    `gorm:"column:id;primaryKey" json:"id"`
 	Day                   time.Time `gorm:"column:day;not null;comment:数据日期" json:"day"`                                                            // 数据日期
 	TotalBetAmount        string    `gorm:"column:total_bet_amount;not null;comment:total_bet_amount" json:"total_bet_amount"`                      // total_bet_amount
 	TotalValidBetAmount   string    `gorm:"column:total_valid_bet_amount;not null;comment:有效投注金额" json:"total_valid_bet_amount"`                    // 有效投注金额

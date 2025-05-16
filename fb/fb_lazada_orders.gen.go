@@ -28,7 +28,7 @@ func newFbLazadaOrder(db *gorm.DB, opts ...gen.DOOption) fbLazadaOrder {
 
 	tableName := _fbLazadaOrder.fbLazadaOrderDo.TableName()
 	_fbLazadaOrder.ALL = field.NewAsterisk(tableName)
-	_fbLazadaOrder.OrderID = field.NewInt64(tableName, "order_id")
+	_fbLazadaOrder.OrderID = field.NewUint64(tableName, "order_id")
 	_fbLazadaOrder.OrderStatus = field.NewString(tableName, "order_status")
 	_fbLazadaOrder.ExchangeStatus = field.NewString(tableName, "exchange_status")
 	_fbLazadaOrder.SmsStatus = field.NewString(tableName, "sms_status")
@@ -41,8 +41,8 @@ func newFbLazadaOrder(db *gorm.DB, opts ...gen.DOOption) fbLazadaOrder {
 	_fbLazadaOrder.ExchangerPhoneNumber = field.NewString(tableName, "exchanger_phone_number")
 	_fbLazadaOrder.ExchangedAt = field.NewInt64(tableName, "exchanged_at")
 	_fbLazadaOrder.Product = field.NewString(tableName, "product")
-	_fbLazadaOrder.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbLazadaOrder.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbLazadaOrder.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbLazadaOrder.UpdatedAt = field.NewUint64(tableName, "updated_at")
 
 	_fbLazadaOrder.fillFieldMap()
 
@@ -53,7 +53,7 @@ type fbLazadaOrder struct {
 	fbLazadaOrderDo
 
 	ALL                  field.Asterisk
-	OrderID              field.Int64
+	OrderID              field.Uint64
 	OrderStatus          field.String
 	ExchangeStatus       field.String
 	SmsStatus            field.String
@@ -66,8 +66,8 @@ type fbLazadaOrder struct {
 	ExchangerPhoneNumber field.String
 	ExchangedAt          field.Int64
 	Product              field.String
-	CreatedAt            field.Int64
-	UpdatedAt            field.Int64
+	CreatedAt            field.Uint64
+	UpdatedAt            field.Uint64
 
 	fieldMap map[string]field.Expr
 }
@@ -84,7 +84,7 @@ func (f fbLazadaOrder) As(alias string) *fbLazadaOrder {
 
 func (f *fbLazadaOrder) updateTableName(table string) *fbLazadaOrder {
 	f.ALL = field.NewAsterisk(table)
-	f.OrderID = field.NewInt64(table, "order_id")
+	f.OrderID = field.NewUint64(table, "order_id")
 	f.OrderStatus = field.NewString(table, "order_status")
 	f.ExchangeStatus = field.NewString(table, "exchange_status")
 	f.SmsStatus = field.NewString(table, "sms_status")
@@ -97,8 +97,8 @@ func (f *fbLazadaOrder) updateTableName(table string) *fbLazadaOrder {
 	f.ExchangerPhoneNumber = field.NewString(table, "exchanger_phone_number")
 	f.ExchangedAt = field.NewInt64(table, "exchanged_at")
 	f.Product = field.NewString(table, "product")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 
 	f.fillFieldMap()
 

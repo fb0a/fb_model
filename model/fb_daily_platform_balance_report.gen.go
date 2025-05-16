@@ -8,7 +8,7 @@ const TableNameFbDailyPlatformBalanceReport = "fb_daily_platform_balance_report"
 
 // FbDailyPlatformBalanceReport 平台钱包日报
 type FbDailyPlatformBalanceReport struct {
-	ID            int64  `gorm:"column:id;primaryKey" json:"id"`
+	ID            uint64 `gorm:"column:id;primaryKey" json:"id"`
 	Day           int32  `gorm:"column:day;not null;comment:年月日" json:"day"`                                   // 年月日
 	Balance       string `gorm:"column:balance;not null;default:0;comment:会员总余额" json:"balance"`               // 会员总余额
 	BalanceChange string `gorm:"column:balance_change;not null;default:0;comment:较前日变动" json:"balance_change"` // 较前日变动

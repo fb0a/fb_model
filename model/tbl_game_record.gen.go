@@ -8,7 +8,7 @@ const TableNameTblGameRecord = "tbl_game_record"
 
 // TblGameRecord 注单记录表
 type TblGameRecord struct {
-	BillNoHash     int64   `gorm:"column:bill_no_hash;primaryKey;comment:三方注单号hash" json:"bill_no_hash"`                    // 三方注单号hash
+	BillNoHash     uint64  `gorm:"column:bill_no_hash;primaryKey;comment:三方注单号hash" json:"bill_no_hash"`                    // 三方注单号hash
 	BillNo         string  `gorm:"column:bill_no;not null;default:0;comment:平台唯一注单流水号" json:"bill_no"`                      // 平台唯一注单流水号
 	PlatformBillNo string  `gorm:"column:platform_bill_no;not null;comment:第三方注单流水号" json:"platform_bill_no"`               // 第三方注单流水号
 	PlatformID     string  `gorm:"column:platform_id;not null;default:0;comment:接口平台 如 AG MG" json:"platform_id"`           // 接口平台 如 AG MG
@@ -26,14 +26,14 @@ type TblGameRecord struct {
 	BetAmount      float64 `gorm:"column:bet_amount;default:0.00000000;comment:投注金额(钱包币种)" json:"bet_amount"`               // 投注金额(钱包币种)
 	ValidBetAmount float64 `gorm:"column:valid_bet_amount;default:0.00000000;comment:有效投注金额(钱包币种)" json:"valid_bet_amount"` // 有效投注金额(钱包币种)
 	NetAmount      float64 `gorm:"column:net_amount;not null;default:0.00000000;comment:玩家输赢金额(钱包币种)" json:"net_amount"`    // 玩家输赢金额(钱包币种)
-	BetTime        int64   `gorm:"column:bet_time;not null;comment:投注时间" json:"bet_time"`                                   // 投注时间
+	BetTime        uint64  `gorm:"column:bet_time;not null;comment:投注时间" json:"bet_time"`                                   // 投注时间
 	BetArea        string  `gorm:"column:bet_area;not null;comment:投注区域(游戏:区域编号)" json:"bet_area"`                          // 投注区域(游戏:区域编号)
 	State          int32   `gorm:"column:state;comment:结算状态 0:下注确认(未结算) 1:已结算 2:会员取消 3:无效" json:"state"`                    // 结算状态 0:下注确认(未结算) 1:已结算 2:会员取消 3:无效
 	Tester         int32   `gorm:"column:tester;not null;default:1;comment:1:正式0:测试" json:"tester"`                         // 1:正式0:测试
-	SettleTime     int64   `gorm:"column:settle_time;comment:结算时间" json:"settle_time"`                                      // 结算时间
+	SettleTime     uint64  `gorm:"column:settle_time;comment:结算时间" json:"settle_time"`                                      // 结算时间
 	Detail         string  `gorm:"column:detail;not null;comment:详情" json:"detail"`                                         // 详情
-	CreatedAt      int64   `gorm:"column:created_at;comment:创建时间" json:"created_at"`                                        // 创建时间
-	UpdatedAt      int64   `gorm:"column:updated_at;comment:更新时间" json:"updated_at"`                                        // 更新时间
+	CreatedAt      uint64  `gorm:"column:created_at;comment:创建时间" json:"created_at"`                                        // 创建时间
+	UpdatedAt      uint64  `gorm:"column:updated_at;comment:更新时间" json:"updated_at"`                                        // 更新时间
 	Prefix         string  `gorm:"column:prefix;default:dev" json:"prefix"`
 }
 

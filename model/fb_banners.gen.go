@@ -8,7 +8,7 @@ const TableNameFbBanner = "fb_banners"
 
 // FbBanner 轮播图
 type FbBanner struct {
-	ID          int64  `gorm:"column:id;primaryKey" json:"id"`
+	ID          uint64 `gorm:"column:id;primaryKey" json:"id"`
 	Type        int32  `gorm:"column:type;not null;comment:轮播图类型" json:"type"`                             // 轮播图类型
 	Tags        string `gorm:"column:tags;comment:轮播图标签" json:"tags"`                                      // 轮播图标签
 	URL         string `gorm:"column:url;comment:轮播图图片路径" json:"url"`                                      // 轮播图图片路径
@@ -20,8 +20,8 @@ type FbBanner struct {
 	Seq         int32  `gorm:"column:seq;not null;comment:排序" json:"seq"`                                  // 排序
 	IsDelete    int32  `gorm:"column:is_delete;not null;default:2;comment:删除状态 1已删除 2正常" json:"is_delete"` // 删除状态 1已删除 2正常
 	CreatedAt   int32  `gorm:"column:created_at;not null;comment:添加时间" json:"created_at"`                  // 添加时间
-	UpdatedAt   int64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                  // 更新时间
-	UpdatedUID  int64  `gorm:"column:updated_uid;not null;comment:更新人uid" json:"updated_uid"`              // 更新人uid
+	UpdatedAt   uint64 `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                  // 更新时间
+	UpdatedUID  uint64 `gorm:"column:updated_uid;not null;comment:更新人uid" json:"updated_uid"`              // 更新人uid
 	UpdatedName string `gorm:"column:updated_name;not null;comment:更新人名" json:"updated_name"`              // 更新人名
 }
 

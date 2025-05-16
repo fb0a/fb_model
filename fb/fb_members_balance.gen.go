@@ -28,12 +28,12 @@ func newFbMembersBalance(db *gorm.DB, opts ...gen.DOOption) fbMembersBalance {
 
 	tableName := _fbMembersBalance.fbMembersBalanceDo.TableName()
 	_fbMembersBalance.ALL = field.NewAsterisk(tableName)
-	_fbMembersBalance.UID = field.NewInt64(tableName, "uid")
+	_fbMembersBalance.UID = field.NewUint64(tableName, "uid")
 	_fbMembersBalance.Balance = field.NewFloat64(tableName, "balance")
 	_fbMembersBalance.Available = field.NewFloat64(tableName, "available")
 	_fbMembersBalance.Withdrawable = field.NewFloat64(tableName, "withdrawable")
-	_fbMembersBalance.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbMembersBalance.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbMembersBalance.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbMembersBalance.UpdatedAt = field.NewUint64(tableName, "updated_at")
 
 	_fbMembersBalance.fillFieldMap()
 
@@ -45,12 +45,12 @@ type fbMembersBalance struct {
 	fbMembersBalanceDo
 
 	ALL          field.Asterisk
-	UID          field.Int64
+	UID          field.Uint64
 	Balance      field.Float64 // 余额
 	Available    field.Float64 // 可用余额
 	Withdrawable field.Float64 // 可提现余额
-	CreatedAt    field.Int64   // 创建时间
-	UpdatedAt    field.Int64   // 创建时间
+	CreatedAt    field.Uint64  // 创建时间
+	UpdatedAt    field.Uint64  // 创建时间
 
 	fieldMap map[string]field.Expr
 }
@@ -67,12 +67,12 @@ func (f fbMembersBalance) As(alias string) *fbMembersBalance {
 
 func (f *fbMembersBalance) updateTableName(table string) *fbMembersBalance {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewInt64(table, "uid")
+	f.UID = field.NewUint64(table, "uid")
 	f.Balance = field.NewFloat64(table, "balance")
 	f.Available = field.NewFloat64(table, "available")
 	f.Withdrawable = field.NewFloat64(table, "withdrawable")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 
 	f.fillFieldMap()
 

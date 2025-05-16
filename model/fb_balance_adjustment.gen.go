@@ -8,21 +8,21 @@ const TableNameFbBalanceAdjustment = "fb_balance_adjustment"
 
 // FbBalanceAdjustment 后台余额加减记录表
 type FbBalanceAdjustment struct {
-	ID            int64   `gorm:"column:id;primaryKey" json:"id"`
+	ID            uint64  `gorm:"column:id;primaryKey" json:"id"`
 	BillNo        string  `gorm:"column:bill_no;not null;comment:订单号" json:"bill_no"`                             // 订单号
-	UID           int64   `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                                    // 用户ID
+	UID           uint64  `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                                    // 用户ID
 	Username      string  `gorm:"column:username;not null;comment:用户名" json:"username"`                           // 用户名
 	Action        int32   `gorm:"column:action;not null;comment:1=加钱,2=减钱,3=清零" json:"action"`                    // 1=加钱,2=减钱,3=清零
 	Amount        float64 `gorm:"column:amount;not null;default:0.00000000;comment:金额" json:"amount"`             // 金额
 	State         int32   `gorm:"column:state;not null;default:1;comment: 状态 1审核通过 2审核拒绝" json:"state"`           //  状态 1审核通过 2审核拒绝
 	BetMultiplier float64 `gorm:"column:bet_multiplier;not null;default:1.00;comment:打码倍数" json:"bet_multiplier"` // 打码倍数
-	CreatedAt     int64   `gorm:"column:created_at;not null;comment:时间" json:"created_at"`                        // 时间
+	CreatedAt     uint64  `gorm:"column:created_at;not null;comment:时间" json:"created_at"`                        // 时间
 	Remark        string  `gorm:"column:remark;not null;comment:提交备注" json:"remark"`                              // 提交备注
-	OperatorUID   int64   `gorm:"column:operator_uid;not null;comment:操作人uid" json:"operator_uid"`                // 操作人uid
+	OperatorUID   uint64  `gorm:"column:operator_uid;not null;comment:操作人uid" json:"operator_uid"`                // 操作人uid
 	OperatorName  string  `gorm:"column:operator_name;not null;comment:操作人名" json:"operator_name"`                // 操作人名
-	ReviewAt      int64   `gorm:"column:review_at;not null;comment:审核时间" json:"review_at"`                        // 审核时间
+	ReviewAt      uint64  `gorm:"column:review_at;not null;comment:审核时间" json:"review_at"`                        // 审核时间
 	ReviewRemark  string  `gorm:"column:review_remark;not null;comment:审核备注" json:"review_remark"`                // 审核备注
-	ReviewUID     int64   `gorm:"column:review_uid;not null;comment:审核人uid" json:"review_uid"`                    // 审核人uid
+	ReviewUID     uint64  `gorm:"column:review_uid;not null;comment:审核人uid" json:"review_uid"`                    // 审核人uid
 	ReviewName    string  `gorm:"column:review_name;not null;comment:审核人名" json:"review_name"`                    // 审核人名
 }
 

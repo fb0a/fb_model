@@ -28,18 +28,18 @@ func newFbPromoSuperAceRebate(db *gorm.DB, opts ...gen.DOOption) fbPromoSuperAce
 
 	tableName := _fbPromoSuperAceRebate.fbPromoSuperAceRebateDo.TableName()
 	_fbPromoSuperAceRebate.ALL = field.NewAsterisk(tableName)
-	_fbPromoSuperAceRebate.ID = field.NewInt64(tableName, "id")
-	_fbPromoSuperAceRebate.UID = field.NewInt64(tableName, "uid")
+	_fbPromoSuperAceRebate.ID = field.NewUint64(tableName, "id")
+	_fbPromoSuperAceRebate.UID = field.NewUint64(tableName, "uid")
 	_fbPromoSuperAceRebate.Username = field.NewString(tableName, "username")
-	_fbPromoSuperAceRebate.ParentUID = field.NewInt64(tableName, "parent_uid")
+	_fbPromoSuperAceRebate.ParentUID = field.NewUint64(tableName, "parent_uid")
 	_fbPromoSuperAceRebate.ParentName = field.NewString(tableName, "parent_name")
-	_fbPromoSuperAceRebate.Pid = field.NewInt64(tableName, "pid")
+	_fbPromoSuperAceRebate.Pid = field.NewUint64(tableName, "pid")
 	_fbPromoSuperAceRebate.Bonus = field.NewFloat64(tableName, "bonus")
 	_fbPromoSuperAceRebate.BetAmount = field.NewFloat64(tableName, "bet_amount")
 	_fbPromoSuperAceRebate.NetAmount = field.NewFloat64(tableName, "net_amount")
 	_fbPromoSuperAceRebate.State = field.NewInt32(tableName, "state")
-	_fbPromoSuperAceRebate.CreatedAt = field.NewInt64(tableName, "created_at")
-	_fbPromoSuperAceRebate.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbPromoSuperAceRebate.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbPromoSuperAceRebate.UpdatedAt = field.NewUint64(tableName, "updated_at")
 	_fbPromoSuperAceRebate.Ymd = field.NewInt32(tableName, "ymd")
 
 	_fbPromoSuperAceRebate.fillFieldMap()
@@ -52,19 +52,19 @@ type fbPromoSuperAceRebate struct {
 	fbPromoSuperAceRebateDo
 
 	ALL        field.Asterisk
-	ID         field.Int64
-	UID        field.Int64   // 用户ID
+	ID         field.Uint64
+	UID        field.Uint64  // 用户ID
 	Username   field.String  // 用户名
-	ParentUID  field.Int64   // 上级UID
+	ParentUID  field.Uint64  // 上级UID
 	ParentName field.String  // 上级用户名
-	Pid        field.Int64   // 活动ID
+	Pid        field.Uint64  // 活动ID
 	Bonus      field.Float64 // 奖金金额
 	BetAmount  field.Float64 // 投注金额
 	NetAmount  field.Float64
-	State      field.Int32 // 状态 1:已发送 2:待审核 3:已失效
-	CreatedAt  field.Int64 // 创建时间
-	UpdatedAt  field.Int64 // 更新时间
-	Ymd        field.Int32 // 20060102
+	State      field.Int32  // 状态 1:已发送 2:待审核 3:已失效
+	CreatedAt  field.Uint64 // 创建时间
+	UpdatedAt  field.Uint64 // 更新时间
+	Ymd        field.Int32  // 20060102
 
 	fieldMap map[string]field.Expr
 }
@@ -81,18 +81,18 @@ func (f fbPromoSuperAceRebate) As(alias string) *fbPromoSuperAceRebate {
 
 func (f *fbPromoSuperAceRebate) updateTableName(table string) *fbPromoSuperAceRebate {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
-	f.UID = field.NewInt64(table, "uid")
+	f.ID = field.NewUint64(table, "id")
+	f.UID = field.NewUint64(table, "uid")
 	f.Username = field.NewString(table, "username")
-	f.ParentUID = field.NewInt64(table, "parent_uid")
+	f.ParentUID = field.NewUint64(table, "parent_uid")
 	f.ParentName = field.NewString(table, "parent_name")
-	f.Pid = field.NewInt64(table, "pid")
+	f.Pid = field.NewUint64(table, "pid")
 	f.Bonus = field.NewFloat64(table, "bonus")
 	f.BetAmount = field.NewFloat64(table, "bet_amount")
 	f.NetAmount = field.NewFloat64(table, "net_amount")
 	f.State = field.NewInt32(table, "state")
-	f.CreatedAt = field.NewInt64(table, "created_at")
-	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.UpdatedAt = field.NewUint64(table, "updated_at")
 	f.Ymd = field.NewInt32(table, "ymd")
 
 	f.fillFieldMap()

@@ -8,13 +8,13 @@ const TableNameFbPayment = "fb_payment"
 
 // FbPayment 支付渠道表
 type FbPayment struct {
-	ID          int64  `gorm:"column:id;primaryKey" json:"id"`
+	ID          uint64 `gorm:"column:id;primaryKey" json:"id"`
 	Name        string `gorm:"column:name;not null;comment:渠道名" json:"name"`                        // 渠道名
 	State       int32  `gorm:"column:state;not null;default:1;comment:会员状态，1=正常 2=停用" json:"state"` // 会员状态，1=正常 2=停用
 	Remark      string `gorm:"column:remark;not null;comment:渠道备注" json:"remark"`                   // 渠道备注
-	CreatedAt   int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`           // 创建时间
-	UpdatedAt   int64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`           // 更新时间
-	UpdatedUID  int64  `gorm:"column:updated_uid;not null;comment:更新管理员id" json:"updated_uid"`      // 更新管理员id
+	CreatedAt   uint64 `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`           // 创建时间
+	UpdatedAt   uint64 `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`           // 更新时间
+	UpdatedUID  uint64 `gorm:"column:updated_uid;not null;comment:更新管理员id" json:"updated_uid"`      // 更新管理员id
 	UpdatedName string `gorm:"column:updated_name;not null;comment:更新管理员帐号" json:"updated_name"`    // 更新管理员帐号
 }
 

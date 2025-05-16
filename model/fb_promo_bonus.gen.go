@@ -8,12 +8,12 @@ const TableNameFbPromoBonu = "fb_promo_bonus"
 
 // FbPromoBonu 活动公共彩金记录表
 type FbPromoBonu struct {
-	ID             int64   `gorm:"column:id;primaryKey" json:"id"`
-	UID            int64   `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                                      // 用户ID
+	ID             uint64  `gorm:"column:id;primaryKey" json:"id"`
+	UID            uint64  `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                                      // 用户ID
 	Username       string  `gorm:"column:username;not null;comment:用户名" json:"username"`                             // 用户名
-	ParentUID      int64   `gorm:"column:parent_uid;not null;comment:上级UID" json:"parent_uid"`                       // 上级UID
+	ParentUID      uint64  `gorm:"column:parent_uid;not null;comment:上级UID" json:"parent_uid"`                       // 上级UID
 	ParentName     string  `gorm:"column:parent_name;not null;comment:上级用户名" json:"parent_name"`                     // 上级用户名
-	ActivityID     int64   `gorm:"column:activity_id;not null;comment:活动ID" json:"activity_id"`                      // 活动ID
+	ActivityID     uint64  `gorm:"column:activity_id;not null;comment:活动ID" json:"activity_id"`                      // 活动ID
 	CashType       int32   `gorm:"column:cash_type;not null;comment:活动类型" json:"cash_type"`                          // 活动类型
 	CurrencyID     int32   `gorm:"column:currency_id;not null;comment:币种id" json:"currency_id"`                      // 币种id
 	Bonus          float64 `gorm:"column:bonus;not null;default:0.00;comment:活动奖金金额" json:"bonus"`                   // 活动奖金金额
@@ -21,8 +21,8 @@ type FbPromoBonu struct {
 	Multiple       float64 `gorm:"column:multiple;not null;default:1.00;comment:打码倍数" json:"multiple"`               // 打码倍数
 	TurnoverAmount float64 `gorm:"column:turnover_amount;not null;default:0.00;comment:流水金额" json:"turnover_amount"` // 流水金额
 	State          int32   `gorm:"column:state;not null;default:1;comment:状态 1:未完成 2:可提现" json:"state"`              // 状态 1:未完成 2:可提现
-	CreatedAt      int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                        // 创建时间
-	UpdatedAt      int64   `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                        // 更新时间
+	CreatedAt      uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                        // 创建时间
+	UpdatedAt      uint64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                        // 更新时间
 	BetBillNo      string  `gorm:"column:bet_bill_no;not null" json:"bet_bill_no"`
 }
 

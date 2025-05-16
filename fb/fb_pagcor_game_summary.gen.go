@@ -28,7 +28,7 @@ func newFbPagcorGameSummary(db *gorm.DB, opts ...gen.DOOption) fbPagcorGameSumma
 
 	tableName := _fbPagcorGameSummary.fbPagcorGameSummaryDo.TableName()
 	_fbPagcorGameSummary.ALL = field.NewAsterisk(tableName)
-	_fbPagcorGameSummary.ID = field.NewInt64(tableName, "id")
+	_fbPagcorGameSummary.ID = field.NewUint64(tableName, "id")
 	_fbPagcorGameSummary.Day = field.NewTime(tableName, "day")
 	_fbPagcorGameSummary.TotalBetAmount = field.NewString(tableName, "total_bet_amount")
 	_fbPagcorGameSummary.TotalValidBetAmount = field.NewString(tableName, "total_valid_bet_amount")
@@ -50,7 +50,7 @@ type fbPagcorGameSummary struct {
 	fbPagcorGameSummaryDo
 
 	ALL                   field.Asterisk
-	ID                    field.Int64
+	ID                    field.Uint64
 	Day                   field.Time   // 数据日期
 	TotalBetAmount        field.String // total_bet_amount
 	TotalValidBetAmount   field.String // 有效投注金额
@@ -77,7 +77,7 @@ func (f fbPagcorGameSummary) As(alias string) *fbPagcorGameSummary {
 
 func (f *fbPagcorGameSummary) updateTableName(table string) *fbPagcorGameSummary {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewInt64(table, "id")
+	f.ID = field.NewUint64(table, "id")
 	f.Day = field.NewTime(table, "day")
 	f.TotalBetAmount = field.NewString(table, "total_bet_amount")
 	f.TotalValidBetAmount = field.NewString(table, "total_valid_bet_amount")

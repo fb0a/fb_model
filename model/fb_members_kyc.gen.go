@@ -8,7 +8,7 @@ const TableNameFbMembersKyc = "fb_members_kyc"
 
 // FbMembersKyc 会员kyc表
 type FbMembersKyc struct {
-	UID                 int64  `gorm:"column:uid;primaryKey" json:"uid"`
+	UID                 uint64 `gorm:"column:uid;primaryKey" json:"uid"`
 	CreatedAt           int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`          // 创建时间
 	UpdatedAt           int64  `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`          // 创建时间
 	Phone               string `gorm:"column:phone;not null;comment:手机号" json:"phone"`                     // 手机号
