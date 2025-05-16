@@ -4,6 +4,10 @@ import (
 	"gorm.io/driver/mysql"
 	"gorm.io/gen"
 	"gorm.io/gorm"
+	logger2 "gorm.io/gorm/logger"
+	"log"
+	"os"
+	"time"
 )
 
 // Dynamic SQL
@@ -14,7 +18,7 @@ type Querier interface {
 
 // order
 func main() {
-	//order()
+	order()
 	fb()
 }
 
@@ -29,7 +33,19 @@ func order() {
 	})
 	g := gen.NewGenerator(cfg)
 
-	gormdb, _ := gorm.Open(mysql.Open("dev_user:hK9%bZ8.eC2%@tcp(47.250.115.85:4000)/orders?charset=utf8&parseTime=True&loc=Local"))
+	newLogger := logger2.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // 打印到标准输出
+		logger2.Config{
+			SlowThreshold:             time.Second,  // 慢 SQL 阈值
+			LogLevel:                  logger2.Info, // 这里设置为 Info 才能看到 SQL
+			IgnoreRecordNotFoundError: true,
+			Colorful:                  true,
+		},
+	)
+
+	gormdb, _ := gorm.Open(mysql.Open("dev_user:hK9%bZ8.eC2%@tcp(47.250.115.85:4000)/orders?charset=utf8&parseTime=True&loc=Local"), &gorm.Config{
+		Logger: newLogger,
+	})
 	g.UseDB(gormdb) // reuse your gorm db
 
 	// Generate basic type-safe DAO API for struct `model.User` following conventions
@@ -57,7 +73,19 @@ func fb() {
 	})
 	g := gen.NewGenerator(cfg)
 
-	gormdb, _ := gorm.Open(mysql.Open("dev_user:hK9%bZ8.eC2%@tcp(47.250.115.85:4000)/fb?charset=utf8&parseTime=True&loc=Local"))
+	newLogger := logger2.New(
+		log.New(os.Stdout, "\r\n", log.LstdFlags), // 打印到标准输出
+		logger2.Config{
+			SlowThreshold:             time.Second,  // 慢 SQL 阈值
+			LogLevel:                  logger2.Info, // 这里设置为 Info 才能看到 SQL
+			IgnoreRecordNotFoundError: true,
+			Colorful:                  true,
+		},
+	)
+
+	gormdb, _ := gorm.Open(mysql.Open("dev_user:hK9%bZ8.eC2%@tcp(47.250.115.85:4000)/fb?charset=utf8&parseTime=True&loc=Local"), &gorm.Config{
+		Logger: newLogger,
+	})
 	g.UseDB(gormdb) // reuse your gorm db
 
 	// Generate basic type-safe DAO API for struct `model.User` following conventions
