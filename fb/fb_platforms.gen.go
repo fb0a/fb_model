@@ -28,8 +28,8 @@ func newFbPlatform(db *gorm.DB, opts ...gen.DOOption) fbPlatform {
 
 	tableName := _fbPlatform.fbPlatformDo.TableName()
 	_fbPlatform.ALL = field.NewAsterisk(tableName)
-	_fbPlatform.ID = field.NewUint64(tableName, "id")
-	_fbPlatform.VenueID = field.NewUint64(tableName, "venue_id")
+	_fbPlatform.ID = field.NewInt64(tableName, "id")
+	_fbPlatform.VenueID = field.NewInt64(tableName, "venue_id")
 	_fbPlatform.Name = field.NewString(tableName, "name")
 	_fbPlatform.EnName = field.NewString(tableName, "en_name")
 	_fbPlatform.ZhName = field.NewString(tableName, "zh_name")
@@ -41,7 +41,7 @@ func newFbPlatform(db *gorm.DB, opts ...gen.DOOption) fbPlatform {
 	_fbPlatform.Logo = field.NewString(tableName, "logo")
 	_fbPlatform.CreatedAt = field.NewInt32(tableName, "created_at")
 	_fbPlatform.UpdatedAt = field.NewInt32(tableName, "updated_at")
-	_fbPlatform.UpdatedUID = field.NewUint64(tableName, "updated_uid")
+	_fbPlatform.UpdatedUID = field.NewInt64(tableName, "updated_uid")
 	_fbPlatform.UpdatedName = field.NewString(tableName, "updated_name")
 	_fbPlatform.MaintainedSt = field.NewInt64(tableName, "maintained_st")
 	_fbPlatform.MaintainedEt = field.NewInt64(tableName, "maintained_et")
@@ -56,8 +56,8 @@ type fbPlatform struct {
 	fbPlatformDo
 
 	ALL          field.Asterisk
-	ID           field.Uint64 // id
-	VenueID      field.Uint64 // 平台id(PP/EVO等)
+	ID           field.Int64  // id
+	VenueID      field.Int64  // 平台id(PP/EVO等)
 	Name         field.String // 厂商名
 	EnName       field.String // 场馆名称
 	ZhName       field.String // 中文名
@@ -69,7 +69,7 @@ type fbPlatform struct {
 	Logo         field.String // 场馆logo
 	CreatedAt    field.Int32  // 创建时间
 	UpdatedAt    field.Int32  // 更新时间
-	UpdatedUID   field.Uint64 // 更新人uid
+	UpdatedUID   field.Int64  // 更新人uid
 	UpdatedName  field.String
 	MaintainedSt field.Int64 // 维护开始时间
 	MaintainedEt field.Int64 // 维护结束时间
@@ -89,8 +89,8 @@ func (f fbPlatform) As(alias string) *fbPlatform {
 
 func (f *fbPlatform) updateTableName(table string) *fbPlatform {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
-	f.VenueID = field.NewUint64(table, "venue_id")
+	f.ID = field.NewInt64(table, "id")
+	f.VenueID = field.NewInt64(table, "venue_id")
 	f.Name = field.NewString(table, "name")
 	f.EnName = field.NewString(table, "en_name")
 	f.ZhName = field.NewString(table, "zh_name")
@@ -102,7 +102,7 @@ func (f *fbPlatform) updateTableName(table string) *fbPlatform {
 	f.Logo = field.NewString(table, "logo")
 	f.CreatedAt = field.NewInt32(table, "created_at")
 	f.UpdatedAt = field.NewInt32(table, "updated_at")
-	f.UpdatedUID = field.NewUint64(table, "updated_uid")
+	f.UpdatedUID = field.NewInt64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
 	f.MaintainedSt = field.NewInt64(table, "maintained_st")
 	f.MaintainedEt = field.NewInt64(table, "maintained_et")

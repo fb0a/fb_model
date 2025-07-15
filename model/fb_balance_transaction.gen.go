@@ -4,31 +4,39 @@
 
 package model
 
+import (
+	"time"
+)
+
 const TableNameFbBalanceTransaction = "fb_balance_transaction"
 
 // FbBalanceTransaction 账变表
 type FbBalanceTransaction struct {
-	ID           uint64  `gorm:"column:id;primaryKey" json:"id"`
-	BillNo       string  `gorm:"column:bill_no;not null;comment:转账|充值|提现ID" json:"bill_no"`                                // 转账|充值|提现ID
-	UID          uint64  `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                                              // 用户ID
-	Username     string  `gorm:"column:username;not null;comment:用户名" json:"username"`                                     // 用户名
-	PlayerName   string  `gorm:"column:player_name;not null;comment:游戏帐号" json:"player_name"`                              // 游戏帐号
-	CashType     int32   `gorm:"column:cash_type;not null;comment:帐变类型" json:"cash_type"`                                  // 帐变类型
-	BusinessType int32   `gorm:"column:business_type;not null;comment:业务类型" json:"business_type"`                          // 业务类型
-	Amount       float64 `gorm:"column:amount;not null;default:0.00000000;comment:账变金额" json:"amount"`                     // 账变金额
-	BeforeAmount float64 `gorm:"column:before_amount;not null;default:0.00000000;comment:账变前的金额（钱包）" json:"before_amount"` // 账变前的金额（钱包）
-	AfterAmount  float64 `gorm:"column:after_amount;not null;default:0.00000000;comment:账变后的金额（钱包）" json:"after_amount"`   // 账变后的金额（钱包）
-	CreatedAt    uint64  `gorm:"column:created_at;not null;comment:帐变时间" json:"created_at"`                                // 帐变时间
-	Tester       int32   `gorm:"column:tester;not null;default:1;comment:1:正式2:测试3:代理" json:"tester"`                      // 1:正式2:测试3:代理
-	Remark       string  `gorm:"column:remark;not null;comment:备注" json:"remark"`                                          // 备注
-	OperatorUID  uint64  `gorm:"column:operator_uid;not null;comment:操作人uid" json:"operator_uid"`                          // 操作人uid
-	OperatorName string  `gorm:"column:operator_name;not null;comment:操作人" json:"operator_name"`                           // 操作人
-	Device       int32   `gorm:"column:device;not null;comment:操作终端" json:"device"`                                        // 操作终端
-	PlatformID   uint64  `gorm:"column:platform_id;not null;comment:场馆id" json:"platform_id"`                              // 场馆id
-	OperationNo  string  `gorm:"column:operation_no;not null;comment:流水号" json:"operation_no"`                             // 流水号
-	State        int32   `gorm:"column:state;not null;comment:状态(仅场馆业务类型使用) 1待结算 2已结算 3已取消 4重新结算" json:"state"`            // 状态(仅场馆业务类型使用) 1待结算 2已结算 3已取消 4重新结算
-	DataType     int32   `gorm:"column:data_type;not null;default:2;comment:1 mongo 2 新架构tidb 3 老架构tidb" json:"data_type"` // 1 mongo 2 新架构tidb 3 老架构tidb
-	OriginAmount string  `gorm:"column:origin_amount;not null;default:0;comment:原始金额" json:"origin_amount"`                // 原始金额
+	ID           int64     `gorm:"column:id;primaryKey" json:"id"`
+	BillNo       string    `gorm:"column:bill_no;not null;comment:转账|充值|提现ID" json:"bill_no"`                                              // 转账|充值|提现ID
+	UID          int64     `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                                                            // 用户ID
+	Username     string    `gorm:"column:username;not null;comment:用户名" json:"username"`                                                   // 用户名
+	PlayerName   string    `gorm:"column:player_name;not null;comment:游戏帐号" json:"player_name"`                                            // 游戏帐号
+	CashType     int32     `gorm:"column:cash_type;not null;comment:帐变类型" json:"cash_type"`                                                // 帐变类型
+	BusinessType int32     `gorm:"column:business_type;not null;comment:业务类型" json:"business_type"`                                        // 业务类型
+	Amount       float64   `gorm:"column:amount;not null;default:0.00000000;comment:账变金额" json:"amount"`                                   // 账变金额
+	BeforeAmount float64   `gorm:"column:before_amount;not null;default:0.00000000;comment:账变前的金额（钱包）" json:"before_amount"`               // 账变前的金额（钱包）
+	AfterAmount  float64   `gorm:"column:after_amount;not null;default:0.00000000;comment:账变后的金额（钱包）" json:"after_amount"`                 // 账变后的金额（钱包）
+	CreatedAt    int64     `gorm:"column:created_at;primaryKey;comment:帐变时间" json:"created_at"`                                            // 帐变时间
+	CreatedTime  time.Time `gorm:"column:created_time;not null;default:CURRENT_TIMESTAMP;comment:分区时间戳(等于created_at)" json:"created_time"` // 分区时间戳(等于created_at)
+	Tester       int32     `gorm:"column:tester;not null;default:1;comment:1:正式2:测试3:代理" json:"tester"`                                    // 1:正式2:测试3:代理
+	Remark       string    `gorm:"column:remark;not null;comment:备注" json:"remark"`                                                        // 备注
+	OperatorUID  int64     `gorm:"column:operator_uid;not null;comment:操作人uid" json:"operator_uid"`                                        // 操作人uid
+	OperatorName string    `gorm:"column:operator_name;not null;comment:操作人" json:"operator_name"`                                         // 操作人
+	Device       int32     `gorm:"column:device;not null;comment:操作终端" json:"device"`                                                      // 操作终端
+	PlatformID   int64     `gorm:"column:platform_id;not null;comment:场馆id" json:"platform_id"`                                            // 场馆id
+	OperationNo  string    `gorm:"column:operation_no;not null;comment:流水号" json:"operation_no"`                                           // 流水号
+	State        int32     `gorm:"column:state;not null;comment:状态(仅场馆业务类型使用) 1待结算 2已结算 3已取消 4重新结算" json:"state"`                          // 状态(仅场馆业务类型使用) 1待结算 2已结算 3已取消 4重新结算
+	DataType     int32     `gorm:"column:data_type;not null;default:2;comment:1 mongo 2 新架构tidb 3 老架构tidb" json:"data_type"`               // 1 mongo 2 新架构tidb 3 老架构tidb
+	OriginAmount string    `gorm:"column:origin_amount;not null;default:0;comment:原始金额" json:"origin_amount"`                              // 原始金额
+	NickName     string    `gorm:"column:nick_name;not null;comment:昵称" json:"nick_name"`                                                  // 昵称
+	Phone        string    `gorm:"column:phone;not null;comment:手机号" json:"phone"`                                                         // 手机号
+	Vip          int32     `gorm:"column:vip;not null;comment:vip等级" json:"vip"`                                                           // vip等级
 }
 
 // TableName FbBalanceTransaction's table name

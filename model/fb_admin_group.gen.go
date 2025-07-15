@@ -8,14 +8,15 @@ const TableNameFbAdminGroup = "fb_admin_group"
 
 // FbAdminGroup 后台用户分组表
 type FbAdminGroup struct {
-	Gid        uint64 `gorm:"column:gid;primaryKey" json:"gid"`
+	Gid        int64  `gorm:"column:gid;primaryKey" json:"gid"`
 	Name       string `gorm:"column:name;not null;comment:组名" json:"name"`                       // 组名
 	Permission string `gorm:"column:permission;not null;comment:权限模块ID" json:"permission"`       // 权限模块ID
 	Noted      string `gorm:"column:noted;not null;comment:备注信息" json:"noted"`                   // 备注信息
 	CreateAt   int32  `gorm:"column:create_at;not null;comment:创建时间" json:"create_at"`           // 创建时间
-	Pid        uint64 `gorm:"column:pid;not null;comment:父节点" json:"pid"`                        // 父节点
+	Pid        int64  `gorm:"column:pid;not null;comment:父节点" json:"pid"`                        // 父节点
 	Pname      string `gorm:"column:pname;not null;comment:上级分组名" json:"pname"`                  // 上级分组名
 	State      int32  `gorm:"column:state;not null;default:1;comment:1:开启2:关闭3:删除" json:"state"` // 1:开启2:关闭3:删除
+	Cmpl       int32  `gorm:"column:cmpl;not null;default:2;comment:1 合规后台 2管理后台" json:"cmpl"`   // 1 合规后台 2管理后台
 	Sortlevel  string `gorm:"column:sortlevel;not null" json:"sortlevel"`
 	Total      int32  `gorm:"column:total;not null" json:"total"`
 	UpdateAt   int32  `gorm:"column:update_at;not null;comment:修改时间" json:"update_at"`    // 修改时间

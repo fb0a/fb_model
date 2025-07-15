@@ -51,8 +51,9 @@ func order() {
 			Colorful:                  true,
 		},
 	)
-
-	gormdb, _ := gorm.Open(mysql.Open("dev_user:hK9%bZ8.eC2%@tcp(47.250.115.85:4000)/orders?charset=utf8&parseTime=True&loc=Local"), &gorm.Config{
+	// dev-mysql-polard.rwlb.kualalumpur.rds.aliyuncs.com
+	//pc-zf8la316kgqx2li41.mysql.polardb.kualalumpur.rds.aliyuncs.com
+	gormdb, _ := gorm.Open(mysql.Open("dba:o5GsQ12zDVYCnxBrQ95W@tcp(dev-mysql-polard.rwlb.kualalumpur.rds.aliyuncs.com)/orders?charset=utf8&parseTime=True&loc=Local"), &gorm.Config{
 		Logger: newLogger,
 	})
 	g.UseDB(gormdb) // reuse your gorm db
@@ -99,7 +100,9 @@ func fb() {
 		},
 	)
 
-	gormdb, _ := gorm.Open(mysql.Open("dev_user:hK9%bZ8.eC2%@tcp(47.250.115.85:4000)/fb?charset=utf8&parseTime=True&loc=Local"), &gorm.Config{
+	//merchant = "dba:o5GsQ12zDVYCnxBrQ95W@tcp(pc-zf8la316kgqx2li41.mysql.polardb.kualalumpur.rds.aliyuncs.com)/fb?charset=utf8&parseTime=True&loc=Local"
+
+	gormdb, _ := gorm.Open(mysql.Open("dba:o5GsQ12zDVYCnxBrQ95W@tcp(dev-mysql-polard.rwlb.kualalumpur.rds.aliyuncs.com)/fb?charset=utf8&parseTime=True&loc=Local"), &gorm.Config{
 		Logger: newLogger,
 	})
 	g.UseDB(gormdb) // reuse your gorm db

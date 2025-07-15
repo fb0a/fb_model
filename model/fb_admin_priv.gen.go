@@ -8,13 +8,14 @@ const TableNameFbAdminPriv = "fb_admin_priv"
 
 // FbAdminPriv 后台用户权限表
 type FbAdminPriv struct {
-	ID        uint64 `gorm:"column:id;primaryKey" json:"id"`
+	ID        int64  `gorm:"column:id;primaryKey" json:"id"`
 	Name      string `gorm:"column:name;not null;comment:权限名字" json:"name"` // 权限名字
 	RouteName string `gorm:"column:routeName" json:"routeName"`
 	Module    string `gorm:"column:module;not null;comment:模块" json:"module"` // 模块
 	Sortlevel string `gorm:"column:sortlevel;not null" json:"sortlevel"`
 	State     int32  `gorm:"column:state;not null;default:1;comment:1:开启2:关闭3:删除" json:"state"` // 1:开启2:关闭3:删除
-	Pid       uint64 `gorm:"column:pid;not null" json:"pid"`
+	Cmpl      int32  `gorm:"column:cmpl;not null;default:2;comment:1 合规后台 2管理后台" json:"cmpl"`   // 1 合规后台 2管理后台
+	Pid       int64  `gorm:"column:pid;not null" json:"pid"`
 	Flag      int32  `gorm:"column:flag;not null;default:1;comment:1:普通路由2:按钮路由" json:"flag"` // 1:普通路由2:按钮路由
 }
 

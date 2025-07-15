@@ -4,51 +4,65 @@
 
 package model
 
+import (
+	"time"
+)
+
 const TableNameFbMember = "fb_members"
 
 // FbMember 会员表
 type FbMember struct {
-	UID             uint64  `gorm:"column:uid;primaryKey" json:"uid"`
-	Username        string  `gorm:"column:username;not null;comment:用户名" json:"username"`                        // 用户名
-	WithdrawTotal   float64 `gorm:"column:withdraw_total;not null;default:0;comment:提现总数" json:"withdraw_total"` // 提现总数
-	WithdrawCount   int32   `gorm:"column:withdraw_count;not null;comment:提现次数" json:"withdraw_count"`           // 提现次数
-	DepositTotal    float64 `gorm:"column:deposit_total;not null;default:0;comment:存款总额" json:"deposit_total"`   // 存款总额
-	DepositCount    int32   `gorm:"column:deposit_count;not null;comment:存款次数" json:"deposit_count"`             // 存款次数
-	Email           string  `gorm:"column:email;not null" json:"email"`
-	EmailCheckState int32   `gorm:"column:email_check_state;not null;default:2;comment:邮箱是否验证1=已验证,2=未验证" json:"email_check_state"`  // 邮箱是否验证1=已验证,2=未验证
-	CountryCode     string  `gorm:"column:country_code;not null;comment:国家区号" json:"country_code"`                                   // 国家区号
-	Phone           string  `gorm:"column:phone;not null;comment:手机号" json:"phone"`                                                  // 手机号
-	PhoneCheckState int32   `gorm:"column:phone_check_state;not null;default:2;comment:手机号是否验证1=已验证,2=未验证" json:"phone_check_state"` // 手机号是否验证1=已验证,2=未验证
-	Avatar          string  `gorm:"column:avatar;not null;default:1;comment:头像图片地址" json:"avatar"`                                   // 头像图片地址
-	Gender          string  `gorm:"column:gender;not null;comment:性别" json:"gender"`                                                 // 性别
-	Password        string  `gorm:"column:password;not null;comment:密码" json:"password"`                                             // 密码
-	OauthSecrets    string  `gorm:"column:oauth_secrets;not null;comment:授权密码" json:"oauth_secrets"`                                 // 授权密码
-	ReferralCode    string  `gorm:"column:referral_code;not null;comment:推荐码" json:"referral_code"`                                  // 推荐码
-	Tags            string  `gorm:"column:tags;not null;comment:标签" json:"tags"`                                                     // 标签
-	Vip             int32   `gorm:"column:vip;not null;default:1;comment:vip等级" json:"vip"`                                          // vip等级
-	ParentUID       string  `gorm:"column:parent_uid;not null;comment:父级代理id" json:"parent_uid"`                                     // 父级代理id
-	ParentName      string  `gorm:"column:parent_name;not null;comment:父级代理名" json:"parent_name"`                                    // 父级代理名
-	Tester          int32   `gorm:"column:tester;not null;default:1;comment:1 正式账号 2 测试帐号" json:"tester"`                            // 1 正式账号 2 测试帐号
-	DeviceNumber    string  `gorm:"column:device_number;not null;comment:登录设备号" json:"device_number"`                                // 登录设备号
-	State           int32   `gorm:"column:state;not null;comment:会员状态，0=正常 1=停用" json:"state"`                                       // 会员状态，0=正常 1=停用
-	Note            string  `gorm:"column:note;not null;comment:账号备注" json:"note"`                                                   // 账号备注
-	CreatedAt       uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                       // 创建时间
-	CreatedIP       string  `gorm:"column:created_ip;not null;comment:创建ip" json:"created_ip"`                                       // 创建ip
-	RegIP           string  `gorm:"column:reg_ip;not null;comment:注册IP" json:"reg_ip"`                                               // 注册IP
-	RegDevice       int32   `gorm:"column:reg_device;not null;comment:注册设备" json:"reg_device"`                                       // 注册设备
-	RegDeviceNo     string  `gorm:"column:reg_device_no;not null;comment:注册设备号" json:"reg_device_no"`                                // 注册设备号
-	LastLoginIP     string  `gorm:"column:last_login_ip;not null;comment:登陆IP" json:"last_login_ip"`                                 // 登陆IP
-	LastLoginAt     uint64  `gorm:"column:last_login_at;not null;comment:登陆时间" json:"last_login_at"`                                 // 登陆时间
-	LastLoginDevice int32   `gorm:"column:last_login_device;not null;default:24;comment:登陆设备" json:"last_login_device"`              // 登陆设备
-	NickName        string  `gorm:"column:nick_name;not null" json:"nick_name"`
-	UpdatedAt       int64   `gorm:"column:updated_at;not null" json:"updated_at"`
-	ThirdParty      string  `gorm:"column:third_party;not null" json:"third_party"`
-	RealUsername    string  `gorm:"column:real_username;not null" json:"real_username"`
-	Birthday        string  `gorm:"column:birthday;not null;comment:生日" json:"birthday"` // 生日
-	FirstDeposit    int64   `gorm:"column:first_deposit;not null" json:"first_deposit"`
-	SecondDeposit   int64   `gorm:"column:second_deposit;not null" json:"second_deposit"`
-	ThirdDeposit    int64   `gorm:"column:third_deposit;not null" json:"third_deposit"`
-	Source          string  `gorm:"column:source;not null;default:default" json:"source"`
+	UID             int64     `gorm:"column:uid;primaryKey" json:"uid"`
+	Username        string    `gorm:"column:username;not null;comment:用户名" json:"username"`                             // 用户名
+	WithdrawTotal   float64   `gorm:"column:withdraw_total;not null;default:0.0000;comment:提现总数" json:"withdraw_total"` // 提现总数
+	WithdrawCount   int32     `gorm:"column:withdraw_count;not null;comment:提现次数" json:"withdraw_count"`                // 提现次数
+	DepositTotal    float64   `gorm:"column:deposit_total;not null;default:0.0000;comment:存款总额" json:"deposit_total"`   // 存款总额
+	DepositCount    int32     `gorm:"column:deposit_count;not null;comment:存款次数" json:"deposit_count"`                  // 存款次数
+	Email           string    `gorm:"column:email;not null" json:"email"`
+	EmailCheckState int32     `gorm:"column:email_check_state;not null;default:2;comment:邮箱是否验证1=已验证,2=未验证" json:"email_check_state"`         // 邮箱是否验证1=已验证,2=未验证
+	CountryCode     string    `gorm:"column:country_code;not null;comment:国家区号" json:"country_code"`                                          // 国家区号
+	Phone           string    `gorm:"column:phone;not null;comment:手机号" json:"phone"`                                                         // 手机号
+	PhoneCheckState int32     `gorm:"column:phone_check_state;not null;default:2;comment:手机号是否验证1=已验证,2=未验证" json:"phone_check_state"`        // 手机号是否验证1=已验证,2=未验证
+	Avatar          string    `gorm:"column:avatar;not null;default:1;comment:头像图片地址" json:"avatar"`                                          // 头像图片地址
+	Gender          string    `gorm:"column:gender;not null;comment:性别" json:"gender"`                                                        // 性别
+	Password        string    `gorm:"column:password;not null;comment:密码" json:"password"`                                                    // 密码
+	OauthSecrets    string    `gorm:"column:oauth_secrets;not null;comment:授权密码" json:"oauth_secrets"`                                        // 授权密码
+	ReferralCode    string    `gorm:"column:referral_code;not null;comment:推荐码" json:"referral_code"`                                         // 推荐码
+	Tags            string    `gorm:"column:tags;not null;comment:标签" json:"tags"`                                                            // 标签
+	Vip             int32     `gorm:"column:vip;not null;default:1;comment:vip等级" json:"vip"`                                                 // vip等级
+	ParentUID       string    `gorm:"column:parent_uid;not null;comment:父级代理id" json:"parent_uid"`                                            // 父级代理id
+	ParentName      string    `gorm:"column:parent_name;not null;comment:父级代理名" json:"parent_name"`                                           // 父级代理名
+	Tester          int32     `gorm:"column:tester;not null;default:1;comment:1 正式账号 2 测试帐号" json:"tester"`                                   // 1 正式账号 2 测试帐号
+	DeviceNumber    string    `gorm:"column:device_number;not null;comment:登录设备号" json:"device_number"`                                       // 登录设备号
+	State           int32     `gorm:"column:state;not null;comment:会员状态，0=正常 1=停用" json:"state"`                                              // 会员状态，0=正常 1=停用
+	Note            string    `gorm:"column:note;not null;comment:账号备注" json:"note"`                                                          // 账号备注
+	CreatedAt       int64     `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                              // 创建时间
+	CreatedTime     time.Time `gorm:"column:created_time;not null;default:CURRENT_TIMESTAMP;comment:分区时间戳(等于created_at)" json:"created_time"` // 分区时间戳(等于created_at)
+	CreatedIP       string    `gorm:"column:created_ip;not null;comment:创建ip" json:"created_ip"`                                              // 创建ip
+	RegIP           string    `gorm:"column:reg_ip;not null;comment:注册IP" json:"reg_ip"`                                                      // 注册IP
+	RegDevice       int32     `gorm:"column:reg_device;not null;comment:注册设备" json:"reg_device"`                                              // 注册设备
+	RegDeviceNo     string    `gorm:"column:reg_device_no;not null;comment:注册设备号" json:"reg_device_no"`                                       // 注册设备号
+	LastLoginIP     string    `gorm:"column:last_login_ip;not null;comment:登陆IP" json:"last_login_ip"`                                        // 登陆IP
+	LastLoginAt     int64     `gorm:"column:last_login_at;not null;comment:登陆时间" json:"last_login_at"`                                        // 登陆时间
+	LastLoginDevice int32     `gorm:"column:last_login_device;not null;default:24;comment:登陆设备" json:"last_login_device"`                     // 登陆设备
+	NickName        string    `gorm:"column:nick_name;not null" json:"nick_name"`
+	UpdatedAt       int64     `gorm:"column:updated_at;not null" json:"updated_at"`
+	ThirdParty      string    `gorm:"column:third_party;not null" json:"third_party"`
+	RealUsername    string    `gorm:"column:real_username;not null" json:"real_username"`
+	Birthday        string    `gorm:"column:birthday;not null;comment:生日" json:"birthday"` // 生日
+	FirstDeposit    int64     `gorm:"column:first_deposit;not null" json:"first_deposit"`
+	SecondDeposit   int64     `gorm:"column:second_deposit;not null" json:"second_deposit"`
+	ThirdDeposit    int64     `gorm:"column:third_deposit;not null" json:"third_deposit"`
+	Source          string    `gorm:"column:source;not null;default:default" json:"source"`
+	Balance         float64   `gorm:"column:balance;not null;default:0.00000000;comment:余额" json:"balance"`                                                                                     // 余额
+	KycStatus       int32     `gorm:"column:kyc_status;not null;comment:1.Basic Account,2.Basic KYC,3.Under Review,4.Reject KYC,5.Fully KYC,6.Frozen,7.Block,8.Test Account" json:"kyc_status"` // 1.Basic Account,2.Basic KYC,3.Under Review,4.Reject KYC,5.Fully KYC,6.Frozen,7.Block,8.Test Account
+	Sid             int32     `gorm:"column:sid;not null;comment:店铺id" json:"sid"`                                                                                                              // 店铺id
+	Domain          string    `gorm:"column:domain;not null;comment:域名" json:"domain"`                                                                                                          // 域名
+	Xp              float64   `gorm:"column:xp;not null;default:0.00;comment:vip经验值" json:"xp"`                                                                                                 // vip经验值
+	VipBetAmount    float64   `gorm:"column:vip_bet_amount;not null;default:0.00;comment:升级到当前vip等级时的投注额" json:"vip_bet_amount"`                                                                // 升级到当前vip等级时的投注额
+	AdID            int64     `gorm:"column:ad_id;not null;comment:广告ID" json:"ad_id"`                                                                                                          // 广告ID
+	AdcID           string    `gorm:"column:adc_id;not null;comment:广告三方客户ID" json:"adc_id"`                                                                                                    // 广告三方客户ID
+	TokensBalance   float64   `gorm:"column:tokens_balance;not null;default:0.00000000" json:"tokens_balance"`
 }
 
 // TableName FbMember's table name

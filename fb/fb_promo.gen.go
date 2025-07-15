@@ -28,7 +28,7 @@ func newFbPromo(db *gorm.DB, opts ...gen.DOOption) fbPromo {
 
 	tableName := _fbPromo.fbPromoDo.TableName()
 	_fbPromo.ALL = field.NewAsterisk(tableName)
-	_fbPromo.ID = field.NewUint64(tableName, "id")
+	_fbPromo.ID = field.NewInt64(tableName, "id")
 	_fbPromo.Title = field.NewString(tableName, "title")
 	_fbPromo.Alias_ = field.NewString(tableName, "alias")
 
@@ -42,7 +42,7 @@ type fbPromo struct {
 	fbPromoDo
 
 	ALL    field.Asterisk
-	ID     field.Uint64
+	ID     field.Int64
 	Title  field.String // 活动多语言标题
 	Alias_ field.String // 英文别名
 
@@ -61,7 +61,7 @@ func (f fbPromo) As(alias string) *fbPromo {
 
 func (f *fbPromo) updateTableName(table string) *fbPromo {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Title = field.NewString(table, "title")
 	f.Alias_ = field.NewString(table, "alias")
 

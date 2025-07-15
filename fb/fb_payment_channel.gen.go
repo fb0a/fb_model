@@ -28,17 +28,17 @@ func newFbPaymentChannel(db *gorm.DB, opts ...gen.DOOption) fbPaymentChannel {
 
 	tableName := _fbPaymentChannel.fbPaymentChannelDo.TableName()
 	_fbPaymentChannel.ALL = field.NewAsterisk(tableName)
-	_fbPaymentChannel.ID = field.NewUint64(tableName, "id")
+	_fbPaymentChannel.ID = field.NewInt64(tableName, "id")
 	_fbPaymentChannel.Name = field.NewString(tableName, "name")
-	_fbPaymentChannel.PaymentID = field.NewUint64(tableName, "payment_id")
+	_fbPaymentChannel.PaymentID = field.NewInt64(tableName, "payment_id")
 	_fbPaymentChannel.PaymentName = field.NewString(tableName, "payment_name")
 	_fbPaymentChannel.Mode = field.NewString(tableName, "mode")
 	_fbPaymentChannel.Flag = field.NewInt32(tableName, "flag")
 	_fbPaymentChannel.State = field.NewInt32(tableName, "state")
 	_fbPaymentChannel.Remark = field.NewString(tableName, "remark")
-	_fbPaymentChannel.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbPaymentChannel.UpdatedAt = field.NewUint64(tableName, "updated_at")
-	_fbPaymentChannel.UpdatedUID = field.NewUint64(tableName, "updated_uid")
+	_fbPaymentChannel.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbPaymentChannel.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbPaymentChannel.UpdatedUID = field.NewInt64(tableName, "updated_uid")
 	_fbPaymentChannel.UpdatedName = field.NewString(tableName, "updated_name")
 	_fbPaymentChannel.Config = field.NewString(tableName, "config")
 	_fbPaymentChannel.Img = field.NewString(tableName, "img")
@@ -54,17 +54,17 @@ type fbPaymentChannel struct {
 	fbPaymentChannelDo
 
 	ALL         field.Asterisk
-	ID          field.Uint64
+	ID          field.Int64
 	Name        field.String // 通道名(前台展示)
-	PaymentID   field.Uint64 // 渠道id
+	PaymentID   field.Int64  // 渠道id
 	PaymentName field.String // 渠道名
 	Mode        field.String // 通道类型 deposit代收 withdraw代付
 	Flag        field.Int32  // 1 银行卡 ,2 电子钱包 3 信用卡, 4 加密货币,5 预付卡,6 third_party 7 线下
 	State       field.Int32  // 通道状态，1=正常 2=停用
 	Remark      field.String // 通道备注
-	CreatedAt   field.Uint64 // 创建时间
-	UpdatedAt   field.Uint64 // 更新时间
-	UpdatedUID  field.Uint64 // 更新管理员id
+	CreatedAt   field.Int64  // 创建时间
+	UpdatedAt   field.Int64  // 更新时间
+	UpdatedUID  field.Int64  // 更新管理员id
 	UpdatedName field.String // 更新管理员帐号
 	Config      field.String // 通道配置信息
 	Img         field.String // 图片
@@ -85,17 +85,17 @@ func (f fbPaymentChannel) As(alias string) *fbPaymentChannel {
 
 func (f *fbPaymentChannel) updateTableName(table string) *fbPaymentChannel {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Name = field.NewString(table, "name")
-	f.PaymentID = field.NewUint64(table, "payment_id")
+	f.PaymentID = field.NewInt64(table, "payment_id")
 	f.PaymentName = field.NewString(table, "payment_name")
 	f.Mode = field.NewString(table, "mode")
 	f.Flag = field.NewInt32(table, "flag")
 	f.State = field.NewInt32(table, "state")
 	f.Remark = field.NewString(table, "remark")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
-	f.UpdatedUID = field.NewUint64(table, "updated_uid")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.UpdatedUID = field.NewInt64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
 	f.Config = field.NewString(table, "config")
 	f.Img = field.NewString(table, "img")

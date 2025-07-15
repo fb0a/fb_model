@@ -28,8 +28,8 @@ func newFbAdmin(db *gorm.DB, opts ...gen.DOOption) fbAdmin {
 
 	tableName := _fbAdmin.fbAdminDo.TableName()
 	_fbAdmin.ALL = field.NewAsterisk(tableName)
-	_fbAdmin.ID = field.NewUint64(tableName, "id")
-	_fbAdmin.GroupID = field.NewUint64(tableName, "group_id")
+	_fbAdmin.ID = field.NewInt64(tableName, "id")
+	_fbAdmin.GroupID = field.NewInt64(tableName, "group_id")
 	_fbAdmin.Nickname = field.NewString(tableName, "nickname")
 	_fbAdmin.Avatar = field.NewString(tableName, "avatar")
 	_fbAdmin.Email = field.NewString(tableName, "email")
@@ -38,6 +38,7 @@ func newFbAdmin(db *gorm.DB, opts ...gen.DOOption) fbAdmin {
 	_fbAdmin.LastLoginTime = field.NewInt64(tableName, "last_login_time")
 	_fbAdmin.Roles = field.NewString(tableName, "roles")
 	_fbAdmin.Status = field.NewInt32(tableName, "status")
+	_fbAdmin.Cmpl = field.NewInt32(tableName, "cmpl")
 	_fbAdmin.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_fbAdmin.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbAdmin.GoogleSecret = field.NewString(tableName, "google_secret")
@@ -46,6 +47,8 @@ func newFbAdmin(db *gorm.DB, opts ...gen.DOOption) fbAdmin {
 	_fbAdmin.OperatorName = field.NewString(tableName, "operator_name")
 	_fbAdmin.CreateName = field.NewString(tableName, "create_name")
 	_fbAdmin.PwdEditTime = field.NewInt64(tableName, "pwd_edit_time")
+	_fbAdmin.Stores = field.NewString(tableName, "stores")
+	_fbAdmin.Sid = field.NewInt32(tableName, "sid")
 
 	_fbAdmin.fillFieldMap()
 
@@ -57,8 +60,8 @@ type fbAdmin struct {
 	fbAdminDo
 
 	ALL           field.Asterisk
-	ID            field.Uint64
-	GroupID       field.Uint64 // 用户组id
+	ID            field.Int64
+	GroupID       field.Int64  // 用户组id
 	Nickname      field.String // nickname
 	Avatar        field.String // 头像
 	Email         field.String // 邮箱
@@ -67,6 +70,7 @@ type fbAdmin struct {
 	LastLoginTime field.Int64  // 登陆时间
 	Roles         field.String // 角色
 	Status        field.Int32  // 1正常，2禁用
+	Cmpl          field.Int32  // 1 合规后台 2管理后台
 	UpdatedAt     field.Int64  // 修改时间
 	CreatedAt     field.Int64  // 创建时间
 	GoogleSecret  field.String // google验证密钥
@@ -75,6 +79,8 @@ type fbAdmin struct {
 	OperatorName  field.String
 	CreateName    field.String
 	PwdEditTime   field.Int64
+	Stores        field.String // 门店
+	Sid           field.Int32  // 门店id
 
 	fieldMap map[string]field.Expr
 }
@@ -91,8 +97,8 @@ func (f fbAdmin) As(alias string) *fbAdmin {
 
 func (f *fbAdmin) updateTableName(table string) *fbAdmin {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
-	f.GroupID = field.NewUint64(table, "group_id")
+	f.ID = field.NewInt64(table, "id")
+	f.GroupID = field.NewInt64(table, "group_id")
 	f.Nickname = field.NewString(table, "nickname")
 	f.Avatar = field.NewString(table, "avatar")
 	f.Email = field.NewString(table, "email")
@@ -101,6 +107,7 @@ func (f *fbAdmin) updateTableName(table string) *fbAdmin {
 	f.LastLoginTime = field.NewInt64(table, "last_login_time")
 	f.Roles = field.NewString(table, "roles")
 	f.Status = field.NewInt32(table, "status")
+	f.Cmpl = field.NewInt32(table, "cmpl")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
 	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.GoogleSecret = field.NewString(table, "google_secret")
@@ -109,6 +116,8 @@ func (f *fbAdmin) updateTableName(table string) *fbAdmin {
 	f.OperatorName = field.NewString(table, "operator_name")
 	f.CreateName = field.NewString(table, "create_name")
 	f.PwdEditTime = field.NewInt64(table, "pwd_edit_time")
+	f.Stores = field.NewString(table, "stores")
+	f.Sid = field.NewInt32(table, "sid")
 
 	f.fillFieldMap()
 
@@ -125,7 +134,7 @@ func (f *fbAdmin) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (f *fbAdmin) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 18)
+	f.fieldMap = make(map[string]field.Expr, 21)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["group_id"] = f.GroupID
 	f.fieldMap["nickname"] = f.Nickname
@@ -136,6 +145,7 @@ func (f *fbAdmin) fillFieldMap() {
 	f.fieldMap["last_login_time"] = f.LastLoginTime
 	f.fieldMap["roles"] = f.Roles
 	f.fieldMap["status"] = f.Status
+	f.fieldMap["cmpl"] = f.Cmpl
 	f.fieldMap["updated_at"] = f.UpdatedAt
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["google_secret"] = f.GoogleSecret
@@ -144,6 +154,8 @@ func (f *fbAdmin) fillFieldMap() {
 	f.fieldMap["operator_name"] = f.OperatorName
 	f.fieldMap["create_name"] = f.CreateName
 	f.fieldMap["pwd_edit_time"] = f.PwdEditTime
+	f.fieldMap["stores"] = f.Stores
+	f.fieldMap["sid"] = f.Sid
 }
 
 func (f fbAdmin) clone(db *gorm.DB) fbAdmin {

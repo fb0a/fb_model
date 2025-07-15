@@ -28,31 +28,39 @@ func newFbMembersVip(db *gorm.DB, opts ...gen.DOOption) fbMembersVip {
 
 	tableName := _fbMembersVip.fbMembersVipDo.TableName()
 	_fbMembersVip.ALL = field.NewAsterisk(tableName)
-	_fbMembersVip.UID = field.NewUint64(tableName, "uid")
-	_fbMembersVip.ManualLevel = field.NewInt32(tableName, "manual_level")
-	_fbMembersVip.Score = field.NewFloat64(tableName, "score")
 	_fbMembersVip.Level = field.NewInt32(tableName, "level")
-	_fbMembersVip.Category = field.NewInt32(tableName, "category")
-	_fbMembersVip.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbMembersVip.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_fbMembersVip.Ty = field.NewString(tableName, "ty")
+	_fbMembersVip.Xp = field.NewFloat64(tableName, "xp")
+	_fbMembersVip.Upgrade = field.NewFloat64(tableName, "upgrade")
+	_fbMembersVip.Birthday = field.NewFloat64(tableName, "birthday")
+	_fbMembersVip.Multiple = field.NewFloat64(tableName, "multiple")
+	_fbMembersVip.Img = field.NewString(tableName, "img")
+	_fbMembersVip.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbMembersVip.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbMembersVip.UpdatedUID = field.NewInt64(tableName, "updated_uid")
+	_fbMembersVip.UpdatedName = field.NewString(tableName, "updated_name")
 
 	_fbMembersVip.fillFieldMap()
 
 	return _fbMembersVip
 }
 
-// fbMembersVip 会员vip表
+// fbMembersVip vip等级配置表
 type fbMembersVip struct {
 	fbMembersVipDo
 
 	ALL         field.Asterisk
-	UID         field.Uint64
-	ManualLevel field.Int32   // manual_level
-	Score       field.Float64 // 评分
 	Level       field.Int32   // 等级
-	Category    field.Int32   // 等级
-	CreatedAt   field.Uint64  // 创建时间
-	UpdatedAt   field.Uint64  // 更新时间
+	Ty          field.String  // 等级区间名称
+	Xp          field.Float64 // 经验
+	Upgrade     field.Float64 // 升级奖金
+	Birthday    field.Float64 // 生日奖金
+	Multiple    field.Float64 // 打码倍数
+	Img         field.String  // 等级区间图标
+	CreatedAt   field.Int64   // 创建时间
+	UpdatedAt   field.Int64   // 维护时间
+	UpdatedUID  field.Int64   // 维护人id
+	UpdatedName field.String  // 维护人名
 
 	fieldMap map[string]field.Expr
 }
@@ -69,13 +77,17 @@ func (f fbMembersVip) As(alias string) *fbMembersVip {
 
 func (f *fbMembersVip) updateTableName(table string) *fbMembersVip {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewUint64(table, "uid")
-	f.ManualLevel = field.NewInt32(table, "manual_level")
-	f.Score = field.NewFloat64(table, "score")
 	f.Level = field.NewInt32(table, "level")
-	f.Category = field.NewInt32(table, "category")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
+	f.Ty = field.NewString(table, "ty")
+	f.Xp = field.NewFloat64(table, "xp")
+	f.Upgrade = field.NewFloat64(table, "upgrade")
+	f.Birthday = field.NewFloat64(table, "birthday")
+	f.Multiple = field.NewFloat64(table, "multiple")
+	f.Img = field.NewString(table, "img")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.UpdatedUID = field.NewInt64(table, "updated_uid")
+	f.UpdatedName = field.NewString(table, "updated_name")
 
 	f.fillFieldMap()
 
@@ -92,14 +104,18 @@ func (f *fbMembersVip) GetFieldByName(fieldName string) (field.OrderExpr, bool) 
 }
 
 func (f *fbMembersVip) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 7)
-	f.fieldMap["uid"] = f.UID
-	f.fieldMap["manual_level"] = f.ManualLevel
-	f.fieldMap["score"] = f.Score
+	f.fieldMap = make(map[string]field.Expr, 11)
 	f.fieldMap["level"] = f.Level
-	f.fieldMap["category"] = f.Category
+	f.fieldMap["ty"] = f.Ty
+	f.fieldMap["xp"] = f.Xp
+	f.fieldMap["upgrade"] = f.Upgrade
+	f.fieldMap["birthday"] = f.Birthday
+	f.fieldMap["multiple"] = f.Multiple
+	f.fieldMap["img"] = f.Img
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
+	f.fieldMap["updated_uid"] = f.UpdatedUID
+	f.fieldMap["updated_name"] = f.UpdatedName
 }
 
 func (f fbMembersVip) clone(db *gorm.DB) fbMembersVip {

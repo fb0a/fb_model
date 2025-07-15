@@ -28,7 +28,7 @@ func newFbDailyPlatformReport(db *gorm.DB, opts ...gen.DOOption) fbDailyPlatform
 
 	tableName := _fbDailyPlatformReport.fbDailyPlatformReportDo.TableName()
 	_fbDailyPlatformReport.ALL = field.NewAsterisk(tableName)
-	_fbDailyPlatformReport.ID = field.NewUint64(tableName, "id")
+	_fbDailyPlatformReport.ID = field.NewInt64(tableName, "id")
 	_fbDailyPlatformReport.Day = field.NewInt32(tableName, "day")
 	_fbDailyPlatformReport.ActvNum = field.NewInt32(tableName, "actv_num")
 	_fbDailyPlatformReport.TotalBillNum = field.NewInt32(tableName, "total_bill_num")
@@ -52,7 +52,7 @@ type fbDailyPlatformReport struct {
 	fbDailyPlatformReportDo
 
 	ALL            field.Asterisk
-	ID             field.Uint64
+	ID             field.Int64
 	Day            field.Int32  // 数据日期
 	ActvNum        field.Int32  // 活跃人数(有效)
 	TotalBillNum   field.Int32  // 总注单数
@@ -81,7 +81,7 @@ func (f fbDailyPlatformReport) As(alias string) *fbDailyPlatformReport {
 
 func (f *fbDailyPlatformReport) updateTableName(table string) *fbDailyPlatformReport {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.ActvNum = field.NewInt32(table, "actv_num")
 	f.TotalBillNum = field.NewInt32(table, "total_bill_num")

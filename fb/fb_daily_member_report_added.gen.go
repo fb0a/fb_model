@@ -28,14 +28,14 @@ func newFbDailyMemberReportAdded(db *gorm.DB, opts ...gen.DOOption) fbDailyMembe
 
 	tableName := _fbDailyMemberReportAdded.fbDailyMemberReportAddedDo.TableName()
 	_fbDailyMemberReportAdded.ALL = field.NewAsterisk(tableName)
-	_fbDailyMemberReportAdded.ID = field.NewUint64(tableName, "id")
+	_fbDailyMemberReportAdded.ID = field.NewInt64(tableName, "id")
 	_fbDailyMemberReportAdded.Day = field.NewInt32(tableName, "day")
 	_fbDailyMemberReportAdded.RegCount = field.NewInt64(tableName, "reg_count")
 	_fbDailyMemberReportAdded.RegSourceChannel = field.NewString(tableName, "reg_source_channel")
 	_fbDailyMemberReportAdded.FirstDepositConversion = field.NewInt64(tableName, "first_deposit_conversion")
 	_fbDailyMemberReportAdded.FirstDepositSourceChannel = field.NewString(tableName, "first_deposit_source_channel")
 	_fbDailyMemberReportAdded.FirstDepositNew = field.NewInt64(tableName, "first_deposit_new")
-	_fbDailyMemberReportAdded.FirstDepositNewChannelRatio = field.NewFloat64(tableName, "first_deposit_new_channel_ratio")
+	_fbDailyMemberReportAdded.FirstDepositNewChannelRatio = field.NewString(tableName, "first_deposit_new_channel_ratio")
 	_fbDailyMemberReportAdded.FirstDepositAmount = field.NewString(tableName, "first_deposit_amount")
 	_fbDailyMemberReportAdded.NumberOfSecondDepositors = field.NewInt64(tableName, "number_of_second_depositors")
 	_fbDailyMemberReportAdded.AmountOfSecondDeposit = field.NewString(tableName, "amount_of_second_deposit")
@@ -43,7 +43,8 @@ func newFbDailyMemberReportAdded(db *gorm.DB, opts ...gen.DOOption) fbDailyMembe
 	_fbDailyMemberReportAdded.AmountOfThirdDeposit = field.NewString(tableName, "amount_of_third_deposit")
 	_fbDailyMemberReportAdded.GiftMoneyDay = field.NewString(tableName, "gift_money_day")
 	_fbDailyMemberReportAdded.GiftMoneyChannelRatio = field.NewString(tableName, "gift_money_channel_ratio")
-	_fbDailyMemberReportAdded.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbDailyMemberReportAdded.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbDailyMemberReportAdded.ReportType = field.NewInt32(tableName, "report_type")
 
 	_fbDailyMemberReportAdded.fillFieldMap()
 
@@ -55,22 +56,23 @@ type fbDailyMemberReportAdded struct {
 	fbDailyMemberReportAddedDo
 
 	ALL                         field.Asterisk
-	ID                          field.Uint64  // ID
-	Day                         field.Int32   // 年月日
-	RegCount                    field.Int64   // 新增注册数
-	RegSourceChannel            field.String  // 注册来源渠道统计
-	FirstDepositConversion      field.Int64   // 转化首存数
-	FirstDepositSourceChannel   field.String  // 首存来源渠道
-	FirstDepositNew             field.Int64   // 新增首存数
-	FirstDepositNewChannelRatio field.Float64 // 新增首存渠道占比
-	FirstDepositAmount          field.String  // 首存金额
-	NumberOfSecondDepositors    field.Int64   // 二存数
-	AmountOfSecondDeposit       field.String  // 二存金额
-	NumberOfThirdDepositors     field.Int64   // 三存数
-	AmountOfThirdDeposit        field.String  // 三存金额
-	GiftMoneyDay                field.String  // 当日礼金
-	GiftMoneyChannelRatio       field.String  // 渠道礼金占比
-	CreatedAt                   field.Uint64  // 创建时间
+	ID                          field.Int64  // ID
+	Day                         field.Int32  // 年月日
+	RegCount                    field.Int64  // 新增注册数
+	RegSourceChannel            field.String // 注册来源渠道统计
+	FirstDepositConversion      field.Int64  // 转化首存数
+	FirstDepositSourceChannel   field.String // 首存来源渠道
+	FirstDepositNew             field.Int64  // 新增首存数
+	FirstDepositNewChannelRatio field.String // 新增首存渠道占比
+	FirstDepositAmount          field.String // 首存金额
+	NumberOfSecondDepositors    field.Int64  // 二存数
+	AmountOfSecondDeposit       field.String // 二存金额
+	NumberOfThirdDepositors     field.Int64  // 三存数
+	AmountOfThirdDeposit        field.String // 三存金额
+	GiftMoneyDay                field.String // 当日礼金
+	GiftMoneyChannelRatio       field.String // 渠道礼金占比
+	CreatedAt                   field.Int64  // 创建时间
+	ReportType                  field.Int32  // 1日报，2周报，3月报
 
 	fieldMap map[string]field.Expr
 }
@@ -87,14 +89,14 @@ func (f fbDailyMemberReportAdded) As(alias string) *fbDailyMemberReportAdded {
 
 func (f *fbDailyMemberReportAdded) updateTableName(table string) *fbDailyMemberReportAdded {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.RegCount = field.NewInt64(table, "reg_count")
 	f.RegSourceChannel = field.NewString(table, "reg_source_channel")
 	f.FirstDepositConversion = field.NewInt64(table, "first_deposit_conversion")
 	f.FirstDepositSourceChannel = field.NewString(table, "first_deposit_source_channel")
 	f.FirstDepositNew = field.NewInt64(table, "first_deposit_new")
-	f.FirstDepositNewChannelRatio = field.NewFloat64(table, "first_deposit_new_channel_ratio")
+	f.FirstDepositNewChannelRatio = field.NewString(table, "first_deposit_new_channel_ratio")
 	f.FirstDepositAmount = field.NewString(table, "first_deposit_amount")
 	f.NumberOfSecondDepositors = field.NewInt64(table, "number_of_second_depositors")
 	f.AmountOfSecondDeposit = field.NewString(table, "amount_of_second_deposit")
@@ -102,7 +104,8 @@ func (f *fbDailyMemberReportAdded) updateTableName(table string) *fbDailyMemberR
 	f.AmountOfThirdDeposit = field.NewString(table, "amount_of_third_deposit")
 	f.GiftMoneyDay = field.NewString(table, "gift_money_day")
 	f.GiftMoneyChannelRatio = field.NewString(table, "gift_money_channel_ratio")
-	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.ReportType = field.NewInt32(table, "report_type")
 
 	f.fillFieldMap()
 
@@ -119,7 +122,7 @@ func (f *fbDailyMemberReportAdded) GetFieldByName(fieldName string) (field.Order
 }
 
 func (f *fbDailyMemberReportAdded) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 16)
+	f.fieldMap = make(map[string]field.Expr, 17)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["day"] = f.Day
 	f.fieldMap["reg_count"] = f.RegCount
@@ -136,6 +139,7 @@ func (f *fbDailyMemberReportAdded) fillFieldMap() {
 	f.fieldMap["gift_money_day"] = f.GiftMoneyDay
 	f.fieldMap["gift_money_channel_ratio"] = f.GiftMoneyChannelRatio
 	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["report_type"] = f.ReportType
 }
 
 func (f fbDailyMemberReportAdded) clone(db *gorm.DB) fbDailyMemberReportAdded {

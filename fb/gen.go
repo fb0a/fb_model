@@ -16,42 +16,72 @@ import (
 )
 
 var (
-	Q                            = new(Query)
-	FbAdmin                      *fbAdmin
-	FbAdminGroup                 *fbAdminGroup
-	FbAdminPriv                  *fbAdminPriv
-	FbBalanceAdjustment          *fbBalanceAdjustment
-	FbBalanceTransaction         *fbBalanceTransaction
-	FbBanner                     *fbBanner
-	FbDailyChannelReport         *fbDailyChannelReport
-	FbDailyMemberReportAdded     *fbDailyMemberReportAdded
-	FbDailyPlatformBalanceReport *fbDailyPlatformBalanceReport
-	FbDailyPlatformPerformance   *fbDailyPlatformPerformance
-	FbDailyPlatformReport        *fbDailyPlatformReport
-	FbDailyVenueReport           *fbDailyVenueReport
-	FbDeposit                    *fbDeposit
-	FbFinanceAccount             *fbFinanceAccount
-	FbGameList                   *fbGameList
-	FbLazadaOrder                *fbLazadaOrder
-	FbMember                     *fbMember
-	FbMemberPlatform             *fbMemberPlatform
-	FbMembersBalance             *fbMembersBalance
-	FbMembersKyc                 *fbMembersKyc
-	FbMembersVip                 *fbMembersVip
-	FbOtpSmsRecord               *fbOtpSmsRecord
-	FbPagcorGameSummary          *fbPagcorGameSummary
-	FbPayment                    *fbPayment
-	FbPaymentChannel             *fbPaymentChannel
-	FbPlatform                   *fbPlatform
-	FbPromo                      *fbPromo
-	FbPromoBlindbox              *fbPromoBlindbox
-	FbPromoBonu                  *fbPromoBonu
-	FbPromoList                  *fbPromoList
-	FbPromoSuperAceRebate        *fbPromoSuperAceRebate
-	FbSm                         *fbSm
-	FbWhitelist                  *fbWhitelist
-	FbWithdraw                   *fbWithdraw
-	TempGame                     *tempGame
+	Q                           = new(Query)
+	FbAdmin                     *fbAdmin
+	FbAdminGroup                *fbAdminGroup
+	FbAdminPriv                 *fbAdminPriv
+	FbBalanceAdjustment         *fbBalanceAdjustment
+	FbBalanceTransaction        *fbBalanceTransaction
+	FbBalanceTransaction2       *fbBalanceTransaction2
+	FbBanner                    *fbBanner
+	FbBuriedPoint               *fbBuriedPoint
+	FbCmplGroup                 *fbCmplGroup
+	FbCmplPriv                  *fbCmplPriv
+	FbCmplPrivCopy              *fbCmplPrivCopy
+	FbConfig                    *fbConfig
+	FbDailyMemberRegisterReport *fbDailyMemberRegisterReport
+	FbDailyMemberReportAdded    *fbDailyMemberReportAdded
+	FbDailyPlatformPerformance  *fbDailyPlatformPerformance
+	FbDailyPlatformReport       *fbDailyPlatformReport
+	FbDailyVenueReport          *fbDailyVenueReport
+	FbDeposit                   *fbDeposit
+	FbDomain                    *fbDomain
+	FbFinanceAccount            *fbFinanceAccount
+	FbGameList                  *fbGameList
+	FbGood                      *fbGood
+	FbLazadaOrder               *fbLazadaOrder
+	FbMallOrder                 *fbMallOrder
+	FbMember                    *fbMember
+	FbMemberPlatform            *fbMemberPlatform
+	FbMembersBalance            *fbMembersBalance
+	FbMembersBirthday           *fbMembersBirthday
+	FbMembersCopy1              *fbMembersCopy1
+	FbMembersKyc                *fbMembersKyc
+	FbMembersTurnover           *fbMembersTurnover
+	FbMembersVip                *fbMembersVip
+	FbMembersVipLog             *fbMembersVipLog
+	FbOtpSmsRecord              *fbOtpSmsRecord
+	FbPagcorGameSummary         *fbPagcorGameSummary
+	FbPagcorReport              *fbPagcorReport
+	FbPagcorReportProd          *fbPagcorReportProd
+	FbPayment                   *fbPayment
+	FbPaymentChannel            *fbPaymentChannel
+	FbPlatform                  *fbPlatform
+	FbPromo                     *fbPromo
+	FbPromoBlindbox             *fbPromoBlindbox
+	FbPromoBlindboxBet          *fbPromoBlindboxBet
+	FbPromoBonu                 *fbPromoBonu
+	FbPromoGameList             *fbPromoGameList
+	FbPromoList                 *fbPromoList
+	FbPromoSuperAceRebate       *fbPromoSuperAceRebate
+	FbRechargeCard              *fbRechargeCard
+	FbReportChannel             *fbReportChannel
+	FbReportMember              *fbReportMember
+	FbReportMemberBalance       *fbReportMemberBalance
+	FbReportMemberGt            *fbReportMemberGt
+	FbReportMemberGtTotal       *fbReportMemberGtTotal
+	FbReportMemberReg           *fbReportMemberReg
+	FbReportMemberTotal         *fbReportMemberTotal
+	FbReportProfit              *fbReportProfit
+	FbShop                      *fbShop
+	FbSm                        *fbSm
+	FbStoreAddress              *fbStoreAddress
+	FbTaskBonu                  *fbTaskBonu
+	FbTaskList                  *fbTaskList
+	FbVipTokensTransaction      *fbVipTokensTransaction
+	FbVipXpLog                  *fbVipXpLog
+	FbWhitelist                 *fbWhitelist
+	FbWithdraw                  *fbWithdraw
 )
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
@@ -61,159 +91,279 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	FbAdminPriv = &Q.FbAdminPriv
 	FbBalanceAdjustment = &Q.FbBalanceAdjustment
 	FbBalanceTransaction = &Q.FbBalanceTransaction
+	FbBalanceTransaction2 = &Q.FbBalanceTransaction2
 	FbBanner = &Q.FbBanner
-	FbDailyChannelReport = &Q.FbDailyChannelReport
+	FbBuriedPoint = &Q.FbBuriedPoint
+	FbCmplGroup = &Q.FbCmplGroup
+	FbCmplPriv = &Q.FbCmplPriv
+	FbCmplPrivCopy = &Q.FbCmplPrivCopy
+	FbConfig = &Q.FbConfig
+	FbDailyMemberRegisterReport = &Q.FbDailyMemberRegisterReport
 	FbDailyMemberReportAdded = &Q.FbDailyMemberReportAdded
-	FbDailyPlatformBalanceReport = &Q.FbDailyPlatformBalanceReport
 	FbDailyPlatformPerformance = &Q.FbDailyPlatformPerformance
 	FbDailyPlatformReport = &Q.FbDailyPlatformReport
 	FbDailyVenueReport = &Q.FbDailyVenueReport
 	FbDeposit = &Q.FbDeposit
+	FbDomain = &Q.FbDomain
 	FbFinanceAccount = &Q.FbFinanceAccount
 	FbGameList = &Q.FbGameList
+	FbGood = &Q.FbGood
 	FbLazadaOrder = &Q.FbLazadaOrder
+	FbMallOrder = &Q.FbMallOrder
 	FbMember = &Q.FbMember
 	FbMemberPlatform = &Q.FbMemberPlatform
 	FbMembersBalance = &Q.FbMembersBalance
+	FbMembersBirthday = &Q.FbMembersBirthday
+	FbMembersCopy1 = &Q.FbMembersCopy1
 	FbMembersKyc = &Q.FbMembersKyc
+	FbMembersTurnover = &Q.FbMembersTurnover
 	FbMembersVip = &Q.FbMembersVip
+	FbMembersVipLog = &Q.FbMembersVipLog
 	FbOtpSmsRecord = &Q.FbOtpSmsRecord
 	FbPagcorGameSummary = &Q.FbPagcorGameSummary
+	FbPagcorReport = &Q.FbPagcorReport
+	FbPagcorReportProd = &Q.FbPagcorReportProd
 	FbPayment = &Q.FbPayment
 	FbPaymentChannel = &Q.FbPaymentChannel
 	FbPlatform = &Q.FbPlatform
 	FbPromo = &Q.FbPromo
 	FbPromoBlindbox = &Q.FbPromoBlindbox
+	FbPromoBlindboxBet = &Q.FbPromoBlindboxBet
 	FbPromoBonu = &Q.FbPromoBonu
+	FbPromoGameList = &Q.FbPromoGameList
 	FbPromoList = &Q.FbPromoList
 	FbPromoSuperAceRebate = &Q.FbPromoSuperAceRebate
+	FbRechargeCard = &Q.FbRechargeCard
+	FbReportChannel = &Q.FbReportChannel
+	FbReportMember = &Q.FbReportMember
+	FbReportMemberBalance = &Q.FbReportMemberBalance
+	FbReportMemberGt = &Q.FbReportMemberGt
+	FbReportMemberGtTotal = &Q.FbReportMemberGtTotal
+	FbReportMemberReg = &Q.FbReportMemberReg
+	FbReportMemberTotal = &Q.FbReportMemberTotal
+	FbReportProfit = &Q.FbReportProfit
+	FbShop = &Q.FbShop
 	FbSm = &Q.FbSm
+	FbStoreAddress = &Q.FbStoreAddress
+	FbTaskBonu = &Q.FbTaskBonu
+	FbTaskList = &Q.FbTaskList
+	FbVipTokensTransaction = &Q.FbVipTokensTransaction
+	FbVipXpLog = &Q.FbVipXpLog
 	FbWhitelist = &Q.FbWhitelist
 	FbWithdraw = &Q.FbWithdraw
-	TempGame = &Q.TempGame
 }
 
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
-		db:                           db,
-		FbAdmin:                      newFbAdmin(db, opts...),
-		FbAdminGroup:                 newFbAdminGroup(db, opts...),
-		FbAdminPriv:                  newFbAdminPriv(db, opts...),
-		FbBalanceAdjustment:          newFbBalanceAdjustment(db, opts...),
-		FbBalanceTransaction:         newFbBalanceTransaction(db, opts...),
-		FbBanner:                     newFbBanner(db, opts...),
-		FbDailyChannelReport:         newFbDailyChannelReport(db, opts...),
-		FbDailyMemberReportAdded:     newFbDailyMemberReportAdded(db, opts...),
-		FbDailyPlatformBalanceReport: newFbDailyPlatformBalanceReport(db, opts...),
-		FbDailyPlatformPerformance:   newFbDailyPlatformPerformance(db, opts...),
-		FbDailyPlatformReport:        newFbDailyPlatformReport(db, opts...),
-		FbDailyVenueReport:           newFbDailyVenueReport(db, opts...),
-		FbDeposit:                    newFbDeposit(db, opts...),
-		FbFinanceAccount:             newFbFinanceAccount(db, opts...),
-		FbGameList:                   newFbGameList(db, opts...),
-		FbLazadaOrder:                newFbLazadaOrder(db, opts...),
-		FbMember:                     newFbMember(db, opts...),
-		FbMemberPlatform:             newFbMemberPlatform(db, opts...),
-		FbMembersBalance:             newFbMembersBalance(db, opts...),
-		FbMembersKyc:                 newFbMembersKyc(db, opts...),
-		FbMembersVip:                 newFbMembersVip(db, opts...),
-		FbOtpSmsRecord:               newFbOtpSmsRecord(db, opts...),
-		FbPagcorGameSummary:          newFbPagcorGameSummary(db, opts...),
-		FbPayment:                    newFbPayment(db, opts...),
-		FbPaymentChannel:             newFbPaymentChannel(db, opts...),
-		FbPlatform:                   newFbPlatform(db, opts...),
-		FbPromo:                      newFbPromo(db, opts...),
-		FbPromoBlindbox:              newFbPromoBlindbox(db, opts...),
-		FbPromoBonu:                  newFbPromoBonu(db, opts...),
-		FbPromoList:                  newFbPromoList(db, opts...),
-		FbPromoSuperAceRebate:        newFbPromoSuperAceRebate(db, opts...),
-		FbSm:                         newFbSm(db, opts...),
-		FbWhitelist:                  newFbWhitelist(db, opts...),
-		FbWithdraw:                   newFbWithdraw(db, opts...),
-		TempGame:                     newTempGame(db, opts...),
+		db:                          db,
+		FbAdmin:                     newFbAdmin(db, opts...),
+		FbAdminGroup:                newFbAdminGroup(db, opts...),
+		FbAdminPriv:                 newFbAdminPriv(db, opts...),
+		FbBalanceAdjustment:         newFbBalanceAdjustment(db, opts...),
+		FbBalanceTransaction:        newFbBalanceTransaction(db, opts...),
+		FbBalanceTransaction2:       newFbBalanceTransaction2(db, opts...),
+		FbBanner:                    newFbBanner(db, opts...),
+		FbBuriedPoint:               newFbBuriedPoint(db, opts...),
+		FbCmplGroup:                 newFbCmplGroup(db, opts...),
+		FbCmplPriv:                  newFbCmplPriv(db, opts...),
+		FbCmplPrivCopy:              newFbCmplPrivCopy(db, opts...),
+		FbConfig:                    newFbConfig(db, opts...),
+		FbDailyMemberRegisterReport: newFbDailyMemberRegisterReport(db, opts...),
+		FbDailyMemberReportAdded:    newFbDailyMemberReportAdded(db, opts...),
+		FbDailyPlatformPerformance:  newFbDailyPlatformPerformance(db, opts...),
+		FbDailyPlatformReport:       newFbDailyPlatformReport(db, opts...),
+		FbDailyVenueReport:          newFbDailyVenueReport(db, opts...),
+		FbDeposit:                   newFbDeposit(db, opts...),
+		FbDomain:                    newFbDomain(db, opts...),
+		FbFinanceAccount:            newFbFinanceAccount(db, opts...),
+		FbGameList:                  newFbGameList(db, opts...),
+		FbGood:                      newFbGood(db, opts...),
+		FbLazadaOrder:               newFbLazadaOrder(db, opts...),
+		FbMallOrder:                 newFbMallOrder(db, opts...),
+		FbMember:                    newFbMember(db, opts...),
+		FbMemberPlatform:            newFbMemberPlatform(db, opts...),
+		FbMembersBalance:            newFbMembersBalance(db, opts...),
+		FbMembersBirthday:           newFbMembersBirthday(db, opts...),
+		FbMembersCopy1:              newFbMembersCopy1(db, opts...),
+		FbMembersKyc:                newFbMembersKyc(db, opts...),
+		FbMembersTurnover:           newFbMembersTurnover(db, opts...),
+		FbMembersVip:                newFbMembersVip(db, opts...),
+		FbMembersVipLog:             newFbMembersVipLog(db, opts...),
+		FbOtpSmsRecord:              newFbOtpSmsRecord(db, opts...),
+		FbPagcorGameSummary:         newFbPagcorGameSummary(db, opts...),
+		FbPagcorReport:              newFbPagcorReport(db, opts...),
+		FbPagcorReportProd:          newFbPagcorReportProd(db, opts...),
+		FbPayment:                   newFbPayment(db, opts...),
+		FbPaymentChannel:            newFbPaymentChannel(db, opts...),
+		FbPlatform:                  newFbPlatform(db, opts...),
+		FbPromo:                     newFbPromo(db, opts...),
+		FbPromoBlindbox:             newFbPromoBlindbox(db, opts...),
+		FbPromoBlindboxBet:          newFbPromoBlindboxBet(db, opts...),
+		FbPromoBonu:                 newFbPromoBonu(db, opts...),
+		FbPromoGameList:             newFbPromoGameList(db, opts...),
+		FbPromoList:                 newFbPromoList(db, opts...),
+		FbPromoSuperAceRebate:       newFbPromoSuperAceRebate(db, opts...),
+		FbRechargeCard:              newFbRechargeCard(db, opts...),
+		FbReportChannel:             newFbReportChannel(db, opts...),
+		FbReportMember:              newFbReportMember(db, opts...),
+		FbReportMemberBalance:       newFbReportMemberBalance(db, opts...),
+		FbReportMemberGt:            newFbReportMemberGt(db, opts...),
+		FbReportMemberGtTotal:       newFbReportMemberGtTotal(db, opts...),
+		FbReportMemberReg:           newFbReportMemberReg(db, opts...),
+		FbReportMemberTotal:         newFbReportMemberTotal(db, opts...),
+		FbReportProfit:              newFbReportProfit(db, opts...),
+		FbShop:                      newFbShop(db, opts...),
+		FbSm:                        newFbSm(db, opts...),
+		FbStoreAddress:              newFbStoreAddress(db, opts...),
+		FbTaskBonu:                  newFbTaskBonu(db, opts...),
+		FbTaskList:                  newFbTaskList(db, opts...),
+		FbVipTokensTransaction:      newFbVipTokensTransaction(db, opts...),
+		FbVipXpLog:                  newFbVipXpLog(db, opts...),
+		FbWhitelist:                 newFbWhitelist(db, opts...),
+		FbWithdraw:                  newFbWithdraw(db, opts...),
 	}
 }
 
 type Query struct {
 	db *gorm.DB
 
-	FbAdmin                      fbAdmin
-	FbAdminGroup                 fbAdminGroup
-	FbAdminPriv                  fbAdminPriv
-	FbBalanceAdjustment          fbBalanceAdjustment
-	FbBalanceTransaction         fbBalanceTransaction
-	FbBanner                     fbBanner
-	FbDailyChannelReport         fbDailyChannelReport
-	FbDailyMemberReportAdded     fbDailyMemberReportAdded
-	FbDailyPlatformBalanceReport fbDailyPlatformBalanceReport
-	FbDailyPlatformPerformance   fbDailyPlatformPerformance
-	FbDailyPlatformReport        fbDailyPlatformReport
-	FbDailyVenueReport           fbDailyVenueReport
-	FbDeposit                    fbDeposit
-	FbFinanceAccount             fbFinanceAccount
-	FbGameList                   fbGameList
-	FbLazadaOrder                fbLazadaOrder
-	FbMember                     fbMember
-	FbMemberPlatform             fbMemberPlatform
-	FbMembersBalance             fbMembersBalance
-	FbMembersKyc                 fbMembersKyc
-	FbMembersVip                 fbMembersVip
-	FbOtpSmsRecord               fbOtpSmsRecord
-	FbPagcorGameSummary          fbPagcorGameSummary
-	FbPayment                    fbPayment
-	FbPaymentChannel             fbPaymentChannel
-	FbPlatform                   fbPlatform
-	FbPromo                      fbPromo
-	FbPromoBlindbox              fbPromoBlindbox
-	FbPromoBonu                  fbPromoBonu
-	FbPromoList                  fbPromoList
-	FbPromoSuperAceRebate        fbPromoSuperAceRebate
-	FbSm                         fbSm
-	FbWhitelist                  fbWhitelist
-	FbWithdraw                   fbWithdraw
-	TempGame                     tempGame
+	FbAdmin                     fbAdmin
+	FbAdminGroup                fbAdminGroup
+	FbAdminPriv                 fbAdminPriv
+	FbBalanceAdjustment         fbBalanceAdjustment
+	FbBalanceTransaction        fbBalanceTransaction
+	FbBalanceTransaction2       fbBalanceTransaction2
+	FbBanner                    fbBanner
+	FbBuriedPoint               fbBuriedPoint
+	FbCmplGroup                 fbCmplGroup
+	FbCmplPriv                  fbCmplPriv
+	FbCmplPrivCopy              fbCmplPrivCopy
+	FbConfig                    fbConfig
+	FbDailyMemberRegisterReport fbDailyMemberRegisterReport
+	FbDailyMemberReportAdded    fbDailyMemberReportAdded
+	FbDailyPlatformPerformance  fbDailyPlatformPerformance
+	FbDailyPlatformReport       fbDailyPlatformReport
+	FbDailyVenueReport          fbDailyVenueReport
+	FbDeposit                   fbDeposit
+	FbDomain                    fbDomain
+	FbFinanceAccount            fbFinanceAccount
+	FbGameList                  fbGameList
+	FbGood                      fbGood
+	FbLazadaOrder               fbLazadaOrder
+	FbMallOrder                 fbMallOrder
+	FbMember                    fbMember
+	FbMemberPlatform            fbMemberPlatform
+	FbMembersBalance            fbMembersBalance
+	FbMembersBirthday           fbMembersBirthday
+	FbMembersCopy1              fbMembersCopy1
+	FbMembersKyc                fbMembersKyc
+	FbMembersTurnover           fbMembersTurnover
+	FbMembersVip                fbMembersVip
+	FbMembersVipLog             fbMembersVipLog
+	FbOtpSmsRecord              fbOtpSmsRecord
+	FbPagcorGameSummary         fbPagcorGameSummary
+	FbPagcorReport              fbPagcorReport
+	FbPagcorReportProd          fbPagcorReportProd
+	FbPayment                   fbPayment
+	FbPaymentChannel            fbPaymentChannel
+	FbPlatform                  fbPlatform
+	FbPromo                     fbPromo
+	FbPromoBlindbox             fbPromoBlindbox
+	FbPromoBlindboxBet          fbPromoBlindboxBet
+	FbPromoBonu                 fbPromoBonu
+	FbPromoGameList             fbPromoGameList
+	FbPromoList                 fbPromoList
+	FbPromoSuperAceRebate       fbPromoSuperAceRebate
+	FbRechargeCard              fbRechargeCard
+	FbReportChannel             fbReportChannel
+	FbReportMember              fbReportMember
+	FbReportMemberBalance       fbReportMemberBalance
+	FbReportMemberGt            fbReportMemberGt
+	FbReportMemberGtTotal       fbReportMemberGtTotal
+	FbReportMemberReg           fbReportMemberReg
+	FbReportMemberTotal         fbReportMemberTotal
+	FbReportProfit              fbReportProfit
+	FbShop                      fbShop
+	FbSm                        fbSm
+	FbStoreAddress              fbStoreAddress
+	FbTaskBonu                  fbTaskBonu
+	FbTaskList                  fbTaskList
+	FbVipTokensTransaction      fbVipTokensTransaction
+	FbVipXpLog                  fbVipXpLog
+	FbWhitelist                 fbWhitelist
+	FbWithdraw                  fbWithdraw
 }
 
 func (q *Query) Available() bool { return q.db != nil }
 
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
-		db:                           db,
-		FbAdmin:                      q.FbAdmin.clone(db),
-		FbAdminGroup:                 q.FbAdminGroup.clone(db),
-		FbAdminPriv:                  q.FbAdminPriv.clone(db),
-		FbBalanceAdjustment:          q.FbBalanceAdjustment.clone(db),
-		FbBalanceTransaction:         q.FbBalanceTransaction.clone(db),
-		FbBanner:                     q.FbBanner.clone(db),
-		FbDailyChannelReport:         q.FbDailyChannelReport.clone(db),
-		FbDailyMemberReportAdded:     q.FbDailyMemberReportAdded.clone(db),
-		FbDailyPlatformBalanceReport: q.FbDailyPlatformBalanceReport.clone(db),
-		FbDailyPlatformPerformance:   q.FbDailyPlatformPerformance.clone(db),
-		FbDailyPlatformReport:        q.FbDailyPlatformReport.clone(db),
-		FbDailyVenueReport:           q.FbDailyVenueReport.clone(db),
-		FbDeposit:                    q.FbDeposit.clone(db),
-		FbFinanceAccount:             q.FbFinanceAccount.clone(db),
-		FbGameList:                   q.FbGameList.clone(db),
-		FbLazadaOrder:                q.FbLazadaOrder.clone(db),
-		FbMember:                     q.FbMember.clone(db),
-		FbMemberPlatform:             q.FbMemberPlatform.clone(db),
-		FbMembersBalance:             q.FbMembersBalance.clone(db),
-		FbMembersKyc:                 q.FbMembersKyc.clone(db),
-		FbMembersVip:                 q.FbMembersVip.clone(db),
-		FbOtpSmsRecord:               q.FbOtpSmsRecord.clone(db),
-		FbPagcorGameSummary:          q.FbPagcorGameSummary.clone(db),
-		FbPayment:                    q.FbPayment.clone(db),
-		FbPaymentChannel:             q.FbPaymentChannel.clone(db),
-		FbPlatform:                   q.FbPlatform.clone(db),
-		FbPromo:                      q.FbPromo.clone(db),
-		FbPromoBlindbox:              q.FbPromoBlindbox.clone(db),
-		FbPromoBonu:                  q.FbPromoBonu.clone(db),
-		FbPromoList:                  q.FbPromoList.clone(db),
-		FbPromoSuperAceRebate:        q.FbPromoSuperAceRebate.clone(db),
-		FbSm:                         q.FbSm.clone(db),
-		FbWhitelist:                  q.FbWhitelist.clone(db),
-		FbWithdraw:                   q.FbWithdraw.clone(db),
-		TempGame:                     q.TempGame.clone(db),
+		db:                          db,
+		FbAdmin:                     q.FbAdmin.clone(db),
+		FbAdminGroup:                q.FbAdminGroup.clone(db),
+		FbAdminPriv:                 q.FbAdminPriv.clone(db),
+		FbBalanceAdjustment:         q.FbBalanceAdjustment.clone(db),
+		FbBalanceTransaction:        q.FbBalanceTransaction.clone(db),
+		FbBalanceTransaction2:       q.FbBalanceTransaction2.clone(db),
+		FbBanner:                    q.FbBanner.clone(db),
+		FbBuriedPoint:               q.FbBuriedPoint.clone(db),
+		FbCmplGroup:                 q.FbCmplGroup.clone(db),
+		FbCmplPriv:                  q.FbCmplPriv.clone(db),
+		FbCmplPrivCopy:              q.FbCmplPrivCopy.clone(db),
+		FbConfig:                    q.FbConfig.clone(db),
+		FbDailyMemberRegisterReport: q.FbDailyMemberRegisterReport.clone(db),
+		FbDailyMemberReportAdded:    q.FbDailyMemberReportAdded.clone(db),
+		FbDailyPlatformPerformance:  q.FbDailyPlatformPerformance.clone(db),
+		FbDailyPlatformReport:       q.FbDailyPlatformReport.clone(db),
+		FbDailyVenueReport:          q.FbDailyVenueReport.clone(db),
+		FbDeposit:                   q.FbDeposit.clone(db),
+		FbDomain:                    q.FbDomain.clone(db),
+		FbFinanceAccount:            q.FbFinanceAccount.clone(db),
+		FbGameList:                  q.FbGameList.clone(db),
+		FbGood:                      q.FbGood.clone(db),
+		FbLazadaOrder:               q.FbLazadaOrder.clone(db),
+		FbMallOrder:                 q.FbMallOrder.clone(db),
+		FbMember:                    q.FbMember.clone(db),
+		FbMemberPlatform:            q.FbMemberPlatform.clone(db),
+		FbMembersBalance:            q.FbMembersBalance.clone(db),
+		FbMembersBirthday:           q.FbMembersBirthday.clone(db),
+		FbMembersCopy1:              q.FbMembersCopy1.clone(db),
+		FbMembersKyc:                q.FbMembersKyc.clone(db),
+		FbMembersTurnover:           q.FbMembersTurnover.clone(db),
+		FbMembersVip:                q.FbMembersVip.clone(db),
+		FbMembersVipLog:             q.FbMembersVipLog.clone(db),
+		FbOtpSmsRecord:              q.FbOtpSmsRecord.clone(db),
+		FbPagcorGameSummary:         q.FbPagcorGameSummary.clone(db),
+		FbPagcorReport:              q.FbPagcorReport.clone(db),
+		FbPagcorReportProd:          q.FbPagcorReportProd.clone(db),
+		FbPayment:                   q.FbPayment.clone(db),
+		FbPaymentChannel:            q.FbPaymentChannel.clone(db),
+		FbPlatform:                  q.FbPlatform.clone(db),
+		FbPromo:                     q.FbPromo.clone(db),
+		FbPromoBlindbox:             q.FbPromoBlindbox.clone(db),
+		FbPromoBlindboxBet:          q.FbPromoBlindboxBet.clone(db),
+		FbPromoBonu:                 q.FbPromoBonu.clone(db),
+		FbPromoGameList:             q.FbPromoGameList.clone(db),
+		FbPromoList:                 q.FbPromoList.clone(db),
+		FbPromoSuperAceRebate:       q.FbPromoSuperAceRebate.clone(db),
+		FbRechargeCard:              q.FbRechargeCard.clone(db),
+		FbReportChannel:             q.FbReportChannel.clone(db),
+		FbReportMember:              q.FbReportMember.clone(db),
+		FbReportMemberBalance:       q.FbReportMemberBalance.clone(db),
+		FbReportMemberGt:            q.FbReportMemberGt.clone(db),
+		FbReportMemberGtTotal:       q.FbReportMemberGtTotal.clone(db),
+		FbReportMemberReg:           q.FbReportMemberReg.clone(db),
+		FbReportMemberTotal:         q.FbReportMemberTotal.clone(db),
+		FbReportProfit:              q.FbReportProfit.clone(db),
+		FbShop:                      q.FbShop.clone(db),
+		FbSm:                        q.FbSm.clone(db),
+		FbStoreAddress:              q.FbStoreAddress.clone(db),
+		FbTaskBonu:                  q.FbTaskBonu.clone(db),
+		FbTaskList:                  q.FbTaskList.clone(db),
+		FbVipTokensTransaction:      q.FbVipTokensTransaction.clone(db),
+		FbVipXpLog:                  q.FbVipXpLog.clone(db),
+		FbWhitelist:                 q.FbWhitelist.clone(db),
+		FbWithdraw:                  q.FbWithdraw.clone(db),
 	}
 }
 
@@ -227,120 +377,210 @@ func (q *Query) WriteDB() *Query {
 
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
-		db:                           db,
-		FbAdmin:                      q.FbAdmin.replaceDB(db),
-		FbAdminGroup:                 q.FbAdminGroup.replaceDB(db),
-		FbAdminPriv:                  q.FbAdminPriv.replaceDB(db),
-		FbBalanceAdjustment:          q.FbBalanceAdjustment.replaceDB(db),
-		FbBalanceTransaction:         q.FbBalanceTransaction.replaceDB(db),
-		FbBanner:                     q.FbBanner.replaceDB(db),
-		FbDailyChannelReport:         q.FbDailyChannelReport.replaceDB(db),
-		FbDailyMemberReportAdded:     q.FbDailyMemberReportAdded.replaceDB(db),
-		FbDailyPlatformBalanceReport: q.FbDailyPlatformBalanceReport.replaceDB(db),
-		FbDailyPlatformPerformance:   q.FbDailyPlatformPerformance.replaceDB(db),
-		FbDailyPlatformReport:        q.FbDailyPlatformReport.replaceDB(db),
-		FbDailyVenueReport:           q.FbDailyVenueReport.replaceDB(db),
-		FbDeposit:                    q.FbDeposit.replaceDB(db),
-		FbFinanceAccount:             q.FbFinanceAccount.replaceDB(db),
-		FbGameList:                   q.FbGameList.replaceDB(db),
-		FbLazadaOrder:                q.FbLazadaOrder.replaceDB(db),
-		FbMember:                     q.FbMember.replaceDB(db),
-		FbMemberPlatform:             q.FbMemberPlatform.replaceDB(db),
-		FbMembersBalance:             q.FbMembersBalance.replaceDB(db),
-		FbMembersKyc:                 q.FbMembersKyc.replaceDB(db),
-		FbMembersVip:                 q.FbMembersVip.replaceDB(db),
-		FbOtpSmsRecord:               q.FbOtpSmsRecord.replaceDB(db),
-		FbPagcorGameSummary:          q.FbPagcorGameSummary.replaceDB(db),
-		FbPayment:                    q.FbPayment.replaceDB(db),
-		FbPaymentChannel:             q.FbPaymentChannel.replaceDB(db),
-		FbPlatform:                   q.FbPlatform.replaceDB(db),
-		FbPromo:                      q.FbPromo.replaceDB(db),
-		FbPromoBlindbox:              q.FbPromoBlindbox.replaceDB(db),
-		FbPromoBonu:                  q.FbPromoBonu.replaceDB(db),
-		FbPromoList:                  q.FbPromoList.replaceDB(db),
-		FbPromoSuperAceRebate:        q.FbPromoSuperAceRebate.replaceDB(db),
-		FbSm:                         q.FbSm.replaceDB(db),
-		FbWhitelist:                  q.FbWhitelist.replaceDB(db),
-		FbWithdraw:                   q.FbWithdraw.replaceDB(db),
-		TempGame:                     q.TempGame.replaceDB(db),
+		db:                          db,
+		FbAdmin:                     q.FbAdmin.replaceDB(db),
+		FbAdminGroup:                q.FbAdminGroup.replaceDB(db),
+		FbAdminPriv:                 q.FbAdminPriv.replaceDB(db),
+		FbBalanceAdjustment:         q.FbBalanceAdjustment.replaceDB(db),
+		FbBalanceTransaction:        q.FbBalanceTransaction.replaceDB(db),
+		FbBalanceTransaction2:       q.FbBalanceTransaction2.replaceDB(db),
+		FbBanner:                    q.FbBanner.replaceDB(db),
+		FbBuriedPoint:               q.FbBuriedPoint.replaceDB(db),
+		FbCmplGroup:                 q.FbCmplGroup.replaceDB(db),
+		FbCmplPriv:                  q.FbCmplPriv.replaceDB(db),
+		FbCmplPrivCopy:              q.FbCmplPrivCopy.replaceDB(db),
+		FbConfig:                    q.FbConfig.replaceDB(db),
+		FbDailyMemberRegisterReport: q.FbDailyMemberRegisterReport.replaceDB(db),
+		FbDailyMemberReportAdded:    q.FbDailyMemberReportAdded.replaceDB(db),
+		FbDailyPlatformPerformance:  q.FbDailyPlatformPerformance.replaceDB(db),
+		FbDailyPlatformReport:       q.FbDailyPlatformReport.replaceDB(db),
+		FbDailyVenueReport:          q.FbDailyVenueReport.replaceDB(db),
+		FbDeposit:                   q.FbDeposit.replaceDB(db),
+		FbDomain:                    q.FbDomain.replaceDB(db),
+		FbFinanceAccount:            q.FbFinanceAccount.replaceDB(db),
+		FbGameList:                  q.FbGameList.replaceDB(db),
+		FbGood:                      q.FbGood.replaceDB(db),
+		FbLazadaOrder:               q.FbLazadaOrder.replaceDB(db),
+		FbMallOrder:                 q.FbMallOrder.replaceDB(db),
+		FbMember:                    q.FbMember.replaceDB(db),
+		FbMemberPlatform:            q.FbMemberPlatform.replaceDB(db),
+		FbMembersBalance:            q.FbMembersBalance.replaceDB(db),
+		FbMembersBirthday:           q.FbMembersBirthday.replaceDB(db),
+		FbMembersCopy1:              q.FbMembersCopy1.replaceDB(db),
+		FbMembersKyc:                q.FbMembersKyc.replaceDB(db),
+		FbMembersTurnover:           q.FbMembersTurnover.replaceDB(db),
+		FbMembersVip:                q.FbMembersVip.replaceDB(db),
+		FbMembersVipLog:             q.FbMembersVipLog.replaceDB(db),
+		FbOtpSmsRecord:              q.FbOtpSmsRecord.replaceDB(db),
+		FbPagcorGameSummary:         q.FbPagcorGameSummary.replaceDB(db),
+		FbPagcorReport:              q.FbPagcorReport.replaceDB(db),
+		FbPagcorReportProd:          q.FbPagcorReportProd.replaceDB(db),
+		FbPayment:                   q.FbPayment.replaceDB(db),
+		FbPaymentChannel:            q.FbPaymentChannel.replaceDB(db),
+		FbPlatform:                  q.FbPlatform.replaceDB(db),
+		FbPromo:                     q.FbPromo.replaceDB(db),
+		FbPromoBlindbox:             q.FbPromoBlindbox.replaceDB(db),
+		FbPromoBlindboxBet:          q.FbPromoBlindboxBet.replaceDB(db),
+		FbPromoBonu:                 q.FbPromoBonu.replaceDB(db),
+		FbPromoGameList:             q.FbPromoGameList.replaceDB(db),
+		FbPromoList:                 q.FbPromoList.replaceDB(db),
+		FbPromoSuperAceRebate:       q.FbPromoSuperAceRebate.replaceDB(db),
+		FbRechargeCard:              q.FbRechargeCard.replaceDB(db),
+		FbReportChannel:             q.FbReportChannel.replaceDB(db),
+		FbReportMember:              q.FbReportMember.replaceDB(db),
+		FbReportMemberBalance:       q.FbReportMemberBalance.replaceDB(db),
+		FbReportMemberGt:            q.FbReportMemberGt.replaceDB(db),
+		FbReportMemberGtTotal:       q.FbReportMemberGtTotal.replaceDB(db),
+		FbReportMemberReg:           q.FbReportMemberReg.replaceDB(db),
+		FbReportMemberTotal:         q.FbReportMemberTotal.replaceDB(db),
+		FbReportProfit:              q.FbReportProfit.replaceDB(db),
+		FbShop:                      q.FbShop.replaceDB(db),
+		FbSm:                        q.FbSm.replaceDB(db),
+		FbStoreAddress:              q.FbStoreAddress.replaceDB(db),
+		FbTaskBonu:                  q.FbTaskBonu.replaceDB(db),
+		FbTaskList:                  q.FbTaskList.replaceDB(db),
+		FbVipTokensTransaction:      q.FbVipTokensTransaction.replaceDB(db),
+		FbVipXpLog:                  q.FbVipXpLog.replaceDB(db),
+		FbWhitelist:                 q.FbWhitelist.replaceDB(db),
+		FbWithdraw:                  q.FbWithdraw.replaceDB(db),
 	}
 }
 
 type queryCtx struct {
-	FbAdmin                      IFbAdminDo
-	FbAdminGroup                 IFbAdminGroupDo
-	FbAdminPriv                  IFbAdminPrivDo
-	FbBalanceAdjustment          IFbBalanceAdjustmentDo
-	FbBalanceTransaction         IFbBalanceTransactionDo
-	FbBanner                     IFbBannerDo
-	FbDailyChannelReport         IFbDailyChannelReportDo
-	FbDailyMemberReportAdded     IFbDailyMemberReportAddedDo
-	FbDailyPlatformBalanceReport IFbDailyPlatformBalanceReportDo
-	FbDailyPlatformPerformance   IFbDailyPlatformPerformanceDo
-	FbDailyPlatformReport        IFbDailyPlatformReportDo
-	FbDailyVenueReport           IFbDailyVenueReportDo
-	FbDeposit                    IFbDepositDo
-	FbFinanceAccount             IFbFinanceAccountDo
-	FbGameList                   IFbGameListDo
-	FbLazadaOrder                IFbLazadaOrderDo
-	FbMember                     IFbMemberDo
-	FbMemberPlatform             IFbMemberPlatformDo
-	FbMembersBalance             IFbMembersBalanceDo
-	FbMembersKyc                 IFbMembersKycDo
-	FbMembersVip                 IFbMembersVipDo
-	FbOtpSmsRecord               IFbOtpSmsRecordDo
-	FbPagcorGameSummary          IFbPagcorGameSummaryDo
-	FbPayment                    IFbPaymentDo
-	FbPaymentChannel             IFbPaymentChannelDo
-	FbPlatform                   IFbPlatformDo
-	FbPromo                      IFbPromoDo
-	FbPromoBlindbox              IFbPromoBlindboxDo
-	FbPromoBonu                  IFbPromoBonuDo
-	FbPromoList                  IFbPromoListDo
-	FbPromoSuperAceRebate        IFbPromoSuperAceRebateDo
-	FbSm                         IFbSmDo
-	FbWhitelist                  IFbWhitelistDo
-	FbWithdraw                   IFbWithdrawDo
-	TempGame                     ITempGameDo
+	FbAdmin                     IFbAdminDo
+	FbAdminGroup                IFbAdminGroupDo
+	FbAdminPriv                 IFbAdminPrivDo
+	FbBalanceAdjustment         IFbBalanceAdjustmentDo
+	FbBalanceTransaction        IFbBalanceTransactionDo
+	FbBalanceTransaction2       IFbBalanceTransaction2Do
+	FbBanner                    IFbBannerDo
+	FbBuriedPoint               IFbBuriedPointDo
+	FbCmplGroup                 IFbCmplGroupDo
+	FbCmplPriv                  IFbCmplPrivDo
+	FbCmplPrivCopy              IFbCmplPrivCopyDo
+	FbConfig                    IFbConfigDo
+	FbDailyMemberRegisterReport IFbDailyMemberRegisterReportDo
+	FbDailyMemberReportAdded    IFbDailyMemberReportAddedDo
+	FbDailyPlatformPerformance  IFbDailyPlatformPerformanceDo
+	FbDailyPlatformReport       IFbDailyPlatformReportDo
+	FbDailyVenueReport          IFbDailyVenueReportDo
+	FbDeposit                   IFbDepositDo
+	FbDomain                    IFbDomainDo
+	FbFinanceAccount            IFbFinanceAccountDo
+	FbGameList                  IFbGameListDo
+	FbGood                      IFbGoodDo
+	FbLazadaOrder               IFbLazadaOrderDo
+	FbMallOrder                 IFbMallOrderDo
+	FbMember                    IFbMemberDo
+	FbMemberPlatform            IFbMemberPlatformDo
+	FbMembersBalance            IFbMembersBalanceDo
+	FbMembersBirthday           IFbMembersBirthdayDo
+	FbMembersCopy1              IFbMembersCopy1Do
+	FbMembersKyc                IFbMembersKycDo
+	FbMembersTurnover           IFbMembersTurnoverDo
+	FbMembersVip                IFbMembersVipDo
+	FbMembersVipLog             IFbMembersVipLogDo
+	FbOtpSmsRecord              IFbOtpSmsRecordDo
+	FbPagcorGameSummary         IFbPagcorGameSummaryDo
+	FbPagcorReport              IFbPagcorReportDo
+	FbPagcorReportProd          IFbPagcorReportProdDo
+	FbPayment                   IFbPaymentDo
+	FbPaymentChannel            IFbPaymentChannelDo
+	FbPlatform                  IFbPlatformDo
+	FbPromo                     IFbPromoDo
+	FbPromoBlindbox             IFbPromoBlindboxDo
+	FbPromoBlindboxBet          IFbPromoBlindboxBetDo
+	FbPromoBonu                 IFbPromoBonuDo
+	FbPromoGameList             IFbPromoGameListDo
+	FbPromoList                 IFbPromoListDo
+	FbPromoSuperAceRebate       IFbPromoSuperAceRebateDo
+	FbRechargeCard              IFbRechargeCardDo
+	FbReportChannel             IFbReportChannelDo
+	FbReportMember              IFbReportMemberDo
+	FbReportMemberBalance       IFbReportMemberBalanceDo
+	FbReportMemberGt            IFbReportMemberGtDo
+	FbReportMemberGtTotal       IFbReportMemberGtTotalDo
+	FbReportMemberReg           IFbReportMemberRegDo
+	FbReportMemberTotal         IFbReportMemberTotalDo
+	FbReportProfit              IFbReportProfitDo
+	FbShop                      IFbShopDo
+	FbSm                        IFbSmDo
+	FbStoreAddress              IFbStoreAddressDo
+	FbTaskBonu                  IFbTaskBonuDo
+	FbTaskList                  IFbTaskListDo
+	FbVipTokensTransaction      IFbVipTokensTransactionDo
+	FbVipXpLog                  IFbVipXpLogDo
+	FbWhitelist                 IFbWhitelistDo
+	FbWithdraw                  IFbWithdrawDo
 }
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
-		FbAdmin:                      q.FbAdmin.WithContext(ctx),
-		FbAdminGroup:                 q.FbAdminGroup.WithContext(ctx),
-		FbAdminPriv:                  q.FbAdminPriv.WithContext(ctx),
-		FbBalanceAdjustment:          q.FbBalanceAdjustment.WithContext(ctx),
-		FbBalanceTransaction:         q.FbBalanceTransaction.WithContext(ctx),
-		FbBanner:                     q.FbBanner.WithContext(ctx),
-		FbDailyChannelReport:         q.FbDailyChannelReport.WithContext(ctx),
-		FbDailyMemberReportAdded:     q.FbDailyMemberReportAdded.WithContext(ctx),
-		FbDailyPlatformBalanceReport: q.FbDailyPlatformBalanceReport.WithContext(ctx),
-		FbDailyPlatformPerformance:   q.FbDailyPlatformPerformance.WithContext(ctx),
-		FbDailyPlatformReport:        q.FbDailyPlatformReport.WithContext(ctx),
-		FbDailyVenueReport:           q.FbDailyVenueReport.WithContext(ctx),
-		FbDeposit:                    q.FbDeposit.WithContext(ctx),
-		FbFinanceAccount:             q.FbFinanceAccount.WithContext(ctx),
-		FbGameList:                   q.FbGameList.WithContext(ctx),
-		FbLazadaOrder:                q.FbLazadaOrder.WithContext(ctx),
-		FbMember:                     q.FbMember.WithContext(ctx),
-		FbMemberPlatform:             q.FbMemberPlatform.WithContext(ctx),
-		FbMembersBalance:             q.FbMembersBalance.WithContext(ctx),
-		FbMembersKyc:                 q.FbMembersKyc.WithContext(ctx),
-		FbMembersVip:                 q.FbMembersVip.WithContext(ctx),
-		FbOtpSmsRecord:               q.FbOtpSmsRecord.WithContext(ctx),
-		FbPagcorGameSummary:          q.FbPagcorGameSummary.WithContext(ctx),
-		FbPayment:                    q.FbPayment.WithContext(ctx),
-		FbPaymentChannel:             q.FbPaymentChannel.WithContext(ctx),
-		FbPlatform:                   q.FbPlatform.WithContext(ctx),
-		FbPromo:                      q.FbPromo.WithContext(ctx),
-		FbPromoBlindbox:              q.FbPromoBlindbox.WithContext(ctx),
-		FbPromoBonu:                  q.FbPromoBonu.WithContext(ctx),
-		FbPromoList:                  q.FbPromoList.WithContext(ctx),
-		FbPromoSuperAceRebate:        q.FbPromoSuperAceRebate.WithContext(ctx),
-		FbSm:                         q.FbSm.WithContext(ctx),
-		FbWhitelist:                  q.FbWhitelist.WithContext(ctx),
-		FbWithdraw:                   q.FbWithdraw.WithContext(ctx),
-		TempGame:                     q.TempGame.WithContext(ctx),
+		FbAdmin:                     q.FbAdmin.WithContext(ctx),
+		FbAdminGroup:                q.FbAdminGroup.WithContext(ctx),
+		FbAdminPriv:                 q.FbAdminPriv.WithContext(ctx),
+		FbBalanceAdjustment:         q.FbBalanceAdjustment.WithContext(ctx),
+		FbBalanceTransaction:        q.FbBalanceTransaction.WithContext(ctx),
+		FbBalanceTransaction2:       q.FbBalanceTransaction2.WithContext(ctx),
+		FbBanner:                    q.FbBanner.WithContext(ctx),
+		FbBuriedPoint:               q.FbBuriedPoint.WithContext(ctx),
+		FbCmplGroup:                 q.FbCmplGroup.WithContext(ctx),
+		FbCmplPriv:                  q.FbCmplPriv.WithContext(ctx),
+		FbCmplPrivCopy:              q.FbCmplPrivCopy.WithContext(ctx),
+		FbConfig:                    q.FbConfig.WithContext(ctx),
+		FbDailyMemberRegisterReport: q.FbDailyMemberRegisterReport.WithContext(ctx),
+		FbDailyMemberReportAdded:    q.FbDailyMemberReportAdded.WithContext(ctx),
+		FbDailyPlatformPerformance:  q.FbDailyPlatformPerformance.WithContext(ctx),
+		FbDailyPlatformReport:       q.FbDailyPlatformReport.WithContext(ctx),
+		FbDailyVenueReport:          q.FbDailyVenueReport.WithContext(ctx),
+		FbDeposit:                   q.FbDeposit.WithContext(ctx),
+		FbDomain:                    q.FbDomain.WithContext(ctx),
+		FbFinanceAccount:            q.FbFinanceAccount.WithContext(ctx),
+		FbGameList:                  q.FbGameList.WithContext(ctx),
+		FbGood:                      q.FbGood.WithContext(ctx),
+		FbLazadaOrder:               q.FbLazadaOrder.WithContext(ctx),
+		FbMallOrder:                 q.FbMallOrder.WithContext(ctx),
+		FbMember:                    q.FbMember.WithContext(ctx),
+		FbMemberPlatform:            q.FbMemberPlatform.WithContext(ctx),
+		FbMembersBalance:            q.FbMembersBalance.WithContext(ctx),
+		FbMembersBirthday:           q.FbMembersBirthday.WithContext(ctx),
+		FbMembersCopy1:              q.FbMembersCopy1.WithContext(ctx),
+		FbMembersKyc:                q.FbMembersKyc.WithContext(ctx),
+		FbMembersTurnover:           q.FbMembersTurnover.WithContext(ctx),
+		FbMembersVip:                q.FbMembersVip.WithContext(ctx),
+		FbMembersVipLog:             q.FbMembersVipLog.WithContext(ctx),
+		FbOtpSmsRecord:              q.FbOtpSmsRecord.WithContext(ctx),
+		FbPagcorGameSummary:         q.FbPagcorGameSummary.WithContext(ctx),
+		FbPagcorReport:              q.FbPagcorReport.WithContext(ctx),
+		FbPagcorReportProd:          q.FbPagcorReportProd.WithContext(ctx),
+		FbPayment:                   q.FbPayment.WithContext(ctx),
+		FbPaymentChannel:            q.FbPaymentChannel.WithContext(ctx),
+		FbPlatform:                  q.FbPlatform.WithContext(ctx),
+		FbPromo:                     q.FbPromo.WithContext(ctx),
+		FbPromoBlindbox:             q.FbPromoBlindbox.WithContext(ctx),
+		FbPromoBlindboxBet:          q.FbPromoBlindboxBet.WithContext(ctx),
+		FbPromoBonu:                 q.FbPromoBonu.WithContext(ctx),
+		FbPromoGameList:             q.FbPromoGameList.WithContext(ctx),
+		FbPromoList:                 q.FbPromoList.WithContext(ctx),
+		FbPromoSuperAceRebate:       q.FbPromoSuperAceRebate.WithContext(ctx),
+		FbRechargeCard:              q.FbRechargeCard.WithContext(ctx),
+		FbReportChannel:             q.FbReportChannel.WithContext(ctx),
+		FbReportMember:              q.FbReportMember.WithContext(ctx),
+		FbReportMemberBalance:       q.FbReportMemberBalance.WithContext(ctx),
+		FbReportMemberGt:            q.FbReportMemberGt.WithContext(ctx),
+		FbReportMemberGtTotal:       q.FbReportMemberGtTotal.WithContext(ctx),
+		FbReportMemberReg:           q.FbReportMemberReg.WithContext(ctx),
+		FbReportMemberTotal:         q.FbReportMemberTotal.WithContext(ctx),
+		FbReportProfit:              q.FbReportProfit.WithContext(ctx),
+		FbShop:                      q.FbShop.WithContext(ctx),
+		FbSm:                        q.FbSm.WithContext(ctx),
+		FbStoreAddress:              q.FbStoreAddress.WithContext(ctx),
+		FbTaskBonu:                  q.FbTaskBonu.WithContext(ctx),
+		FbTaskList:                  q.FbTaskList.WithContext(ctx),
+		FbVipTokensTransaction:      q.FbVipTokensTransaction.WithContext(ctx),
+		FbVipXpLog:                  q.FbVipXpLog.WithContext(ctx),
+		FbWhitelist:                 q.FbWhitelist.WithContext(ctx),
+		FbWithdraw:                  q.FbWithdraw.WithContext(ctx),
 	}
 }
 

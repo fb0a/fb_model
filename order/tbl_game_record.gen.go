@@ -28,7 +28,7 @@ func newTblGameRecord(db *gorm.DB, opts ...gen.DOOption) tblGameRecord {
 
 	tableName := _tblGameRecord.tblGameRecordDo.TableName()
 	_tblGameRecord.ALL = field.NewAsterisk(tableName)
-	_tblGameRecord.BillNoHash = field.NewUint64(tableName, "bill_no_hash")
+	_tblGameRecord.BillNoHash = field.NewInt64(tableName, "bill_no_hash")
 	_tblGameRecord.BillNo = field.NewString(tableName, "bill_no")
 	_tblGameRecord.PlatformBillNo = field.NewString(tableName, "platform_bill_no")
 	_tblGameRecord.PlatformID = field.NewString(tableName, "platform_id")
@@ -46,15 +46,18 @@ func newTblGameRecord(db *gorm.DB, opts ...gen.DOOption) tblGameRecord {
 	_tblGameRecord.BetAmount = field.NewFloat64(tableName, "bet_amount")
 	_tblGameRecord.ValidBetAmount = field.NewFloat64(tableName, "valid_bet_amount")
 	_tblGameRecord.NetAmount = field.NewFloat64(tableName, "net_amount")
-	_tblGameRecord.BetTime = field.NewUint64(tableName, "bet_time")
+	_tblGameRecord.BetTime = field.NewInt64(tableName, "bet_time")
+	_tblGameRecord.CreatedTime = field.NewTime(tableName, "created_time")
 	_tblGameRecord.BetArea = field.NewString(tableName, "bet_area")
 	_tblGameRecord.State = field.NewInt32(tableName, "state")
 	_tblGameRecord.Tester = field.NewInt32(tableName, "tester")
-	_tblGameRecord.SettleTime = field.NewUint64(tableName, "settle_time")
+	_tblGameRecord.SettleTime = field.NewInt64(tableName, "settle_time")
 	_tblGameRecord.Detail = field.NewString(tableName, "detail")
-	_tblGameRecord.CreatedAt = field.NewUint64(tableName, "created_at")
-	_tblGameRecord.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_tblGameRecord.CreatedAt = field.NewInt64(tableName, "created_at")
+	_tblGameRecord.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_tblGameRecord.Prefix = field.NewString(tableName, "prefix")
+	_tblGameRecord.Sid = field.NewInt32(tableName, "sid")
+	_tblGameRecord.Domain = field.NewString(tableName, "domain")
 
 	_tblGameRecord.fillFieldMap()
 
@@ -66,7 +69,7 @@ type tblGameRecord struct {
 	tblGameRecordDo
 
 	ALL            field.Asterisk
-	BillNoHash     field.Uint64  // 三方注单号hash
+	BillNoHash     field.Int64   // 三方注单号hash
 	BillNo         field.String  // 平台唯一注单流水号
 	PlatformBillNo field.String  // 第三方注单流水号
 	PlatformID     field.String  // 接口平台 如 AG MG
@@ -84,15 +87,18 @@ type tblGameRecord struct {
 	BetAmount      field.Float64 // 投注金额(钱包币种)
 	ValidBetAmount field.Float64 // 有效投注金额(钱包币种)
 	NetAmount      field.Float64 // 玩家输赢金额(钱包币种)
-	BetTime        field.Uint64  // 投注时间
+	BetTime        field.Int64   // 投注时间
+	CreatedTime    field.Time    // 分区时间戳(等于bet_time)
 	BetArea        field.String  // 投注区域(游戏:区域编号)
 	State          field.Int32   // 结算状态 0:下注确认(未结算) 1:已结算 2:会员取消 3:无效
 	Tester         field.Int32   // 1:正式0:测试
-	SettleTime     field.Uint64  // 结算时间
+	SettleTime     field.Int64   // 结算时间
 	Detail         field.String  // 详情
-	CreatedAt      field.Uint64  // 创建时间
-	UpdatedAt      field.Uint64  // 更新时间
+	CreatedAt      field.Int64   // 创建时间
+	UpdatedAt      field.Int64   // 更新时间
 	Prefix         field.String
+	Sid            field.Int32  // 店铺id
+	Domain         field.String // 域名
 
 	fieldMap map[string]field.Expr
 }
@@ -109,7 +115,7 @@ func (t tblGameRecord) As(alias string) *tblGameRecord {
 
 func (t *tblGameRecord) updateTableName(table string) *tblGameRecord {
 	t.ALL = field.NewAsterisk(table)
-	t.BillNoHash = field.NewUint64(table, "bill_no_hash")
+	t.BillNoHash = field.NewInt64(table, "bill_no_hash")
 	t.BillNo = field.NewString(table, "bill_no")
 	t.PlatformBillNo = field.NewString(table, "platform_bill_no")
 	t.PlatformID = field.NewString(table, "platform_id")
@@ -127,15 +133,18 @@ func (t *tblGameRecord) updateTableName(table string) *tblGameRecord {
 	t.BetAmount = field.NewFloat64(table, "bet_amount")
 	t.ValidBetAmount = field.NewFloat64(table, "valid_bet_amount")
 	t.NetAmount = field.NewFloat64(table, "net_amount")
-	t.BetTime = field.NewUint64(table, "bet_time")
+	t.BetTime = field.NewInt64(table, "bet_time")
+	t.CreatedTime = field.NewTime(table, "created_time")
 	t.BetArea = field.NewString(table, "bet_area")
 	t.State = field.NewInt32(table, "state")
 	t.Tester = field.NewInt32(table, "tester")
-	t.SettleTime = field.NewUint64(table, "settle_time")
+	t.SettleTime = field.NewInt64(table, "settle_time")
 	t.Detail = field.NewString(table, "detail")
-	t.CreatedAt = field.NewUint64(table, "created_at")
-	t.UpdatedAt = field.NewUint64(table, "updated_at")
+	t.CreatedAt = field.NewInt64(table, "created_at")
+	t.UpdatedAt = field.NewInt64(table, "updated_at")
 	t.Prefix = field.NewString(table, "prefix")
+	t.Sid = field.NewInt32(table, "sid")
+	t.Domain = field.NewString(table, "domain")
 
 	t.fillFieldMap()
 
@@ -152,7 +161,7 @@ func (t *tblGameRecord) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 }
 
 func (t *tblGameRecord) fillFieldMap() {
-	t.fieldMap = make(map[string]field.Expr, 27)
+	t.fieldMap = make(map[string]field.Expr, 30)
 	t.fieldMap["bill_no_hash"] = t.BillNoHash
 	t.fieldMap["bill_no"] = t.BillNo
 	t.fieldMap["platform_bill_no"] = t.PlatformBillNo
@@ -172,6 +181,7 @@ func (t *tblGameRecord) fillFieldMap() {
 	t.fieldMap["valid_bet_amount"] = t.ValidBetAmount
 	t.fieldMap["net_amount"] = t.NetAmount
 	t.fieldMap["bet_time"] = t.BetTime
+	t.fieldMap["created_time"] = t.CreatedTime
 	t.fieldMap["bet_area"] = t.BetArea
 	t.fieldMap["state"] = t.State
 	t.fieldMap["tester"] = t.Tester
@@ -180,6 +190,8 @@ func (t *tblGameRecord) fillFieldMap() {
 	t.fieldMap["created_at"] = t.CreatedAt
 	t.fieldMap["updated_at"] = t.UpdatedAt
 	t.fieldMap["prefix"] = t.Prefix
+	t.fieldMap["sid"] = t.Sid
+	t.fieldMap["domain"] = t.Domain
 }
 
 func (t tblGameRecord) clone(db *gorm.DB) tblGameRecord {

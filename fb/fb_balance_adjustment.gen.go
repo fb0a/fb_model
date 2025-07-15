@@ -28,21 +28,21 @@ func newFbBalanceAdjustment(db *gorm.DB, opts ...gen.DOOption) fbBalanceAdjustme
 
 	tableName := _fbBalanceAdjustment.fbBalanceAdjustmentDo.TableName()
 	_fbBalanceAdjustment.ALL = field.NewAsterisk(tableName)
-	_fbBalanceAdjustment.ID = field.NewUint64(tableName, "id")
+	_fbBalanceAdjustment.ID = field.NewInt64(tableName, "id")
 	_fbBalanceAdjustment.BillNo = field.NewString(tableName, "bill_no")
-	_fbBalanceAdjustment.UID = field.NewUint64(tableName, "uid")
+	_fbBalanceAdjustment.UID = field.NewInt64(tableName, "uid")
 	_fbBalanceAdjustment.Username = field.NewString(tableName, "username")
 	_fbBalanceAdjustment.Action = field.NewInt32(tableName, "action")
 	_fbBalanceAdjustment.Amount = field.NewFloat64(tableName, "amount")
 	_fbBalanceAdjustment.State = field.NewInt32(tableName, "state")
 	_fbBalanceAdjustment.BetMultiplier = field.NewFloat64(tableName, "bet_multiplier")
-	_fbBalanceAdjustment.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbBalanceAdjustment.CreatedAt = field.NewInt64(tableName, "created_at")
 	_fbBalanceAdjustment.Remark = field.NewString(tableName, "remark")
-	_fbBalanceAdjustment.OperatorUID = field.NewUint64(tableName, "operator_uid")
+	_fbBalanceAdjustment.OperatorUID = field.NewInt64(tableName, "operator_uid")
 	_fbBalanceAdjustment.OperatorName = field.NewString(tableName, "operator_name")
-	_fbBalanceAdjustment.ReviewAt = field.NewUint64(tableName, "review_at")
+	_fbBalanceAdjustment.ReviewAt = field.NewInt64(tableName, "review_at")
 	_fbBalanceAdjustment.ReviewRemark = field.NewString(tableName, "review_remark")
-	_fbBalanceAdjustment.ReviewUID = field.NewUint64(tableName, "review_uid")
+	_fbBalanceAdjustment.ReviewUID = field.NewInt64(tableName, "review_uid")
 	_fbBalanceAdjustment.ReviewName = field.NewString(tableName, "review_name")
 
 	_fbBalanceAdjustment.fillFieldMap()
@@ -55,21 +55,21 @@ type fbBalanceAdjustment struct {
 	fbBalanceAdjustmentDo
 
 	ALL           field.Asterisk
-	ID            field.Uint64
+	ID            field.Int64
 	BillNo        field.String  // 订单号
-	UID           field.Uint64  // 用户ID
+	UID           field.Int64   // 用户ID
 	Username      field.String  // 用户名
 	Action        field.Int32   // 1=加钱,2=减钱,3=清零
 	Amount        field.Float64 // 金额
 	State         field.Int32   //  状态 1审核通过 2审核拒绝
 	BetMultiplier field.Float64 // 打码倍数
-	CreatedAt     field.Uint64  // 时间
+	CreatedAt     field.Int64   // 时间
 	Remark        field.String  // 提交备注
-	OperatorUID   field.Uint64  // 操作人uid
+	OperatorUID   field.Int64   // 操作人uid
 	OperatorName  field.String  // 操作人名
-	ReviewAt      field.Uint64  // 审核时间
+	ReviewAt      field.Int64   // 审核时间
 	ReviewRemark  field.String  // 审核备注
-	ReviewUID     field.Uint64  // 审核人uid
+	ReviewUID     field.Int64   // 审核人uid
 	ReviewName    field.String  // 审核人名
 
 	fieldMap map[string]field.Expr
@@ -87,21 +87,21 @@ func (f fbBalanceAdjustment) As(alias string) *fbBalanceAdjustment {
 
 func (f *fbBalanceAdjustment) updateTableName(table string) *fbBalanceAdjustment {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.BillNo = field.NewString(table, "bill_no")
-	f.UID = field.NewUint64(table, "uid")
+	f.UID = field.NewInt64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.Action = field.NewInt32(table, "action")
 	f.Amount = field.NewFloat64(table, "amount")
 	f.State = field.NewInt32(table, "state")
 	f.BetMultiplier = field.NewFloat64(table, "bet_multiplier")
-	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
 	f.Remark = field.NewString(table, "remark")
-	f.OperatorUID = field.NewUint64(table, "operator_uid")
+	f.OperatorUID = field.NewInt64(table, "operator_uid")
 	f.OperatorName = field.NewString(table, "operator_name")
-	f.ReviewAt = field.NewUint64(table, "review_at")
+	f.ReviewAt = field.NewInt64(table, "review_at")
 	f.ReviewRemark = field.NewString(table, "review_remark")
-	f.ReviewUID = field.NewUint64(table, "review_uid")
+	f.ReviewUID = field.NewInt64(table, "review_uid")
 	f.ReviewName = field.NewString(table, "review_name")
 
 	f.fillFieldMap()

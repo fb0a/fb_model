@@ -4,45 +4,57 @@
 
 package model
 
+import (
+	"time"
+)
+
 const TableNameFbMembersKyc = "fb_members_kyc"
 
 // FbMembersKyc 会员kyc表
 type FbMembersKyc struct {
-	UID                 uint64 `gorm:"column:uid;primaryKey" json:"uid"`
-	CreatedAt           int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`          // 创建时间
-	UpdatedAt           int64  `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`          // 创建时间
-	Phone               string `gorm:"column:phone;not null;comment:手机号" json:"phone"`                     // 手机号
-	FirstName           string `gorm:"column:first_name;not null;comment:first_name" json:"first_name"`    // first_name
-	MiddleName          string `gorm:"column:middle_name;not null;comment:middle_name" json:"middle_name"` // middle_name
-	LastName            string `gorm:"column:last_name;not null;comment:last_name" json:"last_name"`       // last_name
-	Birthday            string `gorm:"column:birthday;not null;comment:生日" json:"birthday"`                // 生日
-	CountryCode         string `gorm:"column:country_code;not null;comment:国家区号" json:"country_code"`      // 国家区号
-	NearestBranch       string `gorm:"column:nearest_branch;not null;comment:分行" json:"nearest_branch"`    // 分行
-	IDType              string `gorm:"column:id_type;not null;comment:证件类型" json:"id_type"`                // 证件类型
-	IDNumber            string `gorm:"column:id_number;not null;comment:证件编号" json:"id_number"`            // 证件编号
-	Gender              string `gorm:"column:gender;not null;comment:性别" json:"gender"`                    // 性别
-	Attachments         string `gorm:"column:attachments;not null" json:"attachments"`
-	ExtraDetails        string `gorm:"column:extra_details;not null" json:"extra_details"`
-	PlaceOfBirth        string `gorm:"column:place_of_birth;not null" json:"place_of_birth"`
-	Nationality         string `gorm:"column:nationality;not null" json:"nationality"`
-	CurrentAddress      string `gorm:"column:current_address;not null" json:"current_address"`
-	PermanentAddress    string `gorm:"column:permanent_address;not null" json:"permanent_address"`
-	NatureOfWork        string `gorm:"column:nature_of_work;not null" json:"nature_of_work"`
-	SourceOfIncome      string `gorm:"column:source_of_income;not null" json:"source_of_income"`
-	Occupation          string `gorm:"column:occupation;not null" json:"occupation"`
-	Tokens              string `gorm:"column:tokens" json:"tokens"`
-	BlacklistStatus     int32  `gorm:"column:blacklist_status;not null" json:"blacklist_status"`
-	Issue               string `gorm:"column:issue;not null" json:"issue"`
-	IssueMsg            string `gorm:"column:issue_msg;not null" json:"issue_msg"`
-	IssueFields         string `gorm:"column:issue_fields;not null" json:"issue_fields"`
-	Status              string `gorm:"column:status;not null;comment:状态" json:"status"` // 状态
-	Comment             string `gorm:"column:comment;not null;default:0" json:"comment"`
-	Reviewer            string `gorm:"column:reviewer;not null" json:"reviewer"`
-	ReviewTimes         int64  `gorm:"column:review_times;not null" json:"review_times"`
-	OcrStatus           int32  `gorm:"column:ocr_status;not null" json:"ocr_status"`
-	Ocr                 string `gorm:"column:ocr;not null" json:"ocr"`
-	ExternalInformation string `gorm:"column:external_information" json:"external_information"`
-	Version             string `gorm:"column:version;not null;default:1" json:"version"`
+	UID                 int64     `gorm:"column:uid;primaryKey" json:"uid"`
+	CreatedAt           int64     `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                              // 创建时间
+	CreatedTime         time.Time `gorm:"column:created_time;not null;default:CURRENT_TIMESTAMP;comment:分区时间戳(等于created_at)" json:"created_time"` // 分区时间戳(等于created_at)
+	UpdatedAt           int64     `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                                              // 创建时间
+	Phone               string    `gorm:"column:phone;not null;comment:手机号" json:"phone"`                                                         // 手机号
+	FirstName           string    `gorm:"column:first_name;not null;comment:first_name" json:"first_name"`                                        // first_name
+	MiddleName          string    `gorm:"column:middle_name;not null;comment:middle_name" json:"middle_name"`                                     // middle_name
+	LastName            string    `gorm:"column:last_name;not null;comment:last_name" json:"last_name"`                                           // last_name
+	Birthday            string    `gorm:"column:birthday;not null;comment:生日" json:"birthday"`                                                    // 生日
+	CountryCode         string    `gorm:"column:country_code;not null;comment:国家区号" json:"country_code"`                                          // 国家区号
+	NearestBranch       string    `gorm:"column:nearest_branch;not null;comment:分行" json:"nearest_branch"`                                        // 分行
+	IDType              string    `gorm:"column:id_type;not null;comment:证件类型" json:"id_type"`                                                    // 证件类型
+	IDNumber            string    `gorm:"column:id_number;not null;comment:证件编号" json:"id_number"`                                                // 证件编号
+	Gender              string    `gorm:"column:gender;not null;comment:性别" json:"gender"`                                                        // 性别
+	Attachments         string    `gorm:"column:attachments;not null" json:"attachments"`
+	ExtraDetails        string    `gorm:"column:extra_details;not null" json:"extra_details"`
+	PlaceOfBirth        string    `gorm:"column:place_of_birth;not null" json:"place_of_birth"`
+	Nationality         string    `gorm:"column:nationality;not null" json:"nationality"`
+	CurrentAddress      string    `gorm:"column:current_address;not null" json:"current_address"`
+	PermanentAddress    string    `gorm:"column:permanent_address;not null" json:"permanent_address"`
+	NatureOfWork        string    `gorm:"column:nature_of_work;not null" json:"nature_of_work"`
+	SourceOfIncome      string    `gorm:"column:source_of_income;not null" json:"source_of_income"`
+	Occupation          string    `gorm:"column:occupation;not null" json:"occupation"`
+	Tokens              string    `gorm:"column:tokens" json:"tokens"`
+	BlacklistStatus     int32     `gorm:"column:blacklist_status;not null" json:"blacklist_status"`
+	Issue               string    `gorm:"column:issue;not null" json:"issue"`
+	IssueMsg            string    `gorm:"column:issue_msg;not null" json:"issue_msg"`
+	IssueFields         string    `gorm:"column:issue_fields;not null" json:"issue_fields"`
+	Status              string    `gorm:"column:status;not null;comment:状态" json:"status"`                                                           // 状态
+	KycStatus           int32     `gorm:"column:kyc_status;not null;comment:1(初始状态)，2(待审)，3(基础KYC通过),4(完整KYC通过),5(KYC冻结),6(永久拒绝)" json:"kyc_status"` // 1(初始状态)，2(待审)，3(基础KYC通过),4(完整KYC通过),5(KYC冻结),6(永久拒绝)
+	Comment             string    `gorm:"column:comment;not null;default:0" json:"comment"`
+	Reviewer            string    `gorm:"column:reviewer;not null" json:"reviewer"`
+	ReviewTimes         int64     `gorm:"column:review_times;not null" json:"review_times"`
+	OcrStatus           int32     `gorm:"column:ocr_status;not null" json:"ocr_status"`
+	Ocr                 string    `gorm:"column:ocr;not null" json:"ocr"`
+	ExternalInformation string    `gorm:"column:external_information" json:"external_information"`
+	Version             string    `gorm:"column:version;not null;default:1" json:"version"`
+	Source              string    `gorm:"column:source;not null;comment:渠道来源" json:"source"`                 // 渠道来源
+	Nickname            string    `gorm:"column:nickname;not null;comment:会员表昵称" json:"nickname"`            // 会员表昵称
+	Username            string    `gorm:"column:username;not null;comment:会员表-用户名称" json:"username"`         // 会员表-用户名称
+	RegCreatedAt        int64     `gorm:"column:reg_created_at;not null;comment:注册时间" json:"reg_created_at"` // 注册时间
+	RegIP               string    `gorm:"column:reg_ip;not null;comment:注册ip" json:"reg_ip"`                 // 注册ip
+	Sid                 int32     `gorm:"column:sid;not null" json:"sid"`
 }
 
 // TableName FbMembersKyc's table name

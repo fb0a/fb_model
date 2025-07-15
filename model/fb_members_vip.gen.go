@@ -6,15 +6,19 @@ package model
 
 const TableNameFbMembersVip = "fb_members_vip"
 
-// FbMembersVip 会员vip表
+// FbMembersVip vip等级配置表
 type FbMembersVip struct {
-	UID         uint64  `gorm:"column:uid;primaryKey" json:"uid"`
-	ManualLevel int32   `gorm:"column:manual_level;not null;comment:manual_level" json:"manual_level"` // manual_level
-	Score       float64 `gorm:"column:score;not null;default:0.00;comment:评分" json:"score"`            // 评分
-	Level       int32   `gorm:"column:level;not null;comment:等级" json:"level"`                         // 等级
-	Category    int32   `gorm:"column:category;not null;comment:等级" json:"category"`                   // 等级
-	CreatedAt   uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`             // 创建时间
-	UpdatedAt   uint64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`             // 更新时间
+	Level       int32   `gorm:"column:level;primaryKey;comment:等级" json:"level"`                              // 等级
+	Ty          string  `gorm:"column:ty;not null;comment:等级区间名称" json:"ty"`                                  // 等级区间名称
+	Xp          float64 `gorm:"column:xp;not null;default:0.00;comment:经验" json:"xp"`                         // 经验
+	Upgrade     float64 `gorm:"column:upgrade;not null;default:0.00;comment:升级奖金" json:"upgrade"`             // 升级奖金
+	Birthday    float64 `gorm:"column:birthday;not null;default:0.00;comment:生日奖金" json:"birthday"`           // 生日奖金
+	Multiple    float64 `gorm:"column:multiple;not null;default:1.00;comment:打码倍数" json:"multiple"`           // 打码倍数
+	Img         string  `gorm:"column:img;not null;comment:等级区间图标" json:"img"`                                // 等级区间图标
+	CreatedAt   int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                    // 创建时间
+	UpdatedAt   int64   `gorm:"column:updated_at;not null;comment:维护时间" json:"updated_at"`                    // 维护时间
+	UpdatedUID  int64   `gorm:"column:updated_uid;not null;comment:维护人id" json:"updated_uid"`                 // 维护人id
+	UpdatedName string  `gorm:"column:updated_name;not null;default:system;comment:维护人名" json:"updated_name"` // 维护人名
 }
 
 // TableName FbMembersVip's table name

@@ -8,24 +8,32 @@ const TableNameFbDeposit = "fb_deposits"
 
 // FbDeposit 存款表
 type FbDeposit struct {
-	ID                 uint64  `gorm:"column:id;primaryKey" json:"id"`
-	UID                uint64  `gorm:"column:uid;not null" json:"uid"`
-	Username           string  `gorm:"column:username;not null;comment:用户名" json:"username"`                                  // 用户名
-	Amount             float64 `gorm:"column:amount;not null;comment:金额" json:"amount"`                                       // 金额
-	ChannelCategory    string  `gorm:"column:channel_category;not null;comment:通道分类" json:"channel_category"`                 // 通道分类
-	ChannelName        string  `gorm:"column:channel_name;not null;comment:通道名" json:"channel_name"`                          // 通道名
-	Currency           string  `gorm:"column:currency;not null;comment:币种" json:"currency"`                                   // 币种
-	ExternalOrderID    string  `gorm:"column:external_order_id;not null;comment:三方订单号" json:"external_order_id"`              // 三方订单号
-	PaymentMethod      string  `gorm:"column:payment_method;not null;comment:支付方式" json:"payment_method"`                     // 支付方式
-	RolloverMultiplier float64 `gorm:"column:rollover_multiplier;not null;default:0;comment:打码倍数" json:"rollover_multiplier"` // 打码倍数
-	Status             string  `gorm:"column:status;not null;comment:状态" json:"status"`                                       // 状态
-	PaidAt             uint64  `gorm:"column:paid_at;not null;comment:支付时间" json:"paid_at"`                                   // 支付时间
-	CreatedAt          uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                             // 创建时间
-	UpdatedAt          uint64  `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                             // 创建时间
-	CancelReason       string  `gorm:"column:cancel_reason;not null;comment:取消原因" json:"cancel_reason"`                       // 取消原因
-	Gt                 int32   `gorm:"column:gt;not null;comment:充值次数类型 0 其他 1 首冲 2 二充 3 三充" json:"gt"`                       // 充值次数类型 0 其他 1 首冲 2 二充 3 三充
+	ID                 int64   `gorm:"column:id;primaryKey" json:"id"`
+	UID                int64   `gorm:"column:uid;not null" json:"uid"`
+	Username           string  `gorm:"column:username;not null;comment:用户名" json:"username"`                                     // 用户名
+	Amount             float64 `gorm:"column:amount;not null;comment:金额" json:"amount"`                                          // 金额
+	ChannelCategory    string  `gorm:"column:channel_category;not null;comment:通道分类" json:"channel_category"`                    // 通道分类
+	ChannelName        string  `gorm:"column:channel_name;not null;comment:通道名" json:"channel_name"`                             // 通道名
+	Currency           string  `gorm:"column:currency;not null;comment:币种" json:"currency"`                                      // 币种
+	ExternalOrderID    string  `gorm:"column:external_order_id;not null;comment:三方订单号" json:"external_order_id"`                 // 三方订单号
+	PaymentMethod      string  `gorm:"column:payment_method;not null;comment:支付方式" json:"payment_method"`                        // 支付方式
+	RolloverMultiplier float64 `gorm:"column:rollover_multiplier;not null;default:0.00;comment:打码倍数" json:"rollover_multiplier"` // 打码倍数
+	Status             string  `gorm:"column:status;not null;comment:状态" json:"status"`                                          // 状态
+	PaidAt             int64   `gorm:"column:paid_at;not null;comment:支付时间" json:"paid_at"`                                      // 支付时间
+	CreatedAt          int64   `gorm:"column:created_at;primaryKey;comment:创建时间" json:"created_at"`                              // 创建时间
+	UpdatedAt          int64   `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                                // 创建时间
+	CancelReason       string  `gorm:"column:cancel_reason;not null;comment:取消原因" json:"cancel_reason"`                          // 取消原因
+	Gt                 int32   `gorm:"column:gt;not null;comment:充值次数类型 0 其他 1 首冲 2 二充 3 三充" json:"gt"`                          // 充值次数类型 0 其他 1 首冲 2 二充 3 三充
 	Remark             string  `gorm:"column:remark;not null" json:"remark"`
-	PaymentChannelID   uint64  `gorm:"column:payment_channel_id;not null;comment:支付通道id" json:"payment_channel_id"` // 支付通道id
+	PaymentChannelID   int64   `gorm:"column:payment_channel_id;not null;comment:支付通道id" json:"payment_channel_id"` // 支付通道id
+	ExternalTransID    string  `gorm:"column:external_trans_id;not null;comment:三方订单号" json:"external_trans_id"`    // 三方订单号
+	Phone              string  `gorm:"column:phone;not null" json:"phone"`
+	Sid                int32   `gorm:"column:sid;not null;comment:店铺id" json:"sid"`     // 店铺id
+	Domain             string  `gorm:"column:domain;not null;comment:域名" json:"domain"` // 域名
+	Sq                 int64   `gorm:"column:sq;not null" json:"sq"`
+	PaidAccountID      string  `gorm:"column:paid_account_id;comment:入账账户ID" json:"paid_account_id"`      // 入账账户ID
+	PaidAmount         float64 `gorm:"column:paid_amount;default:0.0000;comment:到账金额" json:"paid_amount"` // 到账金额
+	Fee                float64 `gorm:"column:fee;default:0.0000;comment:手续费" json:"fee"`                  // 手续费
 }
 
 // TableName FbDeposit's table name

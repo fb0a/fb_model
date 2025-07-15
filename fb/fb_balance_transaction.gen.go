@@ -28,9 +28,9 @@ func newFbBalanceTransaction(db *gorm.DB, opts ...gen.DOOption) fbBalanceTransac
 
 	tableName := _fbBalanceTransaction.fbBalanceTransactionDo.TableName()
 	_fbBalanceTransaction.ALL = field.NewAsterisk(tableName)
-	_fbBalanceTransaction.ID = field.NewUint64(tableName, "id")
+	_fbBalanceTransaction.ID = field.NewInt64(tableName, "id")
 	_fbBalanceTransaction.BillNo = field.NewString(tableName, "bill_no")
-	_fbBalanceTransaction.UID = field.NewUint64(tableName, "uid")
+	_fbBalanceTransaction.UID = field.NewInt64(tableName, "uid")
 	_fbBalanceTransaction.Username = field.NewString(tableName, "username")
 	_fbBalanceTransaction.PlayerName = field.NewString(tableName, "player_name")
 	_fbBalanceTransaction.CashType = field.NewInt32(tableName, "cash_type")
@@ -38,17 +38,21 @@ func newFbBalanceTransaction(db *gorm.DB, opts ...gen.DOOption) fbBalanceTransac
 	_fbBalanceTransaction.Amount = field.NewFloat64(tableName, "amount")
 	_fbBalanceTransaction.BeforeAmount = field.NewFloat64(tableName, "before_amount")
 	_fbBalanceTransaction.AfterAmount = field.NewFloat64(tableName, "after_amount")
-	_fbBalanceTransaction.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbBalanceTransaction.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbBalanceTransaction.CreatedTime = field.NewTime(tableName, "created_time")
 	_fbBalanceTransaction.Tester = field.NewInt32(tableName, "tester")
 	_fbBalanceTransaction.Remark = field.NewString(tableName, "remark")
-	_fbBalanceTransaction.OperatorUID = field.NewUint64(tableName, "operator_uid")
+	_fbBalanceTransaction.OperatorUID = field.NewInt64(tableName, "operator_uid")
 	_fbBalanceTransaction.OperatorName = field.NewString(tableName, "operator_name")
 	_fbBalanceTransaction.Device = field.NewInt32(tableName, "device")
-	_fbBalanceTransaction.PlatformID = field.NewUint64(tableName, "platform_id")
+	_fbBalanceTransaction.PlatformID = field.NewInt64(tableName, "platform_id")
 	_fbBalanceTransaction.OperationNo = field.NewString(tableName, "operation_no")
 	_fbBalanceTransaction.State = field.NewInt32(tableName, "state")
 	_fbBalanceTransaction.DataType = field.NewInt32(tableName, "data_type")
 	_fbBalanceTransaction.OriginAmount = field.NewString(tableName, "origin_amount")
+	_fbBalanceTransaction.NickName = field.NewString(tableName, "nick_name")
+	_fbBalanceTransaction.Phone = field.NewString(tableName, "phone")
+	_fbBalanceTransaction.Vip = field.NewInt32(tableName, "vip")
 
 	_fbBalanceTransaction.fillFieldMap()
 
@@ -60,9 +64,9 @@ type fbBalanceTransaction struct {
 	fbBalanceTransactionDo
 
 	ALL          field.Asterisk
-	ID           field.Uint64
+	ID           field.Int64
 	BillNo       field.String  // 转账|充值|提现ID
-	UID          field.Uint64  // 用户ID
+	UID          field.Int64   // 用户ID
 	Username     field.String  // 用户名
 	PlayerName   field.String  // 游戏帐号
 	CashType     field.Int32   // 帐变类型
@@ -70,17 +74,21 @@ type fbBalanceTransaction struct {
 	Amount       field.Float64 // 账变金额
 	BeforeAmount field.Float64 // 账变前的金额（钱包）
 	AfterAmount  field.Float64 // 账变后的金额（钱包）
-	CreatedAt    field.Uint64  // 帐变时间
+	CreatedAt    field.Int64   // 帐变时间
+	CreatedTime  field.Time    // 分区时间戳(等于created_at)
 	Tester       field.Int32   // 1:正式2:测试3:代理
 	Remark       field.String  // 备注
-	OperatorUID  field.Uint64  // 操作人uid
+	OperatorUID  field.Int64   // 操作人uid
 	OperatorName field.String  // 操作人
 	Device       field.Int32   // 操作终端
-	PlatformID   field.Uint64  // 场馆id
+	PlatformID   field.Int64   // 场馆id
 	OperationNo  field.String  // 流水号
 	State        field.Int32   // 状态(仅场馆业务类型使用) 1待结算 2已结算 3已取消 4重新结算
 	DataType     field.Int32   // 1 mongo 2 新架构tidb 3 老架构tidb
 	OriginAmount field.String  // 原始金额
+	NickName     field.String  // 昵称
+	Phone        field.String  // 手机号
+	Vip          field.Int32   // vip等级
 
 	fieldMap map[string]field.Expr
 }
@@ -97,9 +105,9 @@ func (f fbBalanceTransaction) As(alias string) *fbBalanceTransaction {
 
 func (f *fbBalanceTransaction) updateTableName(table string) *fbBalanceTransaction {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.BillNo = field.NewString(table, "bill_no")
-	f.UID = field.NewUint64(table, "uid")
+	f.UID = field.NewInt64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.PlayerName = field.NewString(table, "player_name")
 	f.CashType = field.NewInt32(table, "cash_type")
@@ -107,17 +115,21 @@ func (f *fbBalanceTransaction) updateTableName(table string) *fbBalanceTransacti
 	f.Amount = field.NewFloat64(table, "amount")
 	f.BeforeAmount = field.NewFloat64(table, "before_amount")
 	f.AfterAmount = field.NewFloat64(table, "after_amount")
-	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedTime = field.NewTime(table, "created_time")
 	f.Tester = field.NewInt32(table, "tester")
 	f.Remark = field.NewString(table, "remark")
-	f.OperatorUID = field.NewUint64(table, "operator_uid")
+	f.OperatorUID = field.NewInt64(table, "operator_uid")
 	f.OperatorName = field.NewString(table, "operator_name")
 	f.Device = field.NewInt32(table, "device")
-	f.PlatformID = field.NewUint64(table, "platform_id")
+	f.PlatformID = field.NewInt64(table, "platform_id")
 	f.OperationNo = field.NewString(table, "operation_no")
 	f.State = field.NewInt32(table, "state")
 	f.DataType = field.NewInt32(table, "data_type")
 	f.OriginAmount = field.NewString(table, "origin_amount")
+	f.NickName = field.NewString(table, "nick_name")
+	f.Phone = field.NewString(table, "phone")
+	f.Vip = field.NewInt32(table, "vip")
 
 	f.fillFieldMap()
 
@@ -134,7 +146,7 @@ func (f *fbBalanceTransaction) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (f *fbBalanceTransaction) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 21)
+	f.fieldMap = make(map[string]field.Expr, 25)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["bill_no"] = f.BillNo
 	f.fieldMap["uid"] = f.UID
@@ -146,6 +158,7 @@ func (f *fbBalanceTransaction) fillFieldMap() {
 	f.fieldMap["before_amount"] = f.BeforeAmount
 	f.fieldMap["after_amount"] = f.AfterAmount
 	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["created_time"] = f.CreatedTime
 	f.fieldMap["tester"] = f.Tester
 	f.fieldMap["remark"] = f.Remark
 	f.fieldMap["operator_uid"] = f.OperatorUID
@@ -156,6 +169,9 @@ func (f *fbBalanceTransaction) fillFieldMap() {
 	f.fieldMap["state"] = f.State
 	f.fieldMap["data_type"] = f.DataType
 	f.fieldMap["origin_amount"] = f.OriginAmount
+	f.fieldMap["nick_name"] = f.NickName
+	f.fieldMap["phone"] = f.Phone
+	f.fieldMap["vip"] = f.Vip
 }
 
 func (f fbBalanceTransaction) clone(db *gorm.DB) fbBalanceTransaction {

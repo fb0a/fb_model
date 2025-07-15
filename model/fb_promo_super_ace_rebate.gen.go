@@ -8,18 +8,18 @@ const TableNameFbPromoSuperAceRebate = "fb_promo_super_ace_rebate"
 
 // FbPromoSuperAceRebate 超级ace返水活动表
 type FbPromoSuperAceRebate struct {
-	ID         uint64  `gorm:"column:id;primaryKey" json:"id"`
-	UID        uint64  `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                            // 用户ID
+	ID         int64   `gorm:"column:id;primaryKey" json:"id"`
+	UID        int64   `gorm:"column:uid;not null;comment:用户ID" json:"uid"`                            // 用户ID
 	Username   string  `gorm:"column:username;not null;comment:用户名" json:"username"`                   // 用户名
-	ParentUID  uint64  `gorm:"column:parent_uid;not null;comment:上级UID" json:"parent_uid"`             // 上级UID
+	ParentUID  int64   `gorm:"column:parent_uid;not null;comment:上级UID" json:"parent_uid"`             // 上级UID
 	ParentName string  `gorm:"column:parent_name;not null;comment:上级用户名" json:"parent_name"`           // 上级用户名
-	Pid        uint64  `gorm:"column:pid;not null;comment:活动ID" json:"pid"`                            // 活动ID
+	Pid        int64   `gorm:"column:pid;not null;comment:活动ID" json:"pid"`                            // 活动ID
 	Bonus      float64 `gorm:"column:bonus;not null;default:0.00;comment:奖金金额" json:"bonus"`           // 奖金金额
 	BetAmount  float64 `gorm:"column:bet_amount;not null;default:0.00;comment:投注金额" json:"bet_amount"` // 投注金额
 	NetAmount  float64 `gorm:"column:net_amount;not null;default:0.00" json:"net_amount"`
 	State      int32   `gorm:"column:state;not null;default:1;comment:状态 1:已发送 2:待审核 3:已失效" json:"state"` // 状态 1:已发送 2:待审核 3:已失效
-	CreatedAt  uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                 // 创建时间
-	UpdatedAt  uint64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                 // 更新时间
+	CreatedAt  int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                 // 创建时间
+	UpdatedAt  int64   `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                 // 更新时间
 	Ymd        int32   `gorm:"column:ymd;not null;comment:20060102" json:"ymd"`                           // 20060102
 }
 

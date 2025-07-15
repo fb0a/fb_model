@@ -8,7 +8,7 @@ const TableNameFbPromo = "fb_promo"
 
 // FbPromo 活动配置表
 type FbPromo struct {
-	ID     uint64 `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
+	ID     int64  `gorm:"column:id;primaryKey;autoIncrement:true" json:"id"`
 	Title  string `gorm:"column:title;comment:活动多语言标题" json:"title"` // 活动多语言标题
 	Alias_ string `gorm:"column:alias;comment:英文别名" json:"alias"`    // 英文别名
 }

@@ -28,12 +28,12 @@ func newFbMemberPlatform(db *gorm.DB, opts ...gen.DOOption) fbMemberPlatform {
 
 	tableName := _fbMemberPlatform.fbMemberPlatformDo.TableName()
 	_fbMemberPlatform.ALL = field.NewAsterisk(tableName)
-	_fbMemberPlatform.ID = field.NewUint64(tableName, "id")
+	_fbMemberPlatform.ID = field.NewInt64(tableName, "id")
 	_fbMemberPlatform.Phone = field.NewString(tableName, "phone")
-	_fbMemberPlatform.Pid = field.NewUint64(tableName, "pid")
+	_fbMemberPlatform.Pid = field.NewInt64(tableName, "pid")
 	_fbMemberPlatform.Password = field.NewString(tableName, "password")
 	_fbMemberPlatform.State = field.NewInt32(tableName, "state")
-	_fbMemberPlatform.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbMemberPlatform.CreatedAt = field.NewInt64(tableName, "created_at")
 
 	_fbMemberPlatform.fillFieldMap()
 
@@ -45,12 +45,12 @@ type fbMemberPlatform struct {
 	fbMemberPlatformDo
 
 	ALL       field.Asterisk
-	ID        field.Uint64
+	ID        field.Int64
 	Phone     field.String // 用户名
-	Pid       field.Uint64 // 场馆ID
+	Pid       field.Int64  // 场馆ID
 	Password  field.String // 平台密码
 	State     field.Int32  // 状态:1=正常,2=锁定
-	CreatedAt field.Uint64
+	CreatedAt field.Int64
 
 	fieldMap map[string]field.Expr
 }
@@ -67,12 +67,12 @@ func (f fbMemberPlatform) As(alias string) *fbMemberPlatform {
 
 func (f *fbMemberPlatform) updateTableName(table string) *fbMemberPlatform {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Phone = field.NewString(table, "phone")
-	f.Pid = field.NewUint64(table, "pid")
+	f.Pid = field.NewInt64(table, "pid")
 	f.Password = field.NewString(table, "password")
 	f.State = field.NewInt32(table, "state")
-	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
 
 	f.fillFieldMap()
 

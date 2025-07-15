@@ -8,7 +8,7 @@ const TableNameFbDailyVenueReport = "fb_daily_venue_report"
 
 // FbDailyVenueReport 场馆业绩表
 type FbDailyVenueReport struct {
-	ID                uint64 `gorm:"column:id;primaryKey" json:"id"`
+	ID                int64  `gorm:"column:id;primaryKey" json:"id"`
 	Day               int32  `gorm:"column:day;not null;comment:数据日期" json:"day"`                                           // 数据日期
 	GameName          string `gorm:"column:game_name;not null;comment:第三方游戏名称" json:"game_name"`                            // 第三方游戏名称
 	GameCode          string `gorm:"column:game_code;not null;comment:第三方游戏名称编码" json:"game_code"`                          // 第三方游戏名称编码

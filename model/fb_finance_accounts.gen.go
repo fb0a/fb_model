@@ -8,21 +8,21 @@ const TableNameFbFinanceAccount = "fb_finance_accounts"
 
 // FbFinanceAccount 会员账户表
 type FbFinanceAccount struct {
-	ID          uint64  `gorm:"column:id;primaryKey" json:"id"`
-	UID         uint64  `gorm:"column:uid;not null" json:"uid"`
-	Username    string  `gorm:"column:username;not null;comment:用户名" json:"username"`                // 用户名
-	Account     string  `gorm:"column:account;not null;comment:帐号" json:"account"`                   // 帐号
-	ChannelName string  `gorm:"column:channel_name;not null;comment:通道名" json:"channel_name"`        // 通道名
-	Currency    string  `gorm:"column:currency;not null;comment:币种" json:"currency"`                 // 币种
-	FirstName   string  `gorm:"column:first_name;not null;comment:first_name" json:"first_name"`     // first_name
-	MiddleName  string  `gorm:"column:middle_name;not null;comment:middle_name" json:"middle_name"`  // middle_name
-	LastName    string  `gorm:"column:last_name;not null;comment:last_name" json:"last_name"`        // last_name
-	TotalOut    float64 `gorm:"column:total_out;not null;default:0;comment:总共提款金额" json:"total_out"` // 总共提款金额
-	Status      int32   `gorm:"column:status;not null;comment:状态" json:"status"`                     // 状态
-	CreatedAt   uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`           // 创建时间
-	UpdatedAt   uint64  `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`           // 创建时间
-	LastUsedAt  uint64  `gorm:"column:last_used_at;not null;comment:最后使用时间" json:"last_used_at"`     // 最后使用时间
-	UsedTimes   int32   `gorm:"column:used_times;not null;comment:使用次数" json:"used_times"`           // 使用次数
+	ID          int64   `gorm:"column:id;primaryKey" json:"id"`
+	UID         int64   `gorm:"column:uid;not null" json:"uid"`
+	Username    string  `gorm:"column:username;not null;comment:用户名" json:"username"`                         // 用户名
+	Account     string  `gorm:"column:account;not null;comment:帐号" json:"account"`                            // 帐号
+	ChannelName string  `gorm:"column:channel_name;not null;comment:通道名" json:"channel_name"`                 // 通道名
+	Currency    string  `gorm:"column:currency;not null;comment:币种" json:"currency"`                          // 币种
+	FirstName   string  `gorm:"column:first_name;not null;comment:first_name" json:"first_name"`              // first_name
+	MiddleName  string  `gorm:"column:middle_name;not null;comment:middle_name" json:"middle_name"`           // middle_name
+	LastName    string  `gorm:"column:last_name;not null;comment:last_name" json:"last_name"`                 // last_name
+	TotalOut    float64 `gorm:"column:total_out;not null;default:0.00000000;comment:总共提款金额" json:"total_out"` // 总共提款金额
+	Status      int32   `gorm:"column:status;not null;comment:状态" json:"status"`                              // 状态
+	CreatedAt   int64   `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                    // 创建时间
+	UpdatedAt   int64   `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                    // 创建时间
+	LastUsedAt  int64   `gorm:"column:last_used_at;not null;comment:最后使用时间" json:"last_used_at"`              // 最后使用时间
+	UsedTimes   int32   `gorm:"column:used_times;not null;comment:使用次数" json:"used_times"`                    // 使用次数
 }
 
 // TableName FbFinanceAccount's table name

@@ -28,18 +28,18 @@ func newFbPromoList(db *gorm.DB, opts ...gen.DOOption) fbPromoList {
 
 	tableName := _fbPromoList.fbPromoListDo.TableName()
 	_fbPromoList.ALL = field.NewAsterisk(tableName)
-	_fbPromoList.ID = field.NewUint64(tableName, "id")
+	_fbPromoList.ID = field.NewInt64(tableName, "id")
 	_fbPromoList.Name = field.NewString(tableName, "name")
 	_fbPromoList.Ty = field.NewInt32(tableName, "ty")
 	_fbPromoList.Display = field.NewInt32(tableName, "display")
-	_fbPromoList.DisplayStartAt = field.NewUint64(tableName, "display_start_at")
-	_fbPromoList.DisplayEndAt = field.NewUint64(tableName, "display_end_at")
+	_fbPromoList.DisplayStartAt = field.NewInt64(tableName, "display_start_at")
+	_fbPromoList.DisplayEndAt = field.NewInt64(tableName, "display_end_at")
 	_fbPromoList.State = field.NewInt32(tableName, "state")
 	_fbPromoList.ClientType = field.NewString(tableName, "client_type")
 	_fbPromoList.Config = field.NewString(tableName, "config")
 	_fbPromoList.IsDelete = field.NewInt32(tableName, "is_delete")
-	_fbPromoList.StartAt = field.NewUint64(tableName, "start_at")
-	_fbPromoList.EndAt = field.NewUint64(tableName, "end_at")
+	_fbPromoList.StartAt = field.NewInt64(tableName, "start_at")
+	_fbPromoList.EndAt = field.NewInt64(tableName, "end_at")
 	_fbPromoList.Multiple = field.NewString(tableName, "multiple")
 	_fbPromoList.Recommend = field.NewInt32(tableName, "recommend")
 	_fbPromoList.Automatic = field.NewInt32(tableName, "automatic")
@@ -48,11 +48,11 @@ func newFbPromoList(db *gorm.DB, opts ...gen.DOOption) fbPromoList {
 	_fbPromoList.Summary = field.NewString(tableName, "summary")
 	_fbPromoList.DetailImage = field.NewInt32(tableName, "detail_image")
 	_fbPromoList.DisplayType = field.NewInt32(tableName, "display_type")
-	_fbPromoList.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbPromoList.CreatedUID = field.NewUint64(tableName, "created_uid")
+	_fbPromoList.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbPromoList.CreatedUID = field.NewInt64(tableName, "created_uid")
 	_fbPromoList.CreatedName = field.NewString(tableName, "created_name")
-	_fbPromoList.UpdatedAt = field.NewUint64(tableName, "updated_at")
-	_fbPromoList.UpdatedUID = field.NewUint64(tableName, "updated_uid")
+	_fbPromoList.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbPromoList.UpdatedUID = field.NewInt64(tableName, "updated_uid")
 	_fbPromoList.UpdatedName = field.NewString(tableName, "updated_name")
 
 	_fbPromoList.fillFieldMap()
@@ -65,18 +65,18 @@ type fbPromoList struct {
 	fbPromoListDo
 
 	ALL            field.Asterisk
-	ID             field.Uint64
+	ID             field.Int64
 	Name           field.String // 活动英文名称
-	Ty             field.Int32  // 活动类型 1轮盘 2推广 3抢红包 4负盈利返现 5自定义 8充值
+	Ty             field.Int32  // 活动类型 1盲盒 2超级返水 3升级礼金 4生日礼金
 	Display        field.Int32  // 展示状态 1展示 2不展示 3未开始
-	DisplayStartAt field.Uint64 // 展示时间开始
-	DisplayEndAt   field.Uint64 // 展示时间结束
+	DisplayStartAt field.Int64  // 展示时间开始
+	DisplayEndAt   field.Int64  // 展示时间结束
 	State          field.Int32  // 状态 1开启 2关闭 3未开启
 	ClientType     field.String // 领取入口 24web 25，26，27h5(多选json切片)
 	Config         field.String // 活动配置
 	IsDelete       field.Int32  // 删除 1是2否
-	StartAt        field.Uint64 // 开始时间
-	EndAt          field.Uint64 // 结束时间
+	StartAt        field.Int64  // 开始时间
+	EndAt          field.Int64  // 结束时间
 	Multiple       field.String // 流水倍数
 	Recommend      field.Int32  // 推荐状态 1推荐 2不推荐
 	Automatic      field.Int32  // 领取方式 1自动 2手动领取
@@ -85,11 +85,11 @@ type fbPromoList struct {
 	Summary        field.String // 简介
 	DetailImage    field.Int32  // 详情显示图片1:显示2:不显示
 	DisplayType    field.Int32  // // 展示方式 1:内置页面 2:跳转外部链接
-	CreatedAt      field.Uint64 // 创建时间
-	CreatedUID     field.Uint64 // 创建人uid
+	CreatedAt      field.Int64  // 创建时间
+	CreatedUID     field.Int64  // 创建人uid
 	CreatedName    field.String // 创建人名
-	UpdatedAt      field.Uint64 // 修改时间
-	UpdatedUID     field.Uint64 // 修改人uid
+	UpdatedAt      field.Int64  // 修改时间
+	UpdatedUID     field.Int64  // 修改人uid
 	UpdatedName    field.String // 修改人名
 
 	fieldMap map[string]field.Expr
@@ -107,18 +107,18 @@ func (f fbPromoList) As(alias string) *fbPromoList {
 
 func (f *fbPromoList) updateTableName(table string) *fbPromoList {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Name = field.NewString(table, "name")
 	f.Ty = field.NewInt32(table, "ty")
 	f.Display = field.NewInt32(table, "display")
-	f.DisplayStartAt = field.NewUint64(table, "display_start_at")
-	f.DisplayEndAt = field.NewUint64(table, "display_end_at")
+	f.DisplayStartAt = field.NewInt64(table, "display_start_at")
+	f.DisplayEndAt = field.NewInt64(table, "display_end_at")
 	f.State = field.NewInt32(table, "state")
 	f.ClientType = field.NewString(table, "client_type")
 	f.Config = field.NewString(table, "config")
 	f.IsDelete = field.NewInt32(table, "is_delete")
-	f.StartAt = field.NewUint64(table, "start_at")
-	f.EndAt = field.NewUint64(table, "end_at")
+	f.StartAt = field.NewInt64(table, "start_at")
+	f.EndAt = field.NewInt64(table, "end_at")
 	f.Multiple = field.NewString(table, "multiple")
 	f.Recommend = field.NewInt32(table, "recommend")
 	f.Automatic = field.NewInt32(table, "automatic")
@@ -127,11 +127,11 @@ func (f *fbPromoList) updateTableName(table string) *fbPromoList {
 	f.Summary = field.NewString(table, "summary")
 	f.DetailImage = field.NewInt32(table, "detail_image")
 	f.DisplayType = field.NewInt32(table, "display_type")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.CreatedUID = field.NewUint64(table, "created_uid")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedUID = field.NewInt64(table, "created_uid")
 	f.CreatedName = field.NewString(table, "created_name")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
-	f.UpdatedUID = field.NewUint64(table, "updated_uid")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.UpdatedUID = field.NewInt64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
 
 	f.fillFieldMap()

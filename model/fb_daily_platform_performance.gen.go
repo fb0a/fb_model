@@ -8,7 +8,7 @@ const TableNameFbDailyPlatformPerformance = "fb_daily_platform_performance"
 
 // FbDailyPlatformPerformance 平台业绩日报表
 type FbDailyPlatformPerformance struct {
-	ID                        uint64 `gorm:"column:id;primaryKey;autoIncrement:true;comment:ID" json:"id"`                                        // ID
+	ID                        int64  `gorm:"column:id;primaryKey;autoIncrement:true;comment:ID" json:"id"`                                        // ID
 	Day                       int32  `gorm:"column:day;not null;comment:年月日" json:"day"`                                                          // 年月日
 	LoginCount                int64  `gorm:"column:login_count;not null;comment:登陆统计" json:"login_count"`                                         // 登陆统计
 	KycCount                  int64  `gorm:"column:kyc_count;not null;comment:kyc统计" json:"kyc_count"`                                            // kyc统计
@@ -21,7 +21,7 @@ type FbDailyPlatformPerformance struct {
 	DepositAverageAmount      string `gorm:"column:deposit_average_amount;not null;default:0;comment:笔均充值金额" json:"deposit_average_amount"`       // 笔均充值金额
 	DepositHandlingFee        string `gorm:"column:deposit_handling_fee;not null;default:0;comment:总充值手续" json:"deposit_handling_fee"`            // 总充值手续
 	WithdrawalsPersonnelCount int64  `gorm:"column:withdrawals_personnel_count;not null;comment:提现人数" json:"withdrawals_personnel_count"`         // 提现人数
-	Withdrawals               int64  `gorm:"column:withdrawals_;not null;comment:成功提现次数" json:"withdrawals_"`                                     // 成功提现次数
+	WithdrawalsNum            int64  `gorm:"column:withdrawals_num;not null;comment:成功提现次数" json:"withdrawals_num"`                               // 成功提现次数
 	WithdrawalAmountTotal     string `gorm:"column:withdrawal_amount_total;not null;default:0;comment:总提现金额" json:"withdrawal_amount_total"`      // 总提现金额
 	TimeRequiredWithdrawals   string `gorm:"column:time_required_withdrawals;not null;default:0;comment:提现用时" json:"time_required_withdrawals"`   // 提现用时
 	WithdrawalAverageAmount   string `gorm:"column:withdrawal_average_amount;not null;default:0;comment:笔均充值金额" json:"withdrawal_average_amount"` // 笔均充值金额
@@ -34,7 +34,8 @@ type FbDailyPlatformPerformance struct {
 	GiftsPayable              string `gorm:"column:gifts_payable;not null;default:0;comment:应发礼金" json:"gifts_payable"`                           // 应发礼金
 	GiftsActuallyPaid         string `gorm:"column:gifts_actually_paid;not null;default:0;comment:实发礼金" json:"gifts_actually_paid"`               // 实发礼金
 	CommissionPayable         string `gorm:"column:commission_payable;not null;default:0;comment:应付佣金" json:"commission_payable"`                 // 应付佣金
-	CreatedAt                 uint64 `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                           // 创建时间
+	CreatedAt                 int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                           // 创建时间
+	ReportType                int32  `gorm:"column:report_type;not null;default:1;comment:1日报，2周报，3月报" json:"report_type"`                        // 1日报，2周报，3月报
 }
 
 // TableName FbDailyPlatformPerformance's table name

@@ -28,13 +28,14 @@ func newFbAdminPriv(db *gorm.DB, opts ...gen.DOOption) fbAdminPriv {
 
 	tableName := _fbAdminPriv.fbAdminPrivDo.TableName()
 	_fbAdminPriv.ALL = field.NewAsterisk(tableName)
-	_fbAdminPriv.ID = field.NewUint64(tableName, "id")
+	_fbAdminPriv.ID = field.NewInt64(tableName, "id")
 	_fbAdminPriv.Name = field.NewString(tableName, "name")
 	_fbAdminPriv.RouteName = field.NewString(tableName, "routeName")
 	_fbAdminPriv.Module = field.NewString(tableName, "module")
 	_fbAdminPriv.Sortlevel = field.NewString(tableName, "sortlevel")
 	_fbAdminPriv.State = field.NewInt32(tableName, "state")
-	_fbAdminPriv.Pid = field.NewUint64(tableName, "pid")
+	_fbAdminPriv.Cmpl = field.NewInt32(tableName, "cmpl")
+	_fbAdminPriv.Pid = field.NewInt64(tableName, "pid")
 	_fbAdminPriv.Flag = field.NewInt32(tableName, "flag")
 
 	_fbAdminPriv.fillFieldMap()
@@ -47,13 +48,14 @@ type fbAdminPriv struct {
 	fbAdminPrivDo
 
 	ALL       field.Asterisk
-	ID        field.Uint64
+	ID        field.Int64
 	Name      field.String // 权限名字
 	RouteName field.String
 	Module    field.String // 模块
 	Sortlevel field.String
 	State     field.Int32 // 1:开启2:关闭3:删除
-	Pid       field.Uint64
+	Cmpl      field.Int32 // 1 合规后台 2管理后台
+	Pid       field.Int64
 	Flag      field.Int32 // 1:普通路由2:按钮路由
 
 	fieldMap map[string]field.Expr
@@ -71,13 +73,14 @@ func (f fbAdminPriv) As(alias string) *fbAdminPriv {
 
 func (f *fbAdminPriv) updateTableName(table string) *fbAdminPriv {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Name = field.NewString(table, "name")
 	f.RouteName = field.NewString(table, "routeName")
 	f.Module = field.NewString(table, "module")
 	f.Sortlevel = field.NewString(table, "sortlevel")
 	f.State = field.NewInt32(table, "state")
-	f.Pid = field.NewUint64(table, "pid")
+	f.Cmpl = field.NewInt32(table, "cmpl")
+	f.Pid = field.NewInt64(table, "pid")
 	f.Flag = field.NewInt32(table, "flag")
 
 	f.fillFieldMap()
@@ -95,13 +98,14 @@ func (f *fbAdminPriv) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (f *fbAdminPriv) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 8)
+	f.fieldMap = make(map[string]field.Expr, 9)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["name"] = f.Name
 	f.fieldMap["routeName"] = f.RouteName
 	f.fieldMap["module"] = f.Module
 	f.fieldMap["sortlevel"] = f.Sortlevel
 	f.fieldMap["state"] = f.State
+	f.fieldMap["cmpl"] = f.Cmpl
 	f.fieldMap["pid"] = f.Pid
 	f.fieldMap["flag"] = f.Flag
 }

@@ -28,8 +28,9 @@ func newFbMembersKyc(db *gorm.DB, opts ...gen.DOOption) fbMembersKyc {
 
 	tableName := _fbMembersKyc.fbMembersKycDo.TableName()
 	_fbMembersKyc.ALL = field.NewAsterisk(tableName)
-	_fbMembersKyc.UID = field.NewUint64(tableName, "uid")
+	_fbMembersKyc.UID = field.NewInt64(tableName, "uid")
 	_fbMembersKyc.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbMembersKyc.CreatedTime = field.NewTime(tableName, "created_time")
 	_fbMembersKyc.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_fbMembersKyc.Phone = field.NewString(tableName, "phone")
 	_fbMembersKyc.FirstName = field.NewString(tableName, "first_name")
@@ -56,6 +57,7 @@ func newFbMembersKyc(db *gorm.DB, opts ...gen.DOOption) fbMembersKyc {
 	_fbMembersKyc.IssueMsg = field.NewString(tableName, "issue_msg")
 	_fbMembersKyc.IssueFields = field.NewString(tableName, "issue_fields")
 	_fbMembersKyc.Status = field.NewString(tableName, "status")
+	_fbMembersKyc.KycStatus = field.NewInt32(tableName, "kyc_status")
 	_fbMembersKyc.Comment = field.NewString(tableName, "comment")
 	_fbMembersKyc.Reviewer = field.NewString(tableName, "reviewer")
 	_fbMembersKyc.ReviewTimes = field.NewInt64(tableName, "review_times")
@@ -63,6 +65,12 @@ func newFbMembersKyc(db *gorm.DB, opts ...gen.DOOption) fbMembersKyc {
 	_fbMembersKyc.Ocr = field.NewString(tableName, "ocr")
 	_fbMembersKyc.ExternalInformation = field.NewString(tableName, "external_information")
 	_fbMembersKyc.Version = field.NewString(tableName, "version")
+	_fbMembersKyc.Source = field.NewString(tableName, "source")
+	_fbMembersKyc.Nickname = field.NewString(tableName, "nickname")
+	_fbMembersKyc.Username = field.NewString(tableName, "username")
+	_fbMembersKyc.RegCreatedAt = field.NewInt64(tableName, "reg_created_at")
+	_fbMembersKyc.RegIP = field.NewString(tableName, "reg_ip")
+	_fbMembersKyc.Sid = field.NewInt32(tableName, "sid")
 
 	_fbMembersKyc.fillFieldMap()
 
@@ -74,8 +82,9 @@ type fbMembersKyc struct {
 	fbMembersKycDo
 
 	ALL                 field.Asterisk
-	UID                 field.Uint64
+	UID                 field.Int64
 	CreatedAt           field.Int64  // 创建时间
+	CreatedTime         field.Time   // 分区时间戳(等于created_at)
 	UpdatedAt           field.Int64  // 创建时间
 	Phone               field.String // 手机号
 	FirstName           field.String // first_name
@@ -102,6 +111,7 @@ type fbMembersKyc struct {
 	IssueMsg            field.String
 	IssueFields         field.String
 	Status              field.String // 状态
+	KycStatus           field.Int32  // 1(初始状态)，2(待审)，3(基础KYC通过),4(完整KYC通过),5(KYC冻结),6(永久拒绝)
 	Comment             field.String
 	Reviewer            field.String
 	ReviewTimes         field.Int64
@@ -109,6 +119,12 @@ type fbMembersKyc struct {
 	Ocr                 field.String
 	ExternalInformation field.String
 	Version             field.String
+	Source              field.String // 渠道来源
+	Nickname            field.String // 会员表昵称
+	Username            field.String // 会员表-用户名称
+	RegCreatedAt        field.Int64  // 注册时间
+	RegIP               field.String // 注册ip
+	Sid                 field.Int32
 
 	fieldMap map[string]field.Expr
 }
@@ -125,8 +141,9 @@ func (f fbMembersKyc) As(alias string) *fbMembersKyc {
 
 func (f *fbMembersKyc) updateTableName(table string) *fbMembersKyc {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewUint64(table, "uid")
+	f.UID = field.NewInt64(table, "uid")
 	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedTime = field.NewTime(table, "created_time")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
 	f.Phone = field.NewString(table, "phone")
 	f.FirstName = field.NewString(table, "first_name")
@@ -153,6 +170,7 @@ func (f *fbMembersKyc) updateTableName(table string) *fbMembersKyc {
 	f.IssueMsg = field.NewString(table, "issue_msg")
 	f.IssueFields = field.NewString(table, "issue_fields")
 	f.Status = field.NewString(table, "status")
+	f.KycStatus = field.NewInt32(table, "kyc_status")
 	f.Comment = field.NewString(table, "comment")
 	f.Reviewer = field.NewString(table, "reviewer")
 	f.ReviewTimes = field.NewInt64(table, "review_times")
@@ -160,6 +178,12 @@ func (f *fbMembersKyc) updateTableName(table string) *fbMembersKyc {
 	f.Ocr = field.NewString(table, "ocr")
 	f.ExternalInformation = field.NewString(table, "external_information")
 	f.Version = field.NewString(table, "version")
+	f.Source = field.NewString(table, "source")
+	f.Nickname = field.NewString(table, "nickname")
+	f.Username = field.NewString(table, "username")
+	f.RegCreatedAt = field.NewInt64(table, "reg_created_at")
+	f.RegIP = field.NewString(table, "reg_ip")
+	f.Sid = field.NewInt32(table, "sid")
 
 	f.fillFieldMap()
 
@@ -176,9 +200,10 @@ func (f *fbMembersKyc) GetFieldByName(fieldName string) (field.OrderExpr, bool) 
 }
 
 func (f *fbMembersKyc) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 35)
+	f.fieldMap = make(map[string]field.Expr, 43)
 	f.fieldMap["uid"] = f.UID
 	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["created_time"] = f.CreatedTime
 	f.fieldMap["updated_at"] = f.UpdatedAt
 	f.fieldMap["phone"] = f.Phone
 	f.fieldMap["first_name"] = f.FirstName
@@ -205,6 +230,7 @@ func (f *fbMembersKyc) fillFieldMap() {
 	f.fieldMap["issue_msg"] = f.IssueMsg
 	f.fieldMap["issue_fields"] = f.IssueFields
 	f.fieldMap["status"] = f.Status
+	f.fieldMap["kyc_status"] = f.KycStatus
 	f.fieldMap["comment"] = f.Comment
 	f.fieldMap["reviewer"] = f.Reviewer
 	f.fieldMap["review_times"] = f.ReviewTimes
@@ -212,6 +238,12 @@ func (f *fbMembersKyc) fillFieldMap() {
 	f.fieldMap["ocr"] = f.Ocr
 	f.fieldMap["external_information"] = f.ExternalInformation
 	f.fieldMap["version"] = f.Version
+	f.fieldMap["source"] = f.Source
+	f.fieldMap["nickname"] = f.Nickname
+	f.fieldMap["username"] = f.Username
+	f.fieldMap["reg_created_at"] = f.RegCreatedAt
+	f.fieldMap["reg_ip"] = f.RegIP
+	f.fieldMap["sid"] = f.Sid
 }
 
 func (f fbMembersKyc) clone(db *gorm.DB) fbMembersKyc {

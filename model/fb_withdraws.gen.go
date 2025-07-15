@@ -8,8 +8,8 @@ const TableNameFbWithdraw = "fb_withdraws"
 
 // FbWithdraw 提款表
 type FbWithdraw struct {
-	ID               uint64  `gorm:"column:id;primaryKey" json:"id"`
-	UID              uint64  `gorm:"column:uid;not null" json:"uid"`
+	ID               int64   `gorm:"column:id;primaryKey" json:"id"`
+	UID              int64   `gorm:"column:uid;not null" json:"uid"`
 	Username         string  `gorm:"column:username;not null;comment:用户名" json:"username"`                     // 用户名
 	Amount           float64 `gorm:"column:amount;not null;comment:金额" json:"amount"`                          // 金额
 	Account          string  `gorm:"column:account;not null;comment:帐号" json:"account"`                        // 帐号
@@ -22,15 +22,22 @@ type FbWithdraw struct {
 	MiddleName       string  `gorm:"column:middle_name;not null;comment:middle_name" json:"middle_name"`       // middle_name
 	LastName         string  `gorm:"column:last_name;not null;comment:last_name" json:"last_name"`             // last_name
 	Status           string  `gorm:"column:status;not null;comment:状态" json:"status"`                          // 状态
-	CreatedAt        uint64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                // 创建时间
-	UpdatedAt        uint64  `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                // 创建时间
+	CreatedAt        int64   `gorm:"column:created_at;primaryKey;comment:创建时间" json:"created_at"`              // 创建时间
+	UpdatedAt        int64   `gorm:"column:updated_at;not null;comment:创建时间" json:"updated_at"`                // 创建时间
 	Reviewer         string  `gorm:"column:reviewer;not null" json:"reviewer"`
 	ReviewedAt       int64   `gorm:"column:reviewed_at;not null" json:"reviewed_at"`
 	Comment          string  `gorm:"column:comment;not null" json:"comment"`
 	CancelReason     string  `gorm:"column:cancel_reason;not null" json:"cancel_reason"`
-	PaymentChannelID uint64  `gorm:"column:payment_channel_id;not null;comment:支付通道id" json:"payment_channel_id"` // 支付通道id
+	PaymentChannelID int64   `gorm:"column:payment_channel_id;not null;comment:支付通道id" json:"payment_channel_id"` // 支付通道id
 	Approval         int32   `gorm:"column:approval;not null;comment:0 待审核 1审核失败 2审核成功 3 自动审核" json:"approval"`   // 0 待审核 1审核失败 2审核成功 3 自动审核
 	Payout           int32   `gorm:"column:payout;not null;comment:0 待出款 1出款中 2出款成功 3 出款失败" json:"payout"`        // 0 待出款 1出款中 2出款成功 3 出款失败
+	ExternalTransID  string  `gorm:"column:external_trans_id;not null;comment:三方订单号" json:"external_trans_id"`    // 三方订单号
+	Phone            string  `gorm:"column:phone;not null" json:"phone"`
+	Sid              int32   `gorm:"column:sid;not null;comment:店铺id" json:"sid"`     // 店铺id
+	Domain           string  `gorm:"column:domain;not null;comment:域名" json:"domain"` // 域名
+	Sq               int64   `gorm:"column:sq;not null" json:"sq"`
+	PaidAmount       float64 `gorm:"column:paid_amount;default:0.0000;comment:到账金额" json:"paid_amount"` // 到账金额
+	Fee              float64 `gorm:"column:fee;default:0.0000;comment:手续费" json:"fee"`                  // 手续费
 }
 
 // TableName FbWithdraw's table name

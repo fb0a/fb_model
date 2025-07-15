@@ -28,8 +28,8 @@ func newFbFinanceAccount(db *gorm.DB, opts ...gen.DOOption) fbFinanceAccount {
 
 	tableName := _fbFinanceAccount.fbFinanceAccountDo.TableName()
 	_fbFinanceAccount.ALL = field.NewAsterisk(tableName)
-	_fbFinanceAccount.ID = field.NewUint64(tableName, "id")
-	_fbFinanceAccount.UID = field.NewUint64(tableName, "uid")
+	_fbFinanceAccount.ID = field.NewInt64(tableName, "id")
+	_fbFinanceAccount.UID = field.NewInt64(tableName, "uid")
 	_fbFinanceAccount.Username = field.NewString(tableName, "username")
 	_fbFinanceAccount.Account = field.NewString(tableName, "account")
 	_fbFinanceAccount.ChannelName = field.NewString(tableName, "channel_name")
@@ -39,9 +39,9 @@ func newFbFinanceAccount(db *gorm.DB, opts ...gen.DOOption) fbFinanceAccount {
 	_fbFinanceAccount.LastName = field.NewString(tableName, "last_name")
 	_fbFinanceAccount.TotalOut = field.NewFloat64(tableName, "total_out")
 	_fbFinanceAccount.Status = field.NewInt32(tableName, "status")
-	_fbFinanceAccount.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbFinanceAccount.UpdatedAt = field.NewUint64(tableName, "updated_at")
-	_fbFinanceAccount.LastUsedAt = field.NewUint64(tableName, "last_used_at")
+	_fbFinanceAccount.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbFinanceAccount.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbFinanceAccount.LastUsedAt = field.NewInt64(tableName, "last_used_at")
 	_fbFinanceAccount.UsedTimes = field.NewInt32(tableName, "used_times")
 
 	_fbFinanceAccount.fillFieldMap()
@@ -54,8 +54,8 @@ type fbFinanceAccount struct {
 	fbFinanceAccountDo
 
 	ALL         field.Asterisk
-	ID          field.Uint64
-	UID         field.Uint64
+	ID          field.Int64
+	UID         field.Int64
 	Username    field.String  // 用户名
 	Account     field.String  // 帐号
 	ChannelName field.String  // 通道名
@@ -65,9 +65,9 @@ type fbFinanceAccount struct {
 	LastName    field.String  // last_name
 	TotalOut    field.Float64 // 总共提款金额
 	Status      field.Int32   // 状态
-	CreatedAt   field.Uint64  // 创建时间
-	UpdatedAt   field.Uint64  // 创建时间
-	LastUsedAt  field.Uint64  // 最后使用时间
+	CreatedAt   field.Int64   // 创建时间
+	UpdatedAt   field.Int64   // 创建时间
+	LastUsedAt  field.Int64   // 最后使用时间
 	UsedTimes   field.Int32   // 使用次数
 
 	fieldMap map[string]field.Expr
@@ -85,8 +85,8 @@ func (f fbFinanceAccount) As(alias string) *fbFinanceAccount {
 
 func (f *fbFinanceAccount) updateTableName(table string) *fbFinanceAccount {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
-	f.UID = field.NewUint64(table, "uid")
+	f.ID = field.NewInt64(table, "id")
+	f.UID = field.NewInt64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.Account = field.NewString(table, "account")
 	f.ChannelName = field.NewString(table, "channel_name")
@@ -96,9 +96,9 @@ func (f *fbFinanceAccount) updateTableName(table string) *fbFinanceAccount {
 	f.LastName = field.NewString(table, "last_name")
 	f.TotalOut = field.NewFloat64(table, "total_out")
 	f.Status = field.NewInt32(table, "status")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
-	f.LastUsedAt = field.NewUint64(table, "last_used_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.LastUsedAt = field.NewInt64(table, "last_used_at")
 	f.UsedTimes = field.NewInt32(table, "used_times")
 
 	f.fillFieldMap()

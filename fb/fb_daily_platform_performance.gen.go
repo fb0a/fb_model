@@ -28,7 +28,7 @@ func newFbDailyPlatformPerformance(db *gorm.DB, opts ...gen.DOOption) fbDailyPla
 
 	tableName := _fbDailyPlatformPerformance.fbDailyPlatformPerformanceDo.TableName()
 	_fbDailyPlatformPerformance.ALL = field.NewAsterisk(tableName)
-	_fbDailyPlatformPerformance.ID = field.NewUint64(tableName, "id")
+	_fbDailyPlatformPerformance.ID = field.NewInt64(tableName, "id")
 	_fbDailyPlatformPerformance.Day = field.NewInt32(tableName, "day")
 	_fbDailyPlatformPerformance.LoginCount = field.NewInt64(tableName, "login_count")
 	_fbDailyPlatformPerformance.KycCount = field.NewInt64(tableName, "kyc_count")
@@ -41,7 +41,7 @@ func newFbDailyPlatformPerformance(db *gorm.DB, opts ...gen.DOOption) fbDailyPla
 	_fbDailyPlatformPerformance.DepositAverageAmount = field.NewString(tableName, "deposit_average_amount")
 	_fbDailyPlatformPerformance.DepositHandlingFee = field.NewString(tableName, "deposit_handling_fee")
 	_fbDailyPlatformPerformance.WithdrawalsPersonnelCount = field.NewInt64(tableName, "withdrawals_personnel_count")
-	_fbDailyPlatformPerformance.Withdrawals = field.NewInt64(tableName, "withdrawals_")
+	_fbDailyPlatformPerformance.WithdrawalsNum = field.NewInt64(tableName, "withdrawals_num")
 	_fbDailyPlatformPerformance.WithdrawalAmountTotal = field.NewString(tableName, "withdrawal_amount_total")
 	_fbDailyPlatformPerformance.TimeRequiredWithdrawals = field.NewString(tableName, "time_required_withdrawals")
 	_fbDailyPlatformPerformance.WithdrawalAverageAmount = field.NewString(tableName, "withdrawal_average_amount")
@@ -54,7 +54,8 @@ func newFbDailyPlatformPerformance(db *gorm.DB, opts ...gen.DOOption) fbDailyPla
 	_fbDailyPlatformPerformance.GiftsPayable = field.NewString(tableName, "gifts_payable")
 	_fbDailyPlatformPerformance.GiftsActuallyPaid = field.NewString(tableName, "gifts_actually_paid")
 	_fbDailyPlatformPerformance.CommissionPayable = field.NewString(tableName, "commission_payable")
-	_fbDailyPlatformPerformance.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbDailyPlatformPerformance.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbDailyPlatformPerformance.ReportType = field.NewInt32(tableName, "report_type")
 
 	_fbDailyPlatformPerformance.fillFieldMap()
 
@@ -66,7 +67,7 @@ type fbDailyPlatformPerformance struct {
 	fbDailyPlatformPerformanceDo
 
 	ALL                       field.Asterisk
-	ID                        field.Uint64 // ID
+	ID                        field.Int64  // ID
 	Day                       field.Int32  // 年月日
 	LoginCount                field.Int64  // 登陆统计
 	KycCount                  field.Int64  // kyc统计
@@ -79,7 +80,7 @@ type fbDailyPlatformPerformance struct {
 	DepositAverageAmount      field.String // 笔均充值金额
 	DepositHandlingFee        field.String // 总充值手续
 	WithdrawalsPersonnelCount field.Int64  // 提现人数
-	Withdrawals               field.Int64  // 成功提现次数
+	WithdrawalsNum            field.Int64  // 成功提现次数
 	WithdrawalAmountTotal     field.String // 总提现金额
 	TimeRequiredWithdrawals   field.String // 提现用时
 	WithdrawalAverageAmount   field.String // 笔均充值金额
@@ -92,7 +93,8 @@ type fbDailyPlatformPerformance struct {
 	GiftsPayable              field.String // 应发礼金
 	GiftsActuallyPaid         field.String // 实发礼金
 	CommissionPayable         field.String // 应付佣金
-	CreatedAt                 field.Uint64 // 创建时间
+	CreatedAt                 field.Int64  // 创建时间
+	ReportType                field.Int32  // 1日报，2周报，3月报
 
 	fieldMap map[string]field.Expr
 }
@@ -109,7 +111,7 @@ func (f fbDailyPlatformPerformance) As(alias string) *fbDailyPlatformPerformance
 
 func (f *fbDailyPlatformPerformance) updateTableName(table string) *fbDailyPlatformPerformance {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
+	f.ID = field.NewInt64(table, "id")
 	f.Day = field.NewInt32(table, "day")
 	f.LoginCount = field.NewInt64(table, "login_count")
 	f.KycCount = field.NewInt64(table, "kyc_count")
@@ -122,7 +124,7 @@ func (f *fbDailyPlatformPerformance) updateTableName(table string) *fbDailyPlatf
 	f.DepositAverageAmount = field.NewString(table, "deposit_average_amount")
 	f.DepositHandlingFee = field.NewString(table, "deposit_handling_fee")
 	f.WithdrawalsPersonnelCount = field.NewInt64(table, "withdrawals_personnel_count")
-	f.Withdrawals = field.NewInt64(table, "withdrawals_")
+	f.WithdrawalsNum = field.NewInt64(table, "withdrawals_num")
 	f.WithdrawalAmountTotal = field.NewString(table, "withdrawal_amount_total")
 	f.TimeRequiredWithdrawals = field.NewString(table, "time_required_withdrawals")
 	f.WithdrawalAverageAmount = field.NewString(table, "withdrawal_average_amount")
@@ -135,7 +137,8 @@ func (f *fbDailyPlatformPerformance) updateTableName(table string) *fbDailyPlatf
 	f.GiftsPayable = field.NewString(table, "gifts_payable")
 	f.GiftsActuallyPaid = field.NewString(table, "gifts_actually_paid")
 	f.CommissionPayable = field.NewString(table, "commission_payable")
-	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.ReportType = field.NewInt32(table, "report_type")
 
 	f.fillFieldMap()
 
@@ -152,7 +155,7 @@ func (f *fbDailyPlatformPerformance) GetFieldByName(fieldName string) (field.Ord
 }
 
 func (f *fbDailyPlatformPerformance) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 27)
+	f.fieldMap = make(map[string]field.Expr, 28)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["day"] = f.Day
 	f.fieldMap["login_count"] = f.LoginCount
@@ -166,7 +169,7 @@ func (f *fbDailyPlatformPerformance) fillFieldMap() {
 	f.fieldMap["deposit_average_amount"] = f.DepositAverageAmount
 	f.fieldMap["deposit_handling_fee"] = f.DepositHandlingFee
 	f.fieldMap["withdrawals_personnel_count"] = f.WithdrawalsPersonnelCount
-	f.fieldMap["withdrawals_"] = f.Withdrawals
+	f.fieldMap["withdrawals_num"] = f.WithdrawalsNum
 	f.fieldMap["withdrawal_amount_total"] = f.WithdrawalAmountTotal
 	f.fieldMap["time_required_withdrawals"] = f.TimeRequiredWithdrawals
 	f.fieldMap["withdrawal_average_amount"] = f.WithdrawalAverageAmount
@@ -180,6 +183,7 @@ func (f *fbDailyPlatformPerformance) fillFieldMap() {
 	f.fieldMap["gifts_actually_paid"] = f.GiftsActuallyPaid
 	f.fieldMap["commission_payable"] = f.CommissionPayable
 	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["report_type"] = f.ReportType
 }
 
 func (f fbDailyPlatformPerformance) clone(db *gorm.DB) fbDailyPlatformPerformance {

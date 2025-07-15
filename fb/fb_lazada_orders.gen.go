@@ -28,21 +28,22 @@ func newFbLazadaOrder(db *gorm.DB, opts ...gen.DOOption) fbLazadaOrder {
 
 	tableName := _fbLazadaOrder.fbLazadaOrderDo.TableName()
 	_fbLazadaOrder.ALL = field.NewAsterisk(tableName)
-	_fbLazadaOrder.OrderID = field.NewUint64(tableName, "order_id")
+	_fbLazadaOrder.OrderID = field.NewInt64(tableName, "order_id")
 	_fbLazadaOrder.OrderStatus = field.NewString(tableName, "order_status")
-	_fbLazadaOrder.ExchangeStatus = field.NewString(tableName, "exchange_status")
 	_fbLazadaOrder.SmsStatus = field.NewString(tableName, "sms_status")
-	_fbLazadaOrder.OrderIn = field.NewString(tableName, "order_in")
-	_fbLazadaOrder.OrderItems = field.NewString(tableName, "order_items")
-	_fbLazadaOrder.ExchangeCode = field.NewString(tableName, "exchange_code")
-	_fbLazadaOrder.Price = field.NewFloat64(tableName, "price")
-	_fbLazadaOrder.DigitalDeliveryInfo = field.NewString(tableName, "digital_delivery_info")
+	_fbLazadaOrder.BuyerID = field.NewString(tableName, "buyer_id")
 	_fbLazadaOrder.BuyerPhoneNumber = field.NewString(tableName, "buyer_phone_number")
+	_fbLazadaOrder.PaidAmount = field.NewFloat64(tableName, "paid_amount")
+	_fbLazadaOrder.PaidAt = field.NewInt64(tableName, "paid_at")
+	_fbLazadaOrder.ExchangeCode = field.NewString(tableName, "exchange_code")
+	_fbLazadaOrder.ExchangeAmount = field.NewFloat64(tableName, "exchange_amount")
+	_fbLazadaOrder.ExchangeStatus = field.NewString(tableName, "exchange_status")
 	_fbLazadaOrder.ExchangerPhoneNumber = field.NewString(tableName, "exchanger_phone_number")
+	_fbLazadaOrder.ExchangerUsername = field.NewString(tableName, "exchanger_username")
 	_fbLazadaOrder.ExchangedAt = field.NewInt64(tableName, "exchanged_at")
-	_fbLazadaOrder.Product = field.NewString(tableName, "product")
-	_fbLazadaOrder.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbLazadaOrder.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_fbLazadaOrder.Log = field.NewString(tableName, "log")
+	_fbLazadaOrder.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbLazadaOrder.UpdatedAt = field.NewInt64(tableName, "updated_at")
 
 	_fbLazadaOrder.fillFieldMap()
 
@@ -53,21 +54,22 @@ type fbLazadaOrder struct {
 	fbLazadaOrderDo
 
 	ALL                  field.Asterisk
-	OrderID              field.Uint64
+	OrderID              field.Int64
 	OrderStatus          field.String
-	ExchangeStatus       field.String
 	SmsStatus            field.String
-	OrderIn              field.String
-	OrderItems           field.String
-	ExchangeCode         field.String
-	Price                field.Float64
-	DigitalDeliveryInfo  field.String
+	BuyerID              field.String
 	BuyerPhoneNumber     field.String
+	PaidAmount           field.Float64
+	PaidAt               field.Int64
+	ExchangeCode         field.String
+	ExchangeAmount       field.Float64
+	ExchangeStatus       field.String
 	ExchangerPhoneNumber field.String
+	ExchangerUsername    field.String
 	ExchangedAt          field.Int64
-	Product              field.String
-	CreatedAt            field.Uint64
-	UpdatedAt            field.Uint64
+	Log                  field.String
+	CreatedAt            field.Int64
+	UpdatedAt            field.Int64
 
 	fieldMap map[string]field.Expr
 }
@@ -84,21 +86,22 @@ func (f fbLazadaOrder) As(alias string) *fbLazadaOrder {
 
 func (f *fbLazadaOrder) updateTableName(table string) *fbLazadaOrder {
 	f.ALL = field.NewAsterisk(table)
-	f.OrderID = field.NewUint64(table, "order_id")
+	f.OrderID = field.NewInt64(table, "order_id")
 	f.OrderStatus = field.NewString(table, "order_status")
-	f.ExchangeStatus = field.NewString(table, "exchange_status")
 	f.SmsStatus = field.NewString(table, "sms_status")
-	f.OrderIn = field.NewString(table, "order_in")
-	f.OrderItems = field.NewString(table, "order_items")
-	f.ExchangeCode = field.NewString(table, "exchange_code")
-	f.Price = field.NewFloat64(table, "price")
-	f.DigitalDeliveryInfo = field.NewString(table, "digital_delivery_info")
+	f.BuyerID = field.NewString(table, "buyer_id")
 	f.BuyerPhoneNumber = field.NewString(table, "buyer_phone_number")
+	f.PaidAmount = field.NewFloat64(table, "paid_amount")
+	f.PaidAt = field.NewInt64(table, "paid_at")
+	f.ExchangeCode = field.NewString(table, "exchange_code")
+	f.ExchangeAmount = field.NewFloat64(table, "exchange_amount")
+	f.ExchangeStatus = field.NewString(table, "exchange_status")
 	f.ExchangerPhoneNumber = field.NewString(table, "exchanger_phone_number")
+	f.ExchangerUsername = field.NewString(table, "exchanger_username")
 	f.ExchangedAt = field.NewInt64(table, "exchanged_at")
-	f.Product = field.NewString(table, "product")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
+	f.Log = field.NewString(table, "log")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 
 	f.fillFieldMap()
 
@@ -115,20 +118,21 @@ func (f *fbLazadaOrder) GetFieldByName(fieldName string) (field.OrderExpr, bool)
 }
 
 func (f *fbLazadaOrder) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 15)
+	f.fieldMap = make(map[string]field.Expr, 16)
 	f.fieldMap["order_id"] = f.OrderID
 	f.fieldMap["order_status"] = f.OrderStatus
-	f.fieldMap["exchange_status"] = f.ExchangeStatus
 	f.fieldMap["sms_status"] = f.SmsStatus
-	f.fieldMap["order_in"] = f.OrderIn
-	f.fieldMap["order_items"] = f.OrderItems
-	f.fieldMap["exchange_code"] = f.ExchangeCode
-	f.fieldMap["price"] = f.Price
-	f.fieldMap["digital_delivery_info"] = f.DigitalDeliveryInfo
+	f.fieldMap["buyer_id"] = f.BuyerID
 	f.fieldMap["buyer_phone_number"] = f.BuyerPhoneNumber
+	f.fieldMap["paid_amount"] = f.PaidAmount
+	f.fieldMap["paid_at"] = f.PaidAt
+	f.fieldMap["exchange_code"] = f.ExchangeCode
+	f.fieldMap["exchange_amount"] = f.ExchangeAmount
+	f.fieldMap["exchange_status"] = f.ExchangeStatus
 	f.fieldMap["exchanger_phone_number"] = f.ExchangerPhoneNumber
+	f.fieldMap["exchanger_username"] = f.ExchangerUsername
 	f.fieldMap["exchanged_at"] = f.ExchangedAt
-	f.fieldMap["product"] = f.Product
+	f.fieldMap["log"] = f.Log
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
 }

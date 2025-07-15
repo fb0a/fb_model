@@ -8,8 +8,8 @@ const TableNameFbAdmin = "fb_admins"
 
 // FbAdmin 后台账户表
 type FbAdmin struct {
-	ID            uint64 `gorm:"column:id;primaryKey" json:"id"`
-	GroupID       uint64 `gorm:"column:group_id;not null;comment:用户组id" json:"group_id"`          // 用户组id
+	ID            int64  `gorm:"column:id;primaryKey" json:"id"`
+	GroupID       int64  `gorm:"column:group_id;not null;comment:用户组id" json:"group_id"`          // 用户组id
 	Nickname      string `gorm:"column:nickname;not null;comment:nickname" json:"nickname"`       // nickname
 	Avatar        string `gorm:"column:avatar;not null;comment:头像" json:"avatar"`                 // 头像
 	Email         string `gorm:"column:email;not null;comment:邮箱" json:"email"`                   // 邮箱
@@ -18,6 +18,7 @@ type FbAdmin struct {
 	LastLoginTime int64  `gorm:"column:last_login_time;not null;comment:登陆时间" json:"last_login_time"`   // 登陆时间
 	Roles         string `gorm:"column:roles;not null;comment:角色" json:"roles"`                         // 角色
 	Status        int32  `gorm:"column:status;not null;default:1;comment:1正常，2禁用" json:"status"`        // 1正常，2禁用
+	Cmpl          int32  `gorm:"column:cmpl;not null;default:2;comment:1 合规后台 2管理后台" json:"cmpl"`       // 1 合规后台 2管理后台
 	UpdatedAt     int64  `gorm:"column:updated_at;not null;comment:修改时间" json:"updated_at"`             // 修改时间
 	CreatedAt     int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`             // 创建时间
 	GoogleSecret  string `gorm:"column:google_secret;not null;comment:google验证密钥" json:"google_secret"` // google验证密钥
@@ -26,6 +27,8 @@ type FbAdmin struct {
 	OperatorName  string `gorm:"column:operator_name;not null" json:"operator_name"`
 	CreateName    string `gorm:"column:create_name" json:"create_name"`
 	PwdEditTime   int64  `gorm:"column:pwd_edit_time;not null" json:"pwd_edit_time"`
+	Stores        string `gorm:"column:stores;not null;comment:门店" json:"stores"` // 门店
+	Sid           int32  `gorm:"column:sid;not null;comment:门店id" json:"sid"`     // 门店id
 }
 
 // TableName FbAdmin's table name

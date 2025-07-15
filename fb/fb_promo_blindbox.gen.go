@@ -28,19 +28,20 @@ func newFbPromoBlindbox(db *gorm.DB, opts ...gen.DOOption) fbPromoBlindbox {
 
 	tableName := _fbPromoBlindbox.fbPromoBlindboxDo.TableName()
 	_fbPromoBlindbox.ALL = field.NewAsterisk(tableName)
-	_fbPromoBlindbox.ID = field.NewUint64(tableName, "id")
-	_fbPromoBlindbox.UID = field.NewUint64(tableName, "uid")
+	_fbPromoBlindbox.ID = field.NewInt64(tableName, "id")
+	_fbPromoBlindbox.UID = field.NewInt64(tableName, "uid")
 	_fbPromoBlindbox.Username = field.NewString(tableName, "username")
-	_fbPromoBlindbox.ParentUID = field.NewUint64(tableName, "parent_uid")
+	_fbPromoBlindbox.Phone = field.NewString(tableName, "phone")
+	_fbPromoBlindbox.ParentUID = field.NewString(tableName, "parent_uid")
 	_fbPromoBlindbox.ParentName = field.NewString(tableName, "parent_name")
-	_fbPromoBlindbox.Pid = field.NewUint64(tableName, "pid")
+	_fbPromoBlindbox.Pid = field.NewInt64(tableName, "pid")
 	_fbPromoBlindbox.Bonus = field.NewFloat64(tableName, "bonus")
 	_fbPromoBlindbox.BetAmount = field.NewFloat64(tableName, "bet_amount")
 	_fbPromoBlindbox.NetAmount = field.NewFloat64(tableName, "net_amount")
 	_fbPromoBlindbox.State = field.NewInt32(tableName, "state")
 	_fbPromoBlindbox.BonusRate = field.NewFloat64(tableName, "bonus_rate")
-	_fbPromoBlindbox.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbPromoBlindbox.UpdatedAt = field.NewUint64(tableName, "updated_at")
+	_fbPromoBlindbox.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbPromoBlindbox.UpdatedAt = field.NewInt64(tableName, "updated_at")
 	_fbPromoBlindbox.Ymd = field.NewInt32(tableName, "ymd")
 
 	_fbPromoBlindbox.fillFieldMap()
@@ -53,19 +54,20 @@ type fbPromoBlindbox struct {
 	fbPromoBlindboxDo
 
 	ALL        field.Asterisk
-	ID         field.Uint64
-	UID        field.Uint64  // 用户ID
+	ID         field.Int64
+	UID        field.Int64   // 用户ID
 	Username   field.String  // 用户名
-	ParentUID  field.Uint64  // 上级UID
+	Phone      field.String  // 手机号
+	ParentUID  field.String  // 上级UID
 	ParentName field.String  // 上级用户名
-	Pid        field.Uint64  // 活动ID
+	Pid        field.Int64   // 活动ID
 	Bonus      field.Float64 // 奖金金额
 	BetAmount  field.Float64 // 投注金额
 	NetAmount  field.Float64
 	State      field.Int32   // 状态 1:未领取 2:已领取 3:已过期 4:待审核
 	BonusRate  field.Float64 // 奖金比例(0.001-0.002之间)
-	CreatedAt  field.Uint64  // 创建时间
-	UpdatedAt  field.Uint64  // 更新时间
+	CreatedAt  field.Int64   // 创建时间
+	UpdatedAt  field.Int64   // 更新时间
 	Ymd        field.Int32   // 20060102
 
 	fieldMap map[string]field.Expr
@@ -83,19 +85,20 @@ func (f fbPromoBlindbox) As(alias string) *fbPromoBlindbox {
 
 func (f *fbPromoBlindbox) updateTableName(table string) *fbPromoBlindbox {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
-	f.UID = field.NewUint64(table, "uid")
+	f.ID = field.NewInt64(table, "id")
+	f.UID = field.NewInt64(table, "uid")
 	f.Username = field.NewString(table, "username")
-	f.ParentUID = field.NewUint64(table, "parent_uid")
+	f.Phone = field.NewString(table, "phone")
+	f.ParentUID = field.NewString(table, "parent_uid")
 	f.ParentName = field.NewString(table, "parent_name")
-	f.Pid = field.NewUint64(table, "pid")
+	f.Pid = field.NewInt64(table, "pid")
 	f.Bonus = field.NewFloat64(table, "bonus")
 	f.BetAmount = field.NewFloat64(table, "bet_amount")
 	f.NetAmount = field.NewFloat64(table, "net_amount")
 	f.State = field.NewInt32(table, "state")
 	f.BonusRate = field.NewFloat64(table, "bonus_rate")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
 	f.Ymd = field.NewInt32(table, "ymd")
 
 	f.fillFieldMap()
@@ -113,10 +116,11 @@ func (f *fbPromoBlindbox) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (f *fbPromoBlindbox) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 14)
+	f.fieldMap = make(map[string]field.Expr, 15)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["uid"] = f.UID
 	f.fieldMap["username"] = f.Username
+	f.fieldMap["phone"] = f.Phone
 	f.fieldMap["parent_uid"] = f.ParentUID
 	f.fieldMap["parent_name"] = f.ParentName
 	f.fieldMap["pid"] = f.Pid

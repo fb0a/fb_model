@@ -28,7 +28,7 @@ func newFbMember(db *gorm.DB, opts ...gen.DOOption) fbMember {
 
 	tableName := _fbMember.fbMemberDo.TableName()
 	_fbMember.ALL = field.NewAsterisk(tableName)
-	_fbMember.UID = field.NewUint64(tableName, "uid")
+	_fbMember.UID = field.NewInt64(tableName, "uid")
 	_fbMember.Username = field.NewString(tableName, "username")
 	_fbMember.WithdrawTotal = field.NewFloat64(tableName, "withdraw_total")
 	_fbMember.WithdrawCount = field.NewInt32(tableName, "withdraw_count")
@@ -52,13 +52,14 @@ func newFbMember(db *gorm.DB, opts ...gen.DOOption) fbMember {
 	_fbMember.DeviceNumber = field.NewString(tableName, "device_number")
 	_fbMember.State = field.NewInt32(tableName, "state")
 	_fbMember.Note = field.NewString(tableName, "note")
-	_fbMember.CreatedAt = field.NewUint64(tableName, "created_at")
+	_fbMember.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbMember.CreatedTime = field.NewTime(tableName, "created_time")
 	_fbMember.CreatedIP = field.NewString(tableName, "created_ip")
 	_fbMember.RegIP = field.NewString(tableName, "reg_ip")
 	_fbMember.RegDevice = field.NewInt32(tableName, "reg_device")
 	_fbMember.RegDeviceNo = field.NewString(tableName, "reg_device_no")
 	_fbMember.LastLoginIP = field.NewString(tableName, "last_login_ip")
-	_fbMember.LastLoginAt = field.NewUint64(tableName, "last_login_at")
+	_fbMember.LastLoginAt = field.NewInt64(tableName, "last_login_at")
 	_fbMember.LastLoginDevice = field.NewInt32(tableName, "last_login_device")
 	_fbMember.NickName = field.NewString(tableName, "nick_name")
 	_fbMember.UpdatedAt = field.NewInt64(tableName, "updated_at")
@@ -69,6 +70,15 @@ func newFbMember(db *gorm.DB, opts ...gen.DOOption) fbMember {
 	_fbMember.SecondDeposit = field.NewInt64(tableName, "second_deposit")
 	_fbMember.ThirdDeposit = field.NewInt64(tableName, "third_deposit")
 	_fbMember.Source = field.NewString(tableName, "source")
+	_fbMember.Balance = field.NewFloat64(tableName, "balance")
+	_fbMember.KycStatus = field.NewInt32(tableName, "kyc_status")
+	_fbMember.Sid = field.NewInt32(tableName, "sid")
+	_fbMember.Domain = field.NewString(tableName, "domain")
+	_fbMember.Xp = field.NewFloat64(tableName, "xp")
+	_fbMember.VipBetAmount = field.NewFloat64(tableName, "vip_bet_amount")
+	_fbMember.AdID = field.NewInt64(tableName, "ad_id")
+	_fbMember.AdcID = field.NewString(tableName, "adc_id")
+	_fbMember.TokensBalance = field.NewFloat64(tableName, "tokens_balance")
 
 	_fbMember.fillFieldMap()
 
@@ -80,7 +90,7 @@ type fbMember struct {
 	fbMemberDo
 
 	ALL             field.Asterisk
-	UID             field.Uint64
+	UID             field.Int64
 	Username        field.String  // 用户名
 	WithdrawTotal   field.Float64 // 提现总数
 	WithdrawCount   field.Int32   // 提现次数
@@ -104,13 +114,14 @@ type fbMember struct {
 	DeviceNumber    field.String // 登录设备号
 	State           field.Int32  // 会员状态，0=正常 1=停用
 	Note            field.String // 账号备注
-	CreatedAt       field.Uint64 // 创建时间
+	CreatedAt       field.Int64  // 创建时间
+	CreatedTime     field.Time   // 分区时间戳(等于created_at)
 	CreatedIP       field.String // 创建ip
 	RegIP           field.String // 注册IP
 	RegDevice       field.Int32  // 注册设备
 	RegDeviceNo     field.String // 注册设备号
 	LastLoginIP     field.String // 登陆IP
-	LastLoginAt     field.Uint64 // 登陆时间
+	LastLoginAt     field.Int64  // 登陆时间
 	LastLoginDevice field.Int32  // 登陆设备
 	NickName        field.String
 	UpdatedAt       field.Int64
@@ -121,6 +132,15 @@ type fbMember struct {
 	SecondDeposit   field.Int64
 	ThirdDeposit    field.Int64
 	Source          field.String
+	Balance         field.Float64 // 余额
+	KycStatus       field.Int32   // 1.Basic Account,2.Basic KYC,3.Under Review,4.Reject KYC,5.Fully KYC,6.Frozen,7.Block,8.Test Account
+	Sid             field.Int32   // 店铺id
+	Domain          field.String  // 域名
+	Xp              field.Float64 // vip经验值
+	VipBetAmount    field.Float64 // 升级到当前vip等级时的投注额
+	AdID            field.Int64   // 广告ID
+	AdcID           field.String  // 广告三方客户ID
+	TokensBalance   field.Float64
 
 	fieldMap map[string]field.Expr
 }
@@ -137,7 +157,7 @@ func (f fbMember) As(alias string) *fbMember {
 
 func (f *fbMember) updateTableName(table string) *fbMember {
 	f.ALL = field.NewAsterisk(table)
-	f.UID = field.NewUint64(table, "uid")
+	f.UID = field.NewInt64(table, "uid")
 	f.Username = field.NewString(table, "username")
 	f.WithdrawTotal = field.NewFloat64(table, "withdraw_total")
 	f.WithdrawCount = field.NewInt32(table, "withdraw_count")
@@ -161,13 +181,14 @@ func (f *fbMember) updateTableName(table string) *fbMember {
 	f.DeviceNumber = field.NewString(table, "device_number")
 	f.State = field.NewInt32(table, "state")
 	f.Note = field.NewString(table, "note")
-	f.CreatedAt = field.NewUint64(table, "created_at")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.CreatedTime = field.NewTime(table, "created_time")
 	f.CreatedIP = field.NewString(table, "created_ip")
 	f.RegIP = field.NewString(table, "reg_ip")
 	f.RegDevice = field.NewInt32(table, "reg_device")
 	f.RegDeviceNo = field.NewString(table, "reg_device_no")
 	f.LastLoginIP = field.NewString(table, "last_login_ip")
-	f.LastLoginAt = field.NewUint64(table, "last_login_at")
+	f.LastLoginAt = field.NewInt64(table, "last_login_at")
 	f.LastLoginDevice = field.NewInt32(table, "last_login_device")
 	f.NickName = field.NewString(table, "nick_name")
 	f.UpdatedAt = field.NewInt64(table, "updated_at")
@@ -178,6 +199,15 @@ func (f *fbMember) updateTableName(table string) *fbMember {
 	f.SecondDeposit = field.NewInt64(table, "second_deposit")
 	f.ThirdDeposit = field.NewInt64(table, "third_deposit")
 	f.Source = field.NewString(table, "source")
+	f.Balance = field.NewFloat64(table, "balance")
+	f.KycStatus = field.NewInt32(table, "kyc_status")
+	f.Sid = field.NewInt32(table, "sid")
+	f.Domain = field.NewString(table, "domain")
+	f.Xp = field.NewFloat64(table, "xp")
+	f.VipBetAmount = field.NewFloat64(table, "vip_bet_amount")
+	f.AdID = field.NewInt64(table, "ad_id")
+	f.AdcID = field.NewString(table, "adc_id")
+	f.TokensBalance = field.NewFloat64(table, "tokens_balance")
 
 	f.fillFieldMap()
 
@@ -194,7 +224,7 @@ func (f *fbMember) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (f *fbMember) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 41)
+	f.fieldMap = make(map[string]field.Expr, 51)
 	f.fieldMap["uid"] = f.UID
 	f.fieldMap["username"] = f.Username
 	f.fieldMap["withdraw_total"] = f.WithdrawTotal
@@ -220,6 +250,7 @@ func (f *fbMember) fillFieldMap() {
 	f.fieldMap["state"] = f.State
 	f.fieldMap["note"] = f.Note
 	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["created_time"] = f.CreatedTime
 	f.fieldMap["created_ip"] = f.CreatedIP
 	f.fieldMap["reg_ip"] = f.RegIP
 	f.fieldMap["reg_device"] = f.RegDevice
@@ -236,6 +267,15 @@ func (f *fbMember) fillFieldMap() {
 	f.fieldMap["second_deposit"] = f.SecondDeposit
 	f.fieldMap["third_deposit"] = f.ThirdDeposit
 	f.fieldMap["source"] = f.Source
+	f.fieldMap["balance"] = f.Balance
+	f.fieldMap["kyc_status"] = f.KycStatus
+	f.fieldMap["sid"] = f.Sid
+	f.fieldMap["domain"] = f.Domain
+	f.fieldMap["xp"] = f.Xp
+	f.fieldMap["vip_bet_amount"] = f.VipBetAmount
+	f.fieldMap["ad_id"] = f.AdID
+	f.fieldMap["adc_id"] = f.AdcID
+	f.fieldMap["tokens_balance"] = f.TokensBalance
 }
 
 func (f fbMember) clone(db *gorm.DB) fbMember {

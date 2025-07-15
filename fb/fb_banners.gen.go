@@ -28,21 +28,27 @@ func newFbBanner(db *gorm.DB, opts ...gen.DOOption) fbBanner {
 
 	tableName := _fbBanner.fbBannerDo.TableName()
 	_fbBanner.ALL = field.NewAsterisk(tableName)
-	_fbBanner.ID = field.NewUint64(tableName, "id")
-	_fbBanner.Type = field.NewInt32(tableName, "type")
-	_fbBanner.Tags = field.NewString(tableName, "tags")
+	_fbBanner.ID = field.NewInt64(tableName, "id")
 	_fbBanner.URL = field.NewString(tableName, "url")
-	_fbBanner.LinkPc = field.NewString(tableName, "link_pc")
+	_fbBanner.LinkType = field.NewInt32(tableName, "link_type")
 	_fbBanner.LinkH5 = field.NewString(tableName, "link_h5")
 	_fbBanner.LinkApp = field.NewString(tableName, "link_app")
 	_fbBanner.BackColor = field.NewString(tableName, "back_color")
+	_fbBanner.StartTime = field.NewInt64(tableName, "start_time")
+	_fbBanner.EndTime = field.NewInt64(tableName, "end_time")
 	_fbBanner.State = field.NewInt32(tableName, "state")
 	_fbBanner.Seq = field.NewInt32(tableName, "seq")
+	_fbBanner.Ty = field.NewString(tableName, "ty")
+	_fbBanner.Category = field.NewString(tableName, "category")
+	_fbBanner.Remark = field.NewString(tableName, "remark")
 	_fbBanner.IsDelete = field.NewInt32(tableName, "is_delete")
 	_fbBanner.CreatedAt = field.NewInt32(tableName, "created_at")
-	_fbBanner.UpdatedAt = field.NewUint64(tableName, "updated_at")
-	_fbBanner.UpdatedUID = field.NewUint64(tableName, "updated_uid")
+	_fbBanner.CreatedUID = field.NewInt64(tableName, "created_uid")
+	_fbBanner.CreatedName = field.NewString(tableName, "created_name")
+	_fbBanner.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbBanner.UpdatedUID = field.NewInt64(tableName, "updated_uid")
 	_fbBanner.UpdatedName = field.NewString(tableName, "updated_name")
+	_fbBanner.Content = field.NewString(tableName, "content")
 
 	_fbBanner.fillFieldMap()
 
@@ -54,21 +60,27 @@ type fbBanner struct {
 	fbBannerDo
 
 	ALL         field.Asterisk
-	ID          field.Uint64
-	Type        field.Int32  // 轮播图类型
-	Tags        field.String // 轮播图标签
+	ID          field.Int64
 	URL         field.String // 轮播图图片路径
-	LinkPc      field.String // 轮播图跳转链接(PC)
+	LinkType    field.Int32  // 链接类型 1网页链接 2公网链接
 	LinkH5      field.String // 轮播图跳转链接(H5)
 	LinkApp     field.String // 轮播图跳转链接(APP)
 	BackColor   field.String // 轮播图背景色
+	StartTime   field.Int64  // 展示开始时间
+	EndTime     field.Int64  // 展示结束时间
 	State       field.Int32  // 状态 1上线 2下线
 	Seq         field.Int32  // 排序
+	Ty          field.String
+	Category    field.String
+	Remark      field.String // 用途说明
 	IsDelete    field.Int32  // 删除状态 1已删除 2正常
 	CreatedAt   field.Int32  // 添加时间
-	UpdatedAt   field.Uint64 // 更新时间
-	UpdatedUID  field.Uint64 // 更新人uid
-	UpdatedName field.String // 更新人名
+	CreatedUID  field.Int64  // 创建人uid
+	CreatedName field.String // 创建人名
+	UpdatedAt   field.Int64  // 维护时间
+	UpdatedUID  field.Int64  // 维护人uid
+	UpdatedName field.String // 维护人名
+	Content     field.String
 
 	fieldMap map[string]field.Expr
 }
@@ -85,21 +97,27 @@ func (f fbBanner) As(alias string) *fbBanner {
 
 func (f *fbBanner) updateTableName(table string) *fbBanner {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
-	f.Type = field.NewInt32(table, "type")
-	f.Tags = field.NewString(table, "tags")
+	f.ID = field.NewInt64(table, "id")
 	f.URL = field.NewString(table, "url")
-	f.LinkPc = field.NewString(table, "link_pc")
+	f.LinkType = field.NewInt32(table, "link_type")
 	f.LinkH5 = field.NewString(table, "link_h5")
 	f.LinkApp = field.NewString(table, "link_app")
 	f.BackColor = field.NewString(table, "back_color")
+	f.StartTime = field.NewInt64(table, "start_time")
+	f.EndTime = field.NewInt64(table, "end_time")
 	f.State = field.NewInt32(table, "state")
 	f.Seq = field.NewInt32(table, "seq")
+	f.Ty = field.NewString(table, "ty")
+	f.Category = field.NewString(table, "category")
+	f.Remark = field.NewString(table, "remark")
 	f.IsDelete = field.NewInt32(table, "is_delete")
 	f.CreatedAt = field.NewInt32(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
-	f.UpdatedUID = field.NewUint64(table, "updated_uid")
+	f.CreatedUID = field.NewInt64(table, "created_uid")
+	f.CreatedName = field.NewString(table, "created_name")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.UpdatedUID = field.NewInt64(table, "updated_uid")
 	f.UpdatedName = field.NewString(table, "updated_name")
+	f.Content = field.NewString(table, "content")
 
 	f.fillFieldMap()
 
@@ -116,22 +134,28 @@ func (f *fbBanner) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (f *fbBanner) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 15)
+	f.fieldMap = make(map[string]field.Expr, 21)
 	f.fieldMap["id"] = f.ID
-	f.fieldMap["type"] = f.Type
-	f.fieldMap["tags"] = f.Tags
 	f.fieldMap["url"] = f.URL
-	f.fieldMap["link_pc"] = f.LinkPc
+	f.fieldMap["link_type"] = f.LinkType
 	f.fieldMap["link_h5"] = f.LinkH5
 	f.fieldMap["link_app"] = f.LinkApp
 	f.fieldMap["back_color"] = f.BackColor
+	f.fieldMap["start_time"] = f.StartTime
+	f.fieldMap["end_time"] = f.EndTime
 	f.fieldMap["state"] = f.State
 	f.fieldMap["seq"] = f.Seq
+	f.fieldMap["ty"] = f.Ty
+	f.fieldMap["category"] = f.Category
+	f.fieldMap["remark"] = f.Remark
 	f.fieldMap["is_delete"] = f.IsDelete
 	f.fieldMap["created_at"] = f.CreatedAt
+	f.fieldMap["created_uid"] = f.CreatedUID
+	f.fieldMap["created_name"] = f.CreatedName
 	f.fieldMap["updated_at"] = f.UpdatedAt
 	f.fieldMap["updated_uid"] = f.UpdatedUID
 	f.fieldMap["updated_name"] = f.UpdatedName
+	f.fieldMap["content"] = f.Content
 }
 
 func (f fbBanner) clone(db *gorm.DB) fbBanner {

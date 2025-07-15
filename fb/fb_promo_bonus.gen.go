@@ -28,22 +28,23 @@ func newFbPromoBonu(db *gorm.DB, opts ...gen.DOOption) fbPromoBonu {
 
 	tableName := _fbPromoBonu.fbPromoBonuDo.TableName()
 	_fbPromoBonu.ALL = field.NewAsterisk(tableName)
-	_fbPromoBonu.ID = field.NewUint64(tableName, "id")
-	_fbPromoBonu.UID = field.NewUint64(tableName, "uid")
+	_fbPromoBonu.ID = field.NewInt64(tableName, "id")
+	_fbPromoBonu.UID = field.NewInt64(tableName, "uid")
 	_fbPromoBonu.Username = field.NewString(tableName, "username")
-	_fbPromoBonu.ParentUID = field.NewUint64(tableName, "parent_uid")
+	_fbPromoBonu.ParentUID = field.NewString(tableName, "parent_uid")
 	_fbPromoBonu.ParentName = field.NewString(tableName, "parent_name")
-	_fbPromoBonu.ActivityID = field.NewUint64(tableName, "activity_id")
+	_fbPromoBonu.ActivityID = field.NewInt64(tableName, "activity_id")
 	_fbPromoBonu.CashType = field.NewInt32(tableName, "cash_type")
-	_fbPromoBonu.CurrencyID = field.NewInt32(tableName, "currency_id")
 	_fbPromoBonu.Bonus = field.NewFloat64(tableName, "bonus")
-	_fbPromoBonu.Rate = field.NewFloat64(tableName, "rate")
 	_fbPromoBonu.Multiple = field.NewFloat64(tableName, "multiple")
-	_fbPromoBonu.TurnoverAmount = field.NewFloat64(tableName, "turnover_amount")
-	_fbPromoBonu.State = field.NewInt32(tableName, "state")
-	_fbPromoBonu.CreatedAt = field.NewUint64(tableName, "created_at")
-	_fbPromoBonu.UpdatedAt = field.NewUint64(tableName, "updated_at")
-	_fbPromoBonu.BetBillNo = field.NewString(tableName, "bet_bill_no")
+	_fbPromoBonu.CreatedAt = field.NewInt64(tableName, "created_at")
+	_fbPromoBonu.UpdatedAt = field.NewInt64(tableName, "updated_at")
+	_fbPromoBonu.ReviewAt = field.NewInt64(tableName, "review_at")
+	_fbPromoBonu.ReviewState = field.NewInt32(tableName, "review_state")
+	_fbPromoBonu.ReviewUID = field.NewInt64(tableName, "review_uid")
+	_fbPromoBonu.ReviewName = field.NewString(tableName, "review_name")
+	_fbPromoBonu.Remark = field.NewString(tableName, "remark")
+	_fbPromoBonu.CreatedName = field.NewString(tableName, "created_name")
 
 	_fbPromoBonu.fillFieldMap()
 
@@ -54,23 +55,24 @@ func newFbPromoBonu(db *gorm.DB, opts ...gen.DOOption) fbPromoBonu {
 type fbPromoBonu struct {
 	fbPromoBonuDo
 
-	ALL            field.Asterisk
-	ID             field.Uint64
-	UID            field.Uint64  // 用户ID
-	Username       field.String  // 用户名
-	ParentUID      field.Uint64  // 上级UID
-	ParentName     field.String  // 上级用户名
-	ActivityID     field.Uint64  // 活动ID
-	CashType       field.Int32   // 活动类型
-	CurrencyID     field.Int32   // 币种id
-	Bonus          field.Float64 // 活动奖金金额
-	Rate           field.Float64 // 汇率
-	Multiple       field.Float64 // 打码倍数
-	TurnoverAmount field.Float64 // 流水金额
-	State          field.Int32   // 状态 1:未完成 2:可提现
-	CreatedAt      field.Uint64  // 创建时间
-	UpdatedAt      field.Uint64  // 更新时间
-	BetBillNo      field.String
+	ALL         field.Asterisk
+	ID          field.Int64
+	UID         field.Int64   // 用户ID
+	Username    field.String  // 用户名
+	ParentUID   field.String  // 上级UID
+	ParentName  field.String  // 上级用户名
+	ActivityID  field.Int64   // 活动ID
+	CashType    field.Int32   // 活动类型
+	Bonus       field.Float64 // 活动奖金金额
+	Multiple    field.Float64 // 打码倍数
+	CreatedAt   field.Int64   // 创建时间
+	UpdatedAt   field.Int64   // 更新时间
+	ReviewAt    field.Int64   // 审核时间
+	ReviewState field.Int32   // 1待审核 2已领取 3已失效 4已审核 5审核拒绝
+	ReviewUID   field.Int64   // 审核人uid
+	ReviewName  field.String  // 审核人
+	Remark      field.String  // 审核备注
+	CreatedName field.String  // 创建人
 
 	fieldMap map[string]field.Expr
 }
@@ -87,22 +89,23 @@ func (f fbPromoBonu) As(alias string) *fbPromoBonu {
 
 func (f *fbPromoBonu) updateTableName(table string) *fbPromoBonu {
 	f.ALL = field.NewAsterisk(table)
-	f.ID = field.NewUint64(table, "id")
-	f.UID = field.NewUint64(table, "uid")
+	f.ID = field.NewInt64(table, "id")
+	f.UID = field.NewInt64(table, "uid")
 	f.Username = field.NewString(table, "username")
-	f.ParentUID = field.NewUint64(table, "parent_uid")
+	f.ParentUID = field.NewString(table, "parent_uid")
 	f.ParentName = field.NewString(table, "parent_name")
-	f.ActivityID = field.NewUint64(table, "activity_id")
+	f.ActivityID = field.NewInt64(table, "activity_id")
 	f.CashType = field.NewInt32(table, "cash_type")
-	f.CurrencyID = field.NewInt32(table, "currency_id")
 	f.Bonus = field.NewFloat64(table, "bonus")
-	f.Rate = field.NewFloat64(table, "rate")
 	f.Multiple = field.NewFloat64(table, "multiple")
-	f.TurnoverAmount = field.NewFloat64(table, "turnover_amount")
-	f.State = field.NewInt32(table, "state")
-	f.CreatedAt = field.NewUint64(table, "created_at")
-	f.UpdatedAt = field.NewUint64(table, "updated_at")
-	f.BetBillNo = field.NewString(table, "bet_bill_no")
+	f.CreatedAt = field.NewInt64(table, "created_at")
+	f.UpdatedAt = field.NewInt64(table, "updated_at")
+	f.ReviewAt = field.NewInt64(table, "review_at")
+	f.ReviewState = field.NewInt32(table, "review_state")
+	f.ReviewUID = field.NewInt64(table, "review_uid")
+	f.ReviewName = field.NewString(table, "review_name")
+	f.Remark = field.NewString(table, "remark")
+	f.CreatedName = field.NewString(table, "created_name")
 
 	f.fillFieldMap()
 
@@ -119,7 +122,7 @@ func (f *fbPromoBonu) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (f *fbPromoBonu) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 16)
+	f.fieldMap = make(map[string]field.Expr, 17)
 	f.fieldMap["id"] = f.ID
 	f.fieldMap["uid"] = f.UID
 	f.fieldMap["username"] = f.Username
@@ -127,15 +130,16 @@ func (f *fbPromoBonu) fillFieldMap() {
 	f.fieldMap["parent_name"] = f.ParentName
 	f.fieldMap["activity_id"] = f.ActivityID
 	f.fieldMap["cash_type"] = f.CashType
-	f.fieldMap["currency_id"] = f.CurrencyID
 	f.fieldMap["bonus"] = f.Bonus
-	f.fieldMap["rate"] = f.Rate
 	f.fieldMap["multiple"] = f.Multiple
-	f.fieldMap["turnover_amount"] = f.TurnoverAmount
-	f.fieldMap["state"] = f.State
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["updated_at"] = f.UpdatedAt
-	f.fieldMap["bet_bill_no"] = f.BetBillNo
+	f.fieldMap["review_at"] = f.ReviewAt
+	f.fieldMap["review_state"] = f.ReviewState
+	f.fieldMap["review_uid"] = f.ReviewUID
+	f.fieldMap["review_name"] = f.ReviewName
+	f.fieldMap["remark"] = f.Remark
+	f.fieldMap["created_name"] = f.CreatedName
 }
 
 func (f fbPromoBonu) clone(db *gorm.DB) fbPromoBonu {
