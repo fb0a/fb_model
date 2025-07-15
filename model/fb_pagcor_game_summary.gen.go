@@ -4,25 +4,21 @@
 
 package model
 
-import (
-	"time"
-)
-
 const TableNameFbPagcorGameSummary = "fb_pagcor_game_summary"
 
 // FbPagcorGameSummary pagcor游戏报表
 type FbPagcorGameSummary struct {
-	ID                    int64     `gorm:"column:id;primaryKey" json:"id"`
-	Day                   time.Time `gorm:"column:day;not null;comment:数据日期" json:"day"`                                                            // 数据日期
-	TotalBetAmount        string    `gorm:"column:total_bet_amount;not null;comment:total_bet_amount" json:"total_bet_amount"`                      // total_bet_amount
-	TotalValidBetAmount   string    `gorm:"column:total_valid_bet_amount;not null;comment:有效投注金额" json:"total_valid_bet_amount"`                    // 有效投注金额
-	TotalSettlementAmount string    `gorm:"column:total_settlement_amount;not null;comment:total_settlement_amount" json:"total_settlement_amount"` // total_settlement_amount
-	TotalNetAmount        string    `gorm:"column:total_net_amount;not null;comment:投注盈亏" json:"total_net_amount"`                                  // 投注盈亏
-	Count_                int64     `gorm:"column:count;not null;comment:统计" json:"count"`                                                          // 统计
-	BrandName             string    `gorm:"column:brand_name;not null;default:0;comment:品牌" json:"brand_name"`                                      // 品牌
-	Category              string    `gorm:"column:category;not null;comment:category" json:"category"`                                              // category
-	CreatedAt             int64     `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                              // 创建时间
-	UpdatedAt             int64     `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                                              // 更新时间
+	ID                    int64  `gorm:"column:id;primaryKey" json:"id"`
+	Day                   string `gorm:"column:day;not null;comment:数据日期" json:"day"`                                                            // 数据日期
+	TotalBetAmount        string `gorm:"column:total_bet_amount;not null;comment:total_bet_amount" json:"total_bet_amount"`                      // total_bet_amount
+	TotalValidBetAmount   string `gorm:"column:total_valid_bet_amount;not null;comment:有效投注金额" json:"total_valid_bet_amount"`                    // 有效投注金额
+	TotalSettlementAmount string `gorm:"column:total_settlement_amount;not null;comment:total_settlement_amount" json:"total_settlement_amount"` // total_settlement_amount
+	TotalNetAmount        string `gorm:"column:total_net_amount;not null;comment:投注盈亏" json:"total_net_amount"`                                  // 投注盈亏
+	Count_                int64  `gorm:"column:count;not null;comment:统计" json:"count"`                                                          // 统计
+	BrandName             string `gorm:"column:brand_name;not null;default:0;comment:品牌" json:"brand_name"`                                      // 品牌
+	Category              string `gorm:"column:category;not null;comment:category" json:"category"`                                              // category
+	CreatedAt             int64  `gorm:"column:created_at;not null;comment:创建时间" json:"created_at"`                                              // 创建时间
+	UpdatedAt             int64  `gorm:"column:updated_at;not null;comment:更新时间" json:"updated_at"`                                              // 更新时间
 }
 
 // TableName FbPagcorGameSummary's table name

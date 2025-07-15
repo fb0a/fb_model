@@ -29,7 +29,7 @@ func newFbPagcorReportProd(db *gorm.DB, opts ...gen.DOOption) fbPagcorReportProd
 	tableName := _fbPagcorReportProd.fbPagcorReportProdDo.TableName()
 	_fbPagcorReportProd.ALL = field.NewAsterisk(tableName)
 	_fbPagcorReportProd.ID = field.NewInt64(tableName, "id")
-	_fbPagcorReportProd.Day = field.NewTime(tableName, "day")
+	_fbPagcorReportProd.Day = field.NewString(tableName, "day")
 	_fbPagcorReportProd.TotalBetAmount = field.NewFloat64(tableName, "total_bet_amount")
 	_fbPagcorReportProd.TotalValidBetAmount = field.NewFloat64(tableName, "total_valid_bet_amount")
 	_fbPagcorReportProd.TotalSettlementAmount = field.NewFloat64(tableName, "total_settlement_amount")
@@ -54,7 +54,7 @@ type fbPagcorReportProd struct {
 
 	ALL                   field.Asterisk
 	ID                    field.Int64
-	Day                   field.Time    // 数据日期
+	Day                   field.String  // 数据日期
 	TotalBetAmount        field.Float64 // total_bet_amount
 	TotalValidBetAmount   field.Float64 // 有效投注金额
 	TotalSettlementAmount field.Float64 // total_settlement_amount
@@ -84,7 +84,7 @@ func (f fbPagcorReportProd) As(alias string) *fbPagcorReportProd {
 func (f *fbPagcorReportProd) updateTableName(table string) *fbPagcorReportProd {
 	f.ALL = field.NewAsterisk(table)
 	f.ID = field.NewInt64(table, "id")
-	f.Day = field.NewTime(table, "day")
+	f.Day = field.NewString(table, "day")
 	f.TotalBetAmount = field.NewFloat64(table, "total_bet_amount")
 	f.TotalValidBetAmount = field.NewFloat64(table, "total_valid_bet_amount")
 	f.TotalSettlementAmount = field.NewFloat64(table, "total_settlement_amount")

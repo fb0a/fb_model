@@ -20,7 +20,7 @@ type Querier interface {
 
 // order
 func main() {
-	order()
+	//order()
 	fb()
 }
 
@@ -86,6 +86,14 @@ func fb() {
 				return "uint64"
 			}
 			return "int64"
+		},
+		"date": func(columnType gorm.ColumnType) string {
+			fmt.Println(columnType.ColumnType())
+			val, _ := columnType.ColumnType()
+			if strings.Contains(val, "date") {
+				return "string"
+			}
+			return val
 		},
 	})
 	g := gen.NewGenerator(cfg)
